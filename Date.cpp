@@ -1,5 +1,16 @@
 #include "Date.h"
 
+Date::Date() {
+	this->year = 0;
+	this->month = 0;
+	this->day = 0;
+}
+Date::Date(unsigned int year, unsigned int month, unsigned int day) {
+	this->year = year;
+	this->month = month;
+	this->day = day;
+}
+
 Date::Date(string yearMonthDay) {
 
 	string strYear;
