@@ -21,17 +21,22 @@ Agency::Agency(string fileName)
 
 	string line;
 
-	getline(in, name);	//name
-	getline(in, line);	//nif
+	getline(in, name);	
+	getline(in, line);	
 	nif = stoul(line);
-	getline(in, url);	//url
-	getline(in, line);	//address
+	getline(in, url);	
+	getline(in, line);	
 	Address address(line);
-	getline(in, clientsFile);//clients file
-	getline(in, packsFile);	//packs file
-	numPacks = 0; //CRIAR FUN��O
+	getline(in, clientsFile);
+	getline(in, packsFile);	
+	in.close();
+
+	numPacks = 0; 
 	profit = 0;	
 	lastPack = 0;
+
+	loadClients();
+	loadPacks();
 }
 
 void Agency::loadClients() {
@@ -47,9 +52,10 @@ void Agency::loadClients() {
 	string boughtPacks;
 	string moneySpent;
 
+	size_t counter = 0;
+
 	while (getline(in, line)) {
 
-		size_t counter = 0;
 		switch (counter)
 		{
 		case 0:
@@ -73,11 +79,15 @@ void Agency::loadClients() {
 		case 6:
 			Address newAddress(address);
 			Client newClient(name, nif, numPeople, address, boughtPacks, moneySpent);
+			counter = -1;
 			break;
 		}
+		counter++;
 	}
 	Address newAddress(address);
 	Client newClient(name, nif, numPeople, address, boughtPacks, moneySpent);
+
+	in.close();
 }
 
 // adds a pack to the packs vector
