@@ -24,13 +24,13 @@ Client::Client(string name, unsigned int nif, unsigned int numPeople, Address ad
 }
 
 //READ FORM A FILE CONSTRUCTOR
-Client::Client(string name,  num nif, num numPeople, Address address, num  boughtPacks, num moneySpent) {
+Client::Client(string name,  num nif, num numPeople, Address address, vector<num> boughtPacks, num moneySpent) {
 	this->name = name;
-	this->nif = stoul(nif);
-	this->numPeople = stoul(numPeople);
-	this->address = Address(address);
-	this->boughtPacks = this->boughtPacksVector(boughtPacks);
-	this->moneySpent = stoul(moneySpent);
+	this->nif = nif;
+	this->numPeople = numPeople;
+	this->address = address;
+	this->boughtPacks = boughtPacks;
+	this->moneySpent = moneySpent;
 }
 
 

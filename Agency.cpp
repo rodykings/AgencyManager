@@ -47,12 +47,13 @@ void Agency::loadClients() {
 	in.open(clientsFile);
 
 	string line;
+
 	string name;
-	string nif;
-	string numPeople;
+	num nif;
+	num numPeople;
 	string address;
-	string boughtPacks;
-	string moneySpent;
+	num boughtPacks;
+	num spentMoney;
 
 	size_t counter = 0;
 
@@ -64,10 +65,10 @@ void Agency::loadClients() {
 			name = line;
 			break;
 		case 1:
-			nif = line;
+			nif = stoul(line);
 			break;
 		case 2:
-			numPeople = line;
+			numPeople = stoul(line);
 			break;
 		case 3:
 			address = line;
@@ -76,18 +77,18 @@ void Agency::loadClients() {
 			boughtPacks = line;
 			break;
 		case 5:
-			moneySpent = line;
+			spentMoney = stoul(line);
 			break;
 		case 6:
 			Address newAddress(address);
-			Client newClient(name, nif, numPeople, address, boughtPacks, moneySpent);
+			Client newClient();
 			counter = -1;
 			break;
 		}
 		counter++;
 	}
 	Address newAddress(address);
-	Client newClient(name, nif, numPeople, address, boughtPacks, moneySpent);
+	Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
 
 	in.close();
 }
@@ -195,7 +196,6 @@ void Agency::addClient() {
 
 	string name;
 	unsigned int nif;
-
 
 	cin << 
 
