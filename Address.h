@@ -11,6 +11,8 @@ class Address {
 		Address(string street, unsigned int door, string floor, string zipCode, string location);
 		Address(string addressStr); // "street / door / floor / zipCode / location"
 		string toString() const;
+
+		//---GET methods---//
 		string getStreet() const;
 		unsigned int getDoor() const;
 		string getFloor() const;
