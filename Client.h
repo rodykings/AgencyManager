@@ -38,7 +38,7 @@ class Client {
 		num numPeople;
 		Address address;
 		vector<num> boughtPacks;
-		unsigned int moneySpent;
+		num moneySpent;
 
 		vector<num> boughtPacksVector(string bought);
 };

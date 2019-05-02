@@ -26,12 +26,12 @@ private:
 	string name;
 	string url;
 	Address address;
-    unsigned int nif;
-	unsigned int profit;
-	unsigned int numPacks;
+    num nif;
+	num profit;
+	num numPacks;
 	string clientsFile;
 	string packsFile;
-	unsigned int lastPack;
+	num lastPack;
 
 	vector<Client> clients;
 	vector<Pack> packs;

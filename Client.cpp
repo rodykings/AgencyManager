@@ -14,7 +14,7 @@ Client::Client() {
 }
 
 //NEW CLIENT CONSTRUCTOR
-Client::Client(string name, unsigned int nif, unsigned int numPeople, Address address) {
+Client::Client(string name, num nif, num numPeople, Address address) {
 	this->name = name;
 	this->nif = nif;
 	this->numPeople = numPeople;
@@ -61,26 +61,26 @@ void Client::setMoneySpent(num moneySpent) {
 string Client::getName() const {
 	return this->name;
 }
-unsigned int Client::getNIF() const {
+num Client::getNIF() const {
 	return this->nif;
 }
-unsigned int Client::getNumPeople() const {
+num Client::getNumPeople() const {
 	return this->numPeople;
 }
 Address Client::getAddress() const {
 	return this->address;
 }
-vector<unsigned int> Client::getBoughtPacks() const {
+vector<num> Client::getBoughtPacks() const {
 	return this->boughtPacks;
 }
-unsigned int Client::getMoneySpent() const{
+num Client::getMoneySpent() const{
 	return this->moneySpent;
 }
 
 
 /*-----OTHER METHODS------*/
 
-vector<unsigned int> Client::boughtPacksVector(string bought) {
+vector<num> Client::boughtPacksVector(string bought) {
 
 	vector<unsigned int> b;
 

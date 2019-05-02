@@ -14,10 +14,10 @@ class Pack {
 public:
 	//---CONSTRUCTORS---//
 	Pack();
-	Pack(num id, vector<string> places, Date start, Date end, num price, num spots, num soldSpots);
+	Pack(int id, vector<string> places, Date start, Date end, num price, num spots, num soldSpots);
 
 	//---SET methods---//
-	void setID(num id);
+	void setID(int id);
 	void setPlaces(vector<string> places);
 	void setStart(Date start);
 	void setEnd(Date end);
@@ -26,7 +26,7 @@ public:
 	void setSoldSpots(num soldSpots);
 
 	//---GET methods---//
-	num getID() const;
+	int getID() const;
 	vector<string> getPlaces() const;
 	Date getStart() const;
 	Date getEnd() const;
@@ -39,7 +39,7 @@ public:
 
 
 private:
-	unsigned int id;
+	int id;
 	vector<string> places;
 	Date start;
 	Date end;

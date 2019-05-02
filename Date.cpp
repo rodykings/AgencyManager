@@ -5,7 +5,7 @@ Date::Date() {
 	this->month = 0;
 	this->day = 0;
 }
-Date::Date(unsigned int year, unsigned int month, unsigned int day) {
+Date::Date(num year, num month, num day) {
 	this->year = year;
 	this->month = month;
 	this->day = day;
@@ -38,28 +38,28 @@ Date::Date(string yearMonthDay) {
 
 }
 
-void Date::setYear(unsigned int y) {
+void Date::setYear(num y) {
 	year = y;
 }
-void Date::setMonth(unsigned int m) {
+void Date::setMonth(num m) {
 	month = m;
 }
-void Date::setDay(unsigned int d) {
+void Date::setDay(num d) {
 	day = d;
 }
-void Date::setDate(unsigned int y, unsigned int m, unsigned int d) {
+void Date::setDate(num y, num m, num d) {
 	year = y;
 	month = m;
 	day = d;
 }
 
-unsigned int Date::getYear() const {
+num Date::getYear() const {
 	return year;
 }
-unsigned int Date::getMonth() const {
+num Date::getMonth() const {
 	return month;
 }
-unsigned int Date::getDay() const {
+num Date::getDay() const {
 	return day;
 }
 string Date::getDate() const {
@@ -84,7 +84,7 @@ void Date::show() const {
 	cout << getDate();
 }
 
-unsigned int Date::numOfDays(unsigned int y, unsigned int m) {
+num Date::numOfDays(num y, num m) {
 
 	bool isLeap = false;
 
