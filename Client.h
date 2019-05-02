@@ -4,6 +4,7 @@
 
 #include "Address.h"
 #include "Pack.h"
+#include "inputValidation.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ class Client {
 	public:
 		Client();
 		Client(string name, unsigned int nif, unsigned int numPeople, Address address);
-		Client(string name, string nif, string numPeople, string address, string boughtPacks, string moneySpent);
+		Client(string name, num nif, num numPeople, num address, num boughtPacks, num moneySpent);
 
 		//---SET methods---//
 		void setName(string name);
