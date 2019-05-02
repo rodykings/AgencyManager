@@ -11,7 +11,7 @@ Pack::Pack()
 	soldSpots = 0;
 }
 //receives information read from agency file
-Pack::Pack(string id, string places, string start, string end, string price, string spots, string soldSpots)
+Pack::Pack(num id, vector<string> places, Date start, Date end, unsigned int price, unsigned int spots, unsigned int soldSpots)
 {
 	this->id = stoul(id);
 	this->places = splitPlaces(places);

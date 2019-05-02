@@ -6,6 +6,7 @@
 #include <iomanip>
 
 #include "Date.h"
+#include "inputValidation.h"
 
 using namespace std;
 
@@ -13,7 +14,7 @@ class Pack {
 public:
 	//---CONSTRUCTORS---//
 	Pack();
-	Pack(string id, string places, string start, string end, string price, string spots, string soldSpots);
+	Pack(num id, vector<string> places, Date start, Date end, unsigned int price, unsigned int spots, unsigned int soldSpots);
 
 	//---SET methods---//
 	void setID(unsigned int id);
