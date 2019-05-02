@@ -48,12 +48,12 @@ void Agency::loadClients() {
 
 	string line;
 
-	string name;
-	string address;
-	num nif;
-	num numPeople;
-	string boughtPacks;
-	num spentMoney;
+	string name = "";
+	string address = "";
+	num nif = 0;
+	num numPeople = 0;
+	string boughtPacks = "";
+	num spentMoney = 0;
 
 	size_t counter = 0;
 
@@ -104,10 +104,10 @@ void Agency::loadPacks()
 	getline(in, line);		//lastPack
 	lastPack = stoul(line);
 
-	int id;
-	num price, spots, soldSpots;
+	int id = 0;
+	num price = 0, spots = 0, soldSpots = 0;
 	Date start, end;
-	string places;
+	string places = "";
 
 	size_t i = 0;
 	while (getline(in, line))
@@ -210,6 +210,7 @@ void Agency::addPack() {
 	int id = lastPack + 1;
 	string places;
 	inputString("Tour Sites: ", places);
+	
 	
 
 
