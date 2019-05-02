@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <vector>
 
 #include "Date.h"
 
@@ -13,6 +14,6 @@ void inputString(string message, string &value);
 void inputInt(string message, num& value);
 void inputInt(string message, num& value, num size);
 void inputDate(string message, string& value);
-void inputPlaces(string message, string& value);
+void inputPlaces(vector<string> &places);
 void yesOrNo();
 

@@ -7,6 +7,7 @@ void inputString(string message,string &value) {
 
 }
 
+
 void inputInt(string message, num &value) {
 
 	cout << endl << message;
@@ -40,6 +41,15 @@ void inputDate(string message, string &value) {
 		cout << message;
 		cin >> value;
 	}
+}
+
+void inputPlaces(vector<string> &places) {
+
+	string mainPlace;
+	inputString("MAIN PLACE", mainPlace);
+
+
+
 }
 
 string errorMessage() {
