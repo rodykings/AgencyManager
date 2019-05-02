@@ -41,15 +41,12 @@ Date::Date(string yearMonthDay) {
 void Date::setYear(unsigned int y) {
 	year = y;
 }
-
 void Date::setMonth(unsigned int m) {
 	month = m;
 }
-
 void Date::setDay(unsigned int d) {
 	day = d;
 }
-
 void Date::setDate(unsigned int y, unsigned int m, unsigned int d) {
 	year = y;
 	month = m;
@@ -59,15 +56,12 @@ void Date::setDate(unsigned int y, unsigned int m, unsigned int d) {
 unsigned int Date::getYear() const {
 	return year;
 }
-
 unsigned int Date::getMonth() const {
 	return month;
 }
-
 unsigned int Date::getDay() const {
 	return day;
 }
-
 string Date::getDate() const {
 
 	string strMonth;

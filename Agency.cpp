@@ -126,7 +126,7 @@ void Agency::loadPacks()
 		}
 		i++;
 	}
-	Pack newPack2(id, places, start, end, price, spots, soldSpots);		//n�o adiciona o �ltimo, por n�o ter "::::::::::"
+	Pack newPack2(id, places, start, end, price, spots, soldSpots);
 	packs.push_back(newPack2);
 }
 
