@@ -1,6 +1,6 @@
 #include "Client.h"
 
-//Default Constructor
+//DEFAULT CONSTRUCTOR
 Client::Client() {
 	Address address = {};
 	vector<unsigned int> boughtPacks = {};
@@ -13,7 +13,7 @@ Client::Client() {
 	this->moneySpent = 0;
 }
 
-//Create New Client
+//NEW CLIENT CONSTRUCTOR
 Client::Client(string name, unsigned int nif, unsigned int numPeople, Address address) {
 	this->name = name;
 	this->nif = nif;
@@ -23,15 +23,18 @@ Client::Client(string name, unsigned int nif, unsigned int numPeople, Address ad
 	this->moneySpent = 0;
 }
 
-//To create Clients from a file
-Client::Client(string name, unsigned int nif, unsigned int numPeople, Address address, string boughtPacks, int moneySpent) {
+//READ FORM A FILE CONSTRUCTOR
+Client::Client(string name,  string nif, string numPeople, string address, string boughtPacks, string moneySpent) {
 	this->name = name;
-	this->nif = nif;
-	this->numPeople = numPeople;
-	this->address = address;
+	this->nif = stoul(nif);
+	this->numPeople = stoul(numPeople);
+	this->address = Address(address);
 	this->boughtPacks = this->boughtPacksVector(boughtPacks);
-	this->moneySpent = moneySpent;
+	this->moneySpent = stoul(moneySpent);
 }
+
+
+/*-----SET METHODS------*/
 
 void Client::setName(string name) {
 	this->name = name;
@@ -52,6 +55,30 @@ void Client::setBoughtPacks(vector<unsigned int> boughtPacks) {
 void Client::setMoneySpent(int moneySpent) {
 	this->moneySpent = moneySpent;
 }
+
+/*-----GET METHODS------*/
+
+string Client::getName() const {
+	return this->name;
+}
+unsigned int Client::getNif() const {
+	return this->nif;
+}
+unsigned int Client::getNumPeople() const {
+	return this->numPeople;
+}
+Address Client::getAddress() const {
+	return this->address;
+}
+vector<unsigned int> Client::getBoughtPacks() const {
+	return this->boughtPacks;
+}
+unsigned int Client::getMoneySpent() const{
+	return this->moneySpent;
+}
+
+
+/*-----OTHER METHODS------*/
 
 vector<unsigned int> Client::boughtPacksVector(string bought) {
 
