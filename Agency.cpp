@@ -191,7 +191,7 @@ void Agency::storePacks() {
 
 
 //ADD CLIENTS
-void Agency::addClients() {
+void Agency::addClient() {
 
 	string name;
 	unsigned int nif;
@@ -202,7 +202,7 @@ void Agency::addClients() {
 }
 
 //ADD PACKS
-void Agency::addPacks() {
+void Agency::addPack() {
 
 
 
@@ -216,7 +216,3 @@ void Agency::showAgencyInfo() {
 	cout << address.toString() << endl;
 };
 
-void Agency::addPack()
-{
-
-}

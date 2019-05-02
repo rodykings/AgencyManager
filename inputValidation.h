@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
+
 using namespace std;
-typedef unsigned int num;
+typedef unsigned int idNum;
 
 

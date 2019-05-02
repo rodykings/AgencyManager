@@ -10,6 +10,7 @@
 #include "Client.h"
 #include "Pack.h"
 #include "Address.h"
+#include "inputValidation.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ private:
 	string name;
 	string url;
 	Address address;
-	unsigned int nif;
+    unsigned int nif;
 	unsigned int profit;
 	unsigned int numPacks;
 	string clientsFile;
@@ -37,6 +38,6 @@ private:
 
 	void storeClients();
 	void storePacks();
-	void addClients();
-	void addPacks();
+	void addClient();
+	void addPack();
 };
