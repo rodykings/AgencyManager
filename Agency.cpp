@@ -52,8 +52,8 @@ void Agency::loadClients() {
 	string address;
 	num nif;
 	num numPeople;
-	num boughtPacks;
-	num moneySpent;
+	string boughtPacks;
+	num spentMoney;
 
 	size_t counter = 0;
 
@@ -74,14 +74,14 @@ void Agency::loadClients() {
 			address = line;
 			break;
 		case 4:
-			boughtPacks = stoul(line);
+			boughtPacks = line;
 			break;
 		case 5:
 			spentMoney = stoul(line);
 			break;
 		case 6:
 			Address newAddress(address);
-			Client newClient();
+			Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
 			counter = -1;
 			break;
 		}
@@ -200,7 +200,7 @@ void Agency::addClient() {
 	string name;
 	unsigned int nif;
 
-	cin << 
+	
 
 }
 

@@ -24,12 +24,12 @@ Client::Client(string name, num nif, num numPeople, Address address) {
 }
 
 //READ FORM A FILE CONSTRUCTOR
-Client::Client(string name,  num nif, num numPeople, Address address, vector<num> boughtPacks, num moneySpent) {
+Client::Client(string name,  num nif, num numPeople, Address address, string boughtPacks, num moneySpent) {
 	this->name = name;
 	this->nif = nif;
 	this->numPeople = numPeople;
 	this->address = address;
-	this->boughtPacks = boughtPacks;
+	this->boughtPacks = boughtPacksVector(boughtPacks);
 	this->moneySpent = moneySpent;
 }
 

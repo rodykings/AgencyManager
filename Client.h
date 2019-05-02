@@ -12,7 +12,7 @@ class Client {
 	public:
 		Client();
 		Client(string name, num nif, num numPeople, Address address);
-		Client(string name, num nif, num numPeople, Address address, vector<num> boughtPacks, num moneySpent);
+		Client(string name, num nif, num numPeople, Address address, string boughtPacks, num moneySpent);
 
 		//---SET methods---//
 		void setName(string name);

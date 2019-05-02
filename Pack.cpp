@@ -13,13 +13,13 @@ Pack::Pack()
 //receives information read from agency file
 Pack::Pack(int id, vector<string> places, Date start, Date end, num price, num spots, num soldSpots)
 {
-	this->id = stoul(id);
-	this->places = splitPlaces(places);
-	this->start = Date(start);
-	this->end = Date(end);
-	this->price = stoul(price);
-	this->spots = stoul(spots);
-	this->soldSpots = stoul(soldSpots);
+	this->id = id;
+	this->places = places;
+	this->start = start;
+	this->end = end;
+	this->price = price;
+	this->spots = spots;
+	this->soldSpots = soldSpots;
 }
 
 void Pack::setID(int id)
