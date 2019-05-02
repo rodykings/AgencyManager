@@ -2,14 +2,14 @@
 
 void inputString(string message,string &value) {
 
-	cout << message;
+	cout << endl << message;
 	getline(cin, value);
 
 }
 
 void inputInt(string message, num &value) {
 
-	cout << message;
+	cout << endl << message;
 	cin >> value;
 	while (cin.fail()) {
 		errorMessage();
@@ -20,13 +20,22 @@ void inputInt(string message, num &value) {
 }
 void inputInt(string message, num& value, num size){
 
-	cout << message;
+	cout << endl << message;
 	cin >> value;
 	while (cin.fail() || to_string(value).length() != size) {
 		errorMessage();
 		cout << message;
 		cin >> value;
 	}
+}
+
+void inputDate(string message, string &value) {
+
+	cout << endl << message;
+	cin >> value;
+
+	Date()
+	while(!dateValidation() || )
 }
 
 string errorMessage() {
