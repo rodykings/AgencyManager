@@ -11,8 +11,11 @@ using namespace std;
 
 class Pack {
 public:
+	//---CONSTRUCTORS---//
 	Pack();
 	Pack(string id, string places, string start, string end, string price, string spots, string soldSpots);
+
+	//---SET methods---//
 	void setID(unsigned int id);
 	void setPlaces(vector<string> places);
 	void setStart(Date start);
@@ -20,6 +23,8 @@ public:
 	void setPrice(unsigned int price);
 	void setSpots(unsigned int spots);
 	void setSoldSpots(unsigned int soldSpots);
+
+	//---GET methods---//
 	unsigned int getID() const;
 	vector<string> getPlaces() const;
 	Date getStart() const;

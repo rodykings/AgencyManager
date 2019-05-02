@@ -61,7 +61,7 @@ void Client::setMoneySpent(int moneySpent) {
 string Client::getName() const {
 	return this->name;
 }
-unsigned int Client::getNif() const {
+unsigned int Client::getNIF() const {
 	return this->nif;
 }
 unsigned int Client::getNumPeople() const {
@@ -91,6 +91,21 @@ vector<unsigned int> Client::boughtPacksVector(string bought) {
 			continue;
 		else
 			b.push_back(temp);
+	}
+
+	return b;
+}
+string Client::boughtToString()
+{
+	string b = "";
+
+	size_t size = boughtPacks.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		if (size == 1 || i == size - 1)
+			b += boughtPacks[i];
+		else
+			b += boughtPacks[i] + ",";
 	}
 
 	return b;

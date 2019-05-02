@@ -130,6 +130,22 @@ void Agency::loadPacks()
 	Pack newPack2(id, places, start, end, price, spots, soldSpots);
 	packs.push_back(newPack2);
 }
+void Agency::storeClients() {
+	
+	ofstream out;
+	out.open(clientsFile, ofstream::out, ofstream::trunc);
+
+	size_t size = clients.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		out << clients[i].getName() << endl;
+		out << to_string(clients[i].getNIF()) << endl;
+		out << to_string(clients[i].getNumPeople()) << endl;
+		out << clients[i].getAddress().toString() << endl;
+		out << clients[i].boughtToString() << endl;
+		out << to_string(clients[i].getMoneySpent()) << endl;
+	}
+}
 
 void Agency::showAgencyInfo() {
 	cout << name << endl;

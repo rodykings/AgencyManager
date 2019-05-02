@@ -34,4 +34,6 @@ private:
 
 	vector<Client> clients;
 	vector<Pack> packs;
+
+	void storeClients();
 };

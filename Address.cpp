@@ -53,7 +53,7 @@ Address::Address(string addressStr) {
 	this->door = stoi(doorStr);
 }
 
-string Address::toString() {
+string Address::toString() const  {
 	return street + " / " + to_string(door) + " / " + floor + " / " + zipCode + " / " + location;
 }
 
