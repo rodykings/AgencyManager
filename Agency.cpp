@@ -166,3 +166,8 @@ void Agency::showAgencyInfo() {
 	cout << url << endl;
 	cout << address.toString() << endl;
 };
+
+void Agency::addPack()
+{
+
+}

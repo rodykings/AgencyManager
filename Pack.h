@@ -36,6 +36,7 @@ public:
 	vector<string> splitPlaces(string places);
 	string placesToString(vector<string> places);
 
+
 private:
 	unsigned int id;
 	vector<string> places;
