@@ -44,11 +44,11 @@ void Agency::loadClients() {
 	while (getline(in, line)) {
 
 		string name;
-		unsigned int nif;
-		unsigned int numPeople;
+		string nif;
+		string numPeople;
 		string address;
 		string boughtPacks;
-		unsigned int moneySpent;
+		string moneySpent;
 
 		size_t counter = 0;
 		switch (counter)

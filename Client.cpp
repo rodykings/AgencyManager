@@ -79,7 +79,7 @@ unsigned int Client::getMoneySpent() const{
 }
 
 
-
+/*-----OTHER METHODS------*/
 
 vector<unsigned int> Client::boughtPacksVector(string bought) {
 
