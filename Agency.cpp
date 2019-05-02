@@ -222,6 +222,11 @@ void Agency::addClient() {
 //ADD PACKS
 void Agency::addPack() {
 
+	int id = lastPack + 1;
+	string places;
+	inputString("Tour Sites: ", places);
+	
+
 
 
 }

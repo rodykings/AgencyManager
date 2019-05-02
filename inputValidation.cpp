@@ -41,3 +41,29 @@ void inputDate(string message, string &value) {
 string errorMessage() {
 	return "Invalid input! Try again!\n" ;
 }
+
+bool dateValidation(string date)
+{
+	if (isdigit(date.find_first_not_of("0123456789/")))
+		return false;
+
+	if (date.length() != 10)
+		return false;
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (!isdigit(date[i]))
+			return false;
+	}
+	for (int j = 5; j < 7; j++)
+	{
+		if (!isdigit(date[j]))
+			return false;
+	}
+	for (int x = 8; x <= 9; x++)
+	{
+		if (!isdigit(date[x]))
+			return false;
+	}
+	return true;
+}
