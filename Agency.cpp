@@ -40,15 +40,14 @@ void Agency::loadClients() {
 	in.open(clientsFile);
 
 	string line;
+	string name;
+	string nif;
+	string numPeople;
+	string address;
+	string boughtPacks;
+	string moneySpent;
 
 	while (getline(in, line)) {
-
-		string name;
-		string nif;
-		string numPeople;
-		string address;
-		string boughtPacks;
-		string moneySpent;
 
 		size_t counter = 0;
 		switch (counter)
@@ -57,10 +56,10 @@ void Agency::loadClients() {
 			name = line;
 			break;
 		case 1:
-			nif = stoul(line);
+			nif = line;
 			break;
 		case 2:
-			numPeople = stoul(line);
+			numPeople = line;
 			break;
 		case 3:
 			address = line;
@@ -69,7 +68,7 @@ void Agency::loadClients() {
 			boughtPacks = line;
 			break;
 		case 5:
-			moneySpent = stoul(line);
+			moneySpent = line;
 			break;
 		case 6:
 			Address newAddress(address);
@@ -77,6 +76,8 @@ void Agency::loadClients() {
 			break;
 		}
 	}
+	Address newAddress(address);
+	Client newClient(name, nif, numPeople, address, boughtPacks, moneySpent);
 }
 
 // adds a pack to the packs vector
@@ -90,7 +91,7 @@ void Agency::loadPacks()
 	getline(in, line);		//lastPack
 	lastPack = stoul(line);
 
-	string id = "", price = "", spots = "", soldSpots = "", places = "", start = "", end = "";
+	string id , price , spots, soldSpots, places, start, end;
 
 	size_t i = 0;
 	while (getline(in, line))
@@ -98,7 +99,7 @@ void Agency::loadPacks()
 		switch (i)
 		{
 		case 0:
-			id = stoul(line);
+			id = line;
 			break;
 		case 1:
 			places = line;
@@ -110,13 +111,13 @@ void Agency::loadPacks()
 			end = line;
 			break;
 		case 4:
-			price = stoul(line);
+			price = line;
 			break;
 		case 5:
-			spots = stoul(line);
+			spots = line;
 			break;
 		case 6:
-			soldSpots = stoul(line);
+			soldSpots = line;
 			break;
 		case 7:	// "::::::::::" add pack to vector
 			i = -1; 
@@ -126,7 +127,7 @@ void Agency::loadPacks()
 		}
 		i++;
 	}
-	Pack newPack2(id, places, start, end, price, spots, soldSpots);		//n�o adiciona o �ltimo, por n�o ter "::::::::::"
+	Pack newPack2(id, places, start, end, price, spots, soldSpots);		
 	packs.push_back(newPack2);
 }
 
