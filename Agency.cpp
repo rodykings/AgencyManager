@@ -90,10 +90,7 @@ void Agency::loadPacks()
 	getline(in, line);		//lastPack
 	lastPack = stoul(line);
 
-	unsigned int id = 0;
-	string places = "", start = "", end = "";
-	unsigned int price = 0;
-	unsigned int spots = 0, soldSpots = 0;
+	string id = "", price = "", spots = "", soldSpots = "", places = "", start = "", end = "";
 
 	size_t i = 0;
 	while (getline(in, line))

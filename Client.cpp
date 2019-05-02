@@ -11,7 +11,6 @@ Client::Client() {
 	this->address = address;
 	this->boughtPacks = boughtPacks;
 	this->moneySpent = 0;
-
 }
 
 //NEW CLIENT CONSTRUCTOR

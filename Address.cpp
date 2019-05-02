@@ -8,7 +8,7 @@ Address::Address() {
 	this->location = "";
 }
 
-Address::Address(string street, int door, string floor, string zipCode, string location) {
+Address::Address(string street, unsigned int door, string floor, string zipCode, string location) {
 	this->street = street;
 	this->door = door;
 	this->floor = floor;
@@ -57,3 +57,18 @@ string Address::toString() {
 	return street + " / " + to_string(door) + " / " + floor + " / " + zipCode + " / " + location;
 }
 
+string Address::getStreet() const {
+	return street;
+}
+unsigned int Address::getDoor() const {
+	return door;
+}
+string Address::getFloor() const {
+	return floor;
+}
+string Address::getZipCode() const {
+	return zipCode;
+}
+string Address::getLocation() const {
+	return location;
+}

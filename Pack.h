@@ -12,7 +12,7 @@ using namespace std;
 class Pack {
 public:
 	Pack();
-	Pack(unsigned int id, string places, string start, string end, unsigned int price, unsigned int spots, unsigned int soldSpots);
+	Pack(string id, string places, string start, string end, string price, string spots, string soldSpots);
 	void setID(unsigned int id);
 	void setPlaces(vector<string> places);
 	void setStart(Date start);

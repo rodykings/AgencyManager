@@ -10,15 +10,16 @@ Pack::Pack()
 	spots = 0;
 	soldSpots = 0;
 }
-Pack::Pack(unsigned int id, string places, string start, string end, unsigned int price, unsigned int spots, unsigned int soldSpots)
+//receives information read from agency file
+Pack::Pack(string id, string places, string start, string end, string price, string spots, string soldSpots)
 {
-	this->id = id;
+	this->id = stoul(id);
 	this->places = splitPlaces(places);
 	this->start = Date(start);
 	this->end = Date(end);
-	this->price = price;
-	this->spots = spots;
-	this->soldSpots = soldSpots;
+	this->price = stoul(price);
+	this->spots = stoul(spots);
+	this->soldSpots = stoul(soldSpots);
 }
 
 void Pack::setID(unsigned int id)
