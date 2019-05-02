@@ -34,8 +34,12 @@ void inputDate(string message, string &value) {
 	cout << endl << message;
 	cin >> value;
 
-	Date()
-	while(!dateValidation() || )
+	Date date(value);
+	while (!dateValidation(value) || !date.isValid()) {
+		errorMessage();
+		cout << message;
+		cin >> value;
+	}
 }
 
 string errorMessage() {
