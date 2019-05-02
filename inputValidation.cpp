@@ -29,6 +29,15 @@ void inputInt(string message, num& value, num size){
 	}
 }
 
+void inputDate(string message, string &value) {
+
+	cout << endl << message;
+	cin >> value;
+
+	Date()
+	while(!dateValidation() || )
+}
+
 string errorMessage() {
 	return "Invalid input! Try again!\n" ;
 }
