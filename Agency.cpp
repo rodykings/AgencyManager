@@ -77,7 +77,6 @@ void Agency::loadClients() {
 			break;
 		}
 	}
-	//Client newClient();
 }
 
 // adds a pack to the packs vector
