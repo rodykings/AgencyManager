@@ -36,7 +36,6 @@ Agency::Agency(string fileName)
 
 void Agency::loadClients() {
 
-	
 	ifstream in;
 	in.open(clientsFile);
 
@@ -45,43 +44,40 @@ void Agency::loadClients() {
 	while (getline(in, line)) {
 
 		string name;
-		int nif;
-		int numPeople;
+		unsigned int nif;
+		unsigned int numPeople;
 		string address;
 		string boughtPacks;
-		double moneySpent;
+		unsigned int moneySpent;
 
-		
 		size_t counter = 0;
 		switch (counter)
 		{
-			case 0:
-				name = line;
-				break;
-			case 1:
-				nif = stoi(line);
-				break;
-			case 2:
-				numPeople = stoi(line);
-				break;
-			case 3:
-				 address = line;
-				break;
-			case 4:
-				boughtPacks = line;
-				break;
-			case 5:
-				moneySpent = stod(line);
-				break;
-			case 6:
-				Address newAddress(address);
-				Client newClient(name, nif, numPeople, address, boughtPacks, moneySpent);
-				break;
+		case 0:
+			name = line;
+			break;
+		case 1:
+			nif = stoul(line);
+			break;
+		case 2:
+			numPeople = stoul(line);
+			break;
+		case 3:
+			address = line;
+			break;
+		case 4:
+			boughtPacks = line;
+			break;
+		case 5:
+			moneySpent = stoul(line);
+			break;
+		case 6:
+			Address newAddress(address);
+			Client newClient(name, nif, numPeople, address, boughtPacks, moneySpent);
+			break;
 		}
-
 	}
-
-	Client newClient();
+	//Client newClient();
 }
 
 // adds a pack to the packs vector
@@ -137,7 +133,6 @@ void Agency::loadPacks()
 	Pack newPack2(id, places, start, end, price, spots, soldSpots);		//n�o adiciona o �ltimo, por n�o ter "::::::::::"
 	packs.push_back(newPack2);
 }
-
 
 void Agency::showAgencyInfo() {
 	cout << name << endl;

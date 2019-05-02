@@ -23,7 +23,7 @@ Address::Address(string addressStr) {
 	
 	unsigned int counter = 0;
 
-	for (int i = 0; i < addressStr.length(); i++) {
+	for (size_t i = 0; i < addressStr.length(); i++) {
 
 		if (addressStr[i] == '/')
 			counter++;
