@@ -11,34 +11,34 @@ using namespace std;
 class Client {
 	public:
 		Client();
-		Client(string name, unsigned int nif, unsigned int numPeople, Address address);
-		Client(string name, num nif, num numPeople, num address, num boughtPacks, num moneySpent);
+		Client(string name, num nif, num numPeople, Address address);
+		Client(string name, num nif, num numPeople, Address address, num boughtPacks, num moneySpent);
 
 		//---SET methods---//
 		void setName(string name);
-		void setNif(unsigned int nif);
-		void setNumPeople(unsigned int numPeople);
+		void setNif(num nif);
+		void setNumPeople(num numPeople);
 		void setAddress(Address address);
-		void setBoughtPacks(vector<unsigned int> boughtPacks);
-		void setMoneySpent(int moneySpent);
+		void setBoughtPacks(vector<num> boughtPacks);
+		void setMoneySpent(num moneySpent);
 
 		//--GET methods--//
 		string getName() const;
-		unsigned int getNIF() const;
-		unsigned int getNumPeople() const;
+		num getNIF() const;
+		num getNumPeople() const;
 		Address getAddress() const;
-		vector<unsigned int> getBoughtPacks() const;
-		unsigned int getMoneySpent() const;
+		vector<num> getBoughtPacks() const;
+		num getMoneySpent() const;
 
 		string boughtToString();
 
 	private:
 		string name;
-		unsigned int nif;
-		unsigned int numPeople;
+		num nif;
+		num numPeople;
 		Address address;
-		vector<unsigned int> boughtPacks;
+		vector<num> boughtPacks;
 		unsigned int moneySpent;
 
-		vector<unsigned int> boughtPacksVector(string bought);
+		vector<num> boughtPacksVector(string bought);
 };

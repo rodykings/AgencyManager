@@ -14,25 +14,25 @@ class Pack {
 public:
 	//---CONSTRUCTORS---//
 	Pack();
-	Pack(num id, vector<string> places, Date start, Date end, unsigned int price, unsigned int spots, unsigned int soldSpots);
+	Pack(num id, vector<string> places, Date start, Date end, num price, num spots, num soldSpots);
 
 	//---SET methods---//
-	void setID(unsigned int id);
+	void setID(num id);
 	void setPlaces(vector<string> places);
 	void setStart(Date start);
 	void setEnd(Date end);
-	void setPrice(unsigned int price);
-	void setSpots(unsigned int spots);
-	void setSoldSpots(unsigned int soldSpots);
+	void setPrice(num price);
+	void setSpots(num spots);
+	void setSoldSpots(num soldSpots);
 
 	//---GET methods---//
-	unsigned int getID() const;
+	num getID() const;
 	vector<string> getPlaces() const;
 	Date getStart() const;
 	Date getEnd() const;
-	unsigned int getPrice() const;
-	unsigned int getSpots() const;
-	unsigned int getSoldSpots() const;
+	num getPrice() const;
+	num getSpots() const;
+	num getSoldSpots() const;
 	
 	vector<string> splitPlaces(string places);
 	string placesToString();
@@ -43,5 +43,5 @@ private:
 	vector<string> places;
 	Date start;
 	Date end;
-	unsigned int price, spots, soldSpots;
+	num price, spots, soldSpots;
 };

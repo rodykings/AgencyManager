@@ -39,20 +39,20 @@ Client::Client(string name,  num nif, num numPeople, Address address, num  bough
 void Client::setName(string name) {
 	this->name = name;
 }	
-void Client::setNif(unsigned int nif) {
+void Client::setNif(num nif) {
 	this->nif = nif;
 }
-void Client::setNumPeople(unsigned int numPeople) {
+void Client::setNumPeople(num numPeople) {
 	this->numPeople = numPeople;
 }
 void Client::setAddress(Address address) {
 	this->address = address;
 
 }
-void Client::setBoughtPacks(vector<unsigned int> boughtPacks) {
+void Client::setBoughtPacks(vector<num> boughtPacks) {
 	this->boughtPacks = boughtPacks;
 }
-void Client::setMoneySpent(int moneySpent) {
+void Client::setMoneySpent(num moneySpent) {
 	this->moneySpent = moneySpent;
 }
 
