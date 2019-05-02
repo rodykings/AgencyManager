@@ -37,5 +37,6 @@ private:
 
 	void storeClients();
 	void storePacks();
-	void addPack();
+	void addClients();
+	void addPacks();
 };

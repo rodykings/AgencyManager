@@ -189,6 +189,25 @@ void Agency::storePacks() {
 	out.close();
 }
 
+
+//ADD CLIENTS
+void Agency::addClients() {
+
+	string name;
+	unsigned int nif;
+
+
+	cin << 
+
+}
+
+//ADD PACKS
+void Agency::addPacks() {
+
+
+
+}
+
 //SHOW AGENCY INFO
 void Agency::showAgencyInfo() {
 	cout << name << endl;
