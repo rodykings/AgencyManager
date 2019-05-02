@@ -198,8 +198,23 @@ void Agency::storePacks() {
 void Agency::addClient() {
 
 	string name;
-	unsigned int nif;
+	num nif;
+	num numPeople;
+	num door;
+	string street, floor, zipCode, location;
+	
+	inputString("Name:", name);
+	inputInt("NIF:", nif, 9);
+	inputInt("Group Size:", numPeople);
+	inputString("Address:/n/tStreet:", street);
+	inputInt("/tDoor:", door);
+	inputString("/tFloor:", floor);
+	inputString("/tZip Code:", zipCode);
+	inputString("/tLocation:", location);
 
+	Address newAddress(street, door, floor, zipCode, location);
+	Client newClient(name, nif, numPeople, newAddress);
+	clients.push_back(newClient);
 	
 
 }
