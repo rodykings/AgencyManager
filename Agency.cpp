@@ -158,6 +158,9 @@ void Agency::storeClients() {
 		out << clients[i].getAddress().toString() << endl;
 		out << clients[i].boughtToString() << endl;
 		out << to_string(clients[i].getMoneySpent()) << endl;
+		
+		if (i != size - 1)
+			out << "::::::::::\n";
 	}
 	out.close();
 }

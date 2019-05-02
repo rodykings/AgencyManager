@@ -39,7 +39,6 @@ Address::Address(string addressStr) {
 				doorStr += addressStr[i];
 				break;
 			case 2:
-				this->door = stoul(doorStr);
 				this->floor += addressStr[i];
 				break;
 			case 3:
@@ -51,6 +50,7 @@ Address::Address(string addressStr) {
 			}
 		}
 	}
+	this->door = stoul(doorStr);
 
 }
 
