@@ -14,7 +14,7 @@ class Pack {
 public:
 	//---CONSTRUCTORS---//
 	Pack();
-	Pack(int id, vector<string> places, Date start, Date end, num price, num spots, num soldSpots);
+	Pack(int id, string places, Date start, Date end, num price, num spots, num soldSpots);
 
 	//---SET methods---//
 	void setID(int id);

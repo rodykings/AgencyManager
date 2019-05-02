@@ -11,10 +11,10 @@ Pack::Pack()
 	soldSpots = 0;
 }
 //receives information read from agency file
-Pack::Pack(int id, vector<string> places, Date start, Date end, num price, num spots, num soldSpots)
+Pack::Pack(int id, string places, Date start, Date end, num price, num spots, num soldSpots)
 {
 	this->id = id;
-	this->places = places;
+	this->places = splitPlaces(places);
 	this->start = start;
 	this->end = end;
 	this->price = price;
