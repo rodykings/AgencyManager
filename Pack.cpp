@@ -93,7 +93,7 @@ vector<string> Pack::splitPlaces(string places)
 
 	return sepPlaces;
 }
-string Pack::placesToString(vector<string> places)
+string Pack::placesToString()
 {
 	string p = "";
 

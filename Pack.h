@@ -34,7 +34,7 @@ public:
 	unsigned int getSoldSpots() const;
 	
 	vector<string> splitPlaces(string places);
-	string placesToString(vector<string> places);
+	string placesToString();
 
 
 private:

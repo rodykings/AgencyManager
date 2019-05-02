@@ -1,6 +1,6 @@
 #include "Agency.h"
 
-//default constructor
+//DEFAULT CONSTRUTCTOR
 Agency::Agency()
 {
 	name = "";
@@ -13,7 +13,8 @@ Agency::Agency()
 	profit = 0;
 	lastPack = 0;
 }
-//alternate constructor
+
+//CONSTRUCTOR FROM FILES
 Agency::Agency(string fileName)
 {
 	ifstream in;
@@ -39,6 +40,7 @@ Agency::Agency(string fileName)
 	loadPacks();
 }
 
+//READ CLIENTS FROM FILE
 void Agency::loadClients() {
 
 	ifstream in;
@@ -90,7 +92,7 @@ void Agency::loadClients() {
 	in.close();
 }
 
-// adds a pack to the packs vector
+//READ PACKS FROM FILE
 void Agency::loadPacks()
 {
 	ifstream in;
@@ -140,6 +142,8 @@ void Agency::loadPacks()
 	Pack newPack2(id, places, start, end, price, spots, soldSpots);
 	packs.push_back(newPack2);
 }
+
+//WRITE CLIENTS IN FILE
 void Agency::storeClients() {
 	
 	ofstream out;
@@ -158,8 +162,34 @@ void Agency::storeClients() {
 		if (i != size - 1)
 			out << "::::::::::\n";
 	}
+	out.close();
 }
 
+//WRITE PACKS IN FILE
+void Agency::storePacks() {
+	ofstream out;
+	out.open(packsFile, ofstream::out, ofstream::trunc);
+
+	out << to_string(lastPack) << endl; //add last pack id to the first line
+
+	size_t size = packs.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		out << to_string(packs[i].getID()) << endl;
+		out << packs[i].placesToString() << endl;
+		out << packs[i].getStart().getDate() << endl;
+		out << packs[i].getEnd().getDate() << endl;
+		out << to_string(packs[i].getPrice()) << endl;
+		out << to_string(packs[i].getSpots()) << endl;
+		out << to_string(packs[i].getSoldSpots()) << endl;
+		if(i != (size-1))
+			out << "::::::::::" << endl;
+
+	}
+	out.close();
+}
+
+//SHOW AGENCY INFO
 void Agency::showAgencyInfo() {
 	cout << name << endl;
 	cout << nif << endl;
