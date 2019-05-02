@@ -49,11 +49,11 @@ void Agency::loadClients() {
 	string line;
 
 	string name;
+	string address;
 	num nif;
 	num numPeople;
-	string address;
 	num boughtPacks;
-	num spentMoney;
+	num moneySpent;
 
 	size_t counter = 0;
 
@@ -74,7 +74,7 @@ void Agency::loadClients() {
 			address = line;
 			break;
 		case 4:
-			boughtPacks = line;
+			boughtPacks = stoul(line);
 			break;
 		case 5:
 			spentMoney = stoul(line);
@@ -104,7 +104,10 @@ void Agency::loadPacks()
 	getline(in, line);		//lastPack
 	lastPack = stoul(line);
 
-	string id , price , spots, soldSpots, places, start, end;
+	int id;
+	num price, spots, soldSpots;
+	Date start, end;
+	string places;
 
 	size_t i = 0;
 	while (getline(in, line))
@@ -112,7 +115,7 @@ void Agency::loadPacks()
 		switch (i)
 		{
 		case 0:
-			id = line;
+			id = stoi(line);
 			break;
 		case 1:
 			places = line;
@@ -124,13 +127,13 @@ void Agency::loadPacks()
 			end = line;
 			break;
 		case 4:
-			price = line;
+			price = stoul(line);
 			break;
 		case 5:
-			spots = line;
+			spots = stoul(line);
 			break;
 		case 6:
-			soldSpots = line;
+			soldSpots = stoul(line);
 			break;
 		case 7:	// "::::::::::" add pack to vector
 			i = -1; 

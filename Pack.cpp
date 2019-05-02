@@ -11,7 +11,7 @@ Pack::Pack()
 	soldSpots = 0;
 }
 //receives information read from agency file
-Pack::Pack(num id, vector<string> places, Date start, Date end, num price, num spots, num soldSpots)
+Pack::Pack(int id, vector<string> places, Date start, Date end, num price, num spots, num soldSpots)
 {
 	this->id = stoul(id);
 	this->places = splitPlaces(places);
@@ -22,7 +22,7 @@ Pack::Pack(num id, vector<string> places, Date start, Date end, num price, num s
 	this->soldSpots = stoul(soldSpots);
 }
 
-void Pack::setID(num id)
+void Pack::setID(int id)
 {
 	this->id = id;
 }
@@ -51,7 +51,7 @@ void Pack::setSoldSpots(num soldSpots)
 	this->soldSpots = soldSpots;
 }
 
-num Pack::getID() const {
+int Pack::getID() const {
 	return id;
 }
 vector<string> Pack::getPlaces() const  {
