@@ -224,8 +224,14 @@ void Agency::addPack() {
 
 	int id = lastPack + 1;
 	string places;
+	string start, end;
+	num price, spots;
 	inputString("Tour Sites: ", places);
-	
+	inputDate("Start Date: ", start);
+	inputDate("End Date: ", end);
+	inputInt("Price: ", price);
+	inputInt("Available Spots: ", spots)
+
 
 
 
