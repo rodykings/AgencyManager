@@ -12,7 +12,6 @@ void inputString(string message,string &value) {
 
 }
 
-
 void inputInt(string message, num &value) {
 
 	cout << endl << message;
