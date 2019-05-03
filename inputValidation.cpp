@@ -1,5 +1,10 @@
 #include "inputValidation.h"
 
+
+string errorMessage() {
+	return "Invalid input! Try again!\n";
+}
+
 void inputString(string message,string &value) {
 
 	cout << endl << message;
@@ -13,7 +18,7 @@ void inputInt(string message, num &value) {
 	cout << endl << message;
 	cin >> value;
 	while (cin.fail()) {
-		errorMessage();
+		cout << errorMessage();
 		cout << message;
 		cin >> value;
 	}
@@ -24,20 +29,7 @@ void inputInt(string message, num& value, num size){
 	cout << endl << message;
 	cin >> value;
 	while (cin.fail() || to_string(value).length() != size) {
-		errorMessage();
-		cout << message;
-		cin >> value;
-	}
-}
-
-void inputDate(string message, string &value) {
-
-	cout << endl << message;
-	cin >> value;
-
-	Date date(value);
-	while (!dateValidation(value) || !date.isValid()) {
-		errorMessage();
+		cout << errorMessage();
 		cout << message;
 		cin >> value;
 	}
@@ -45,39 +37,42 @@ void inputDate(string message, string &value) {
 
 void inputPlaces(vector<string> &places) {
 
-	string mainPlace;
-	inputString("MAIN PLACE", mainPlace);
+	string newPlace;
+	inputString("Main Place:", newPlace);
+	places.push_back(newPlace);
 
+	while (yesOrNo("Do you want o insert a new Place to visit?")) {
+		inputString("New Place:", newPlace);
+		places.push_back(newPlace);
+	}
 
 
 }
 
-string errorMessage() {
-	return "Invalid input! Try again!\n" ;
-}
 
-bool dateValidation(string date)
-{
-	if (isdigit(date.find_first_not_of("0123456789/")))
+
+
+bool yesOrNo(string message) {
+	char value = ' ';
+	string question = "|\"YES\"- Y OR \"NO\" - N|:";
+
+	cout << endl << message << endl << question;
+	cin >> value;
+
+	if (value == 'Y' || value == 'y')
+		return true;
+	else if (value == 'N' || value == 'n')
 		return false;
 
-	if (date.length() != 10)
-		return false;
+	while (value != 'Y' || value != 'y' || value != 'N' || value != 'n') {
+		cout << errorMessage();
+		cout << endl << message << endl << question;
+		cin >> value;
 
-	for (int i = 0; i < 4; i++)
-	{
-		if (!isdigit(date[i]))
+		if (value == 'Y' || value == 'y')
+			return true;
+		else if (value == 'N' || value == 'n')
 			return false;
 	}
-	for (int j = 5; j < 7; j++)
-	{
-		if (!isdigit(date[j]))
-			return false;
-	}
-	for (int x = 8; x <= 9; x++)
-	{
-		if (!isdigit(date[x]))
-			return false;
-	}
-	return true;
+		
 }

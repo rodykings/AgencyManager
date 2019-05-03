@@ -11,6 +11,8 @@ public:
 	Date();
 	Date(num year, num month, num day);
 	Date(string yearMonthDay);// yearMonthDaymust be in format "yyyy/mm/dd"
+	Date(string message, string& value);
+	bool dateValidation(string date);
 	void setYear(num year);
 	void setMonth(num month);
 	void setDay(num day);
