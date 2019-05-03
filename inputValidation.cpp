@@ -48,28 +48,43 @@ void inputPlaces(vector<string> &places) {
 
 }
 
+bool yesOrNo(string message)
+{
+	char input;
+	cout << message; cin >> input;
 
-bool yesOrNo(string message) {
-	char value = ' ';
-	string question = "|\"YES\"- Y OR \"NO\" - N|:";
-
-	cout << endl << message << endl << question;
-	cin >> value;
-
-	if (value == 'Y' || value == 'y')
-		return true;
-	else if (value == 'N' || value == 'n')
-		return false;
-
-	while (value != 'Y' || value != 'y' || value != 'N' || value != 'n') {
-		cout << errorMessage();
-		cout << endl << message << endl << question;
-		cin >> value;
-
-		if (value == 'Y' || value == 'y')
-			return true;
-		else if (value == 'N' || value == 'n')
-			return false;
+	while (toupper(input) != 'Y' && toupper(input) != 'N') {
+		cin.clear();
+		cin.ignore(1000, '\n');
+		cerr << "Invalid input! [y/n] ? ";
+		cin >> input;
 	}
-		
+
+	if (toupper(input) == 'Y')
+		return true;
+	return false;
 }
+
+//bool yesOrNo(string message) {segsrg
+//	char value = ' ';
+//	string question = "|\"YES\"- Y OR \"NO\" - N|:";
+//
+//	cout << endl << message << endl << question;
+//	cin >> value;
+//
+//	if (value == 'Y' || value == 'y')
+//		return true;
+//	else if (value == 'N' || value == 'n')
+//		return false;
+//
+//	while (value != 'Y' || value != 'y' || value != 'N' || value != 'n') {
+//		cout << errorMessage();
+//		cout << endl << message << endl << question;
+//		cin >> value;
+//
+//		if (value == 'Y' || value == 'y')
+//			return true;
+//		else if (value == 'N' || value == 'n')
+//			return false;
+//	}	
+//}

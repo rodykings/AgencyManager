@@ -303,10 +303,23 @@ void Agency::showClients()
 //DELETE CLIENT
 void Agency::deleteClient()
 {
-	if (clientSearch() != -1)
-	{
+	cout << "REMOVE CLIENT \n";
+	cout << "------------- \n";
+	cout << endl;
 
+	num v_pos = clientSearch();
+	showClient(v_pos);
+
+	if (v_pos != -1)
+	{
+		bool opt = yesOrNo("Are you sure you want to remove this client ? [y/n]");
+		if (opt)
+		{
+			clients.erase(clients.begin() + v_pos);
+			cout << "Client Deleted! \n";
+		}
 	}
+	cout << endl;
 }
 
 
