@@ -18,7 +18,7 @@ Date::Date(num year, num month, num day) {
 
 	Date date(value);
 	while (!dateValidation(value) || !date.isValid()) {
-		errorMessage();
+		cout << errorMessage();
 		cout << message;
 		cin >> value;
 	}
