@@ -225,8 +225,8 @@ void Agency::addPack() {
 	string start, end;
 	num price = 0, spots = 0, soldSpots = 0;
 	inputString("Tour Sites: ", places);
-	inputDate("Start Date: ", start);
-	inputDate("End Date: ", end);
+	Date startDate("Start Date: ", start);
+	Date endDate("End Date: ", end);
 	inputInt("Price: ", price);
 	inputInt("Available Spots: ", spots);
 

@@ -11,6 +11,49 @@ Date::Date(num year, num month, num day) {
 	this->day = day;
 }
 
+ Date::Date(string message, string& value) {
+
+	cout << endl << message;
+	cin >> value;
+
+	Date date(value);
+	while (!dateValidation(value) || !date.isValid()) {
+		errorMessage();
+		cout << message;
+		cin >> value;
+	}
+
+	this->day = date.getDay();
+	this->month = date.getMonth();
+	this->year = date.getYear();
+	 
+}
+
+bool Date::dateValidation(string date)
+{
+	if (isdigit(date.find_first_not_of("0123456789/")))
+		return false;
+
+	if (date.length() != 10)
+		return false;
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (!isdigit(date[i]))
+			return false;
+	}
+	for (int j = 5; j < 7; j++)
+	{
+		if (!isdigit(date[j]))
+			return false;
+	}
+	for (int x = 8; x <= 9; x++)
+	{
+		if (!isdigit(date[x]))
+			return false;
+	}
+	return true;
+}
 Date::Date(string yearMonthDay) {
 
 	string strYear;
@@ -38,14 +81,14 @@ Date::Date(string yearMonthDay) {
 
 }
 
-void Date::setYear(num y) {
-	year = y;
+void Date::setYear(num day) {
+	this->year = year;
 }
-void Date::setMonth(num m) {
-	month = m;
+void Date::setMonth(num month) {
+	this->month = month;
 }
 void Date::setDay(num d) {
-	day = d;
+	this->day = day;
 }
 void Date::setDate(num y, num m, num d) {
 	year = y;
@@ -84,14 +127,14 @@ void Date::show() const {
 	cout << getDate();
 }
 
-num Date::numOfDays(num y, num m) {
+num Date::numOfDays(num year, num month) {
 
 	bool isLeap = false;
 
-	if ((y % 400 == 0) || (y % 4 == 0 && y % 100 != 0))
+	if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))
 		isLeap = true;
 
-	switch (m) {
+	switch (month) {
 	case 1:
 		return 31;
 		break;
