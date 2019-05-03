@@ -65,7 +65,7 @@ bool yesOrNo(string message)
 	return false;
 }
 
-//bool yesOrNo(string message) {
+//bool yesOrNo(string message) {segsrg
 //	char value = ' ';
 //	string question = "|\"YES\"- Y OR \"NO\" - N|:";
 //
