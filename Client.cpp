@@ -105,7 +105,7 @@ string Client::boughtToString()
 		if (size == 1 || i == size - 1)
 			b += boughtPacks[i];
 		else
-			b += boughtPacks[i] + ",";
+			b += boughtPacks[i] + ";";
 	}
 
 	return b;
