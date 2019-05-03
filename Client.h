@@ -28,7 +28,7 @@ class Client {
 		num getNumPeople() const;
 		Address getAddress() const;
 		vector<num> getBoughtPacks() const;
-		num getMoneySpent() const;
+		num getSpentMoney() const;
 
 		string boughtToString();
 
