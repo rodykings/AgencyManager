@@ -82,6 +82,7 @@ void Agency::loadClients() {
 		case 6:
 			Address newAddress(address);
 			Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
+			clients.push_back(newClient);
 			counter = -1;
 			break;
 		}
@@ -89,6 +90,7 @@ void Agency::loadClients() {
 	}
 	Address newAddress(address);
 	Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
+	clients.push_back(newClient);
 
 	in.close();
 }
@@ -137,7 +139,9 @@ void Agency::loadPacks()
 			break;
 		case 7:	// "::::::::::" add pack to vector
 			i = -1; 
-			Pack newPack(id, places, start, end, price, spots, soldSpots);
+			Date startDate(start);
+			Date endDate(end);
+			Pack newPack(id, places, startDate, endDate, price, spots, soldSpots);
 			this->packs.push_back(newPack);
 			break;
 		}
@@ -265,7 +269,7 @@ void Agency::showClient(num v_pos)
 		cout << "::::::::::\n";
 		cout << setw(11) << "Name: " << clients[v_pos].getName() << endl;
 		cout << setw(11) << "NIF: " <<  clients[v_pos].getNIF() << endl;
-		cout << setw(11) << "Household: " << clients[v_pos].getNumPeople << endl;
+		cout << setw(11) << "Household: " << clients[v_pos].getNumPeople() << endl;
 		cout << setw(11) << "Address: " <<  clients[v_pos].getAddress().toString() << endl;
 		cout << setw(11) << "Packages: " <<  clients[v_pos].boughtToString() << endl;
 		cout << setw(11) << "Spent: " <<  clients[v_pos].getSpentMoney() << endl;

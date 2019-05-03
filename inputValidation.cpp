@@ -65,26 +65,3 @@ bool yesOrNo(string message)
 	return false;
 }
 
-//bool yesOrNo(string message) {segsrg
-//	char value = ' ';
-//	string question = "|\"YES\"- Y OR \"NO\" - N|:";
-//
-//	cout << endl << message << endl << question;
-//	cin >> value;
-//
-//	if (value == 'Y' || value == 'y')
-//		return true;
-//	else if (value == 'N' || value == 'n')
-//		return false;
-//
-//	while (value != 'Y' || value != 'y' || value != 'N' || value != 'n') {
-//		cout << errorMessage();
-//		cout << endl << message << endl << question;
-//		cin >> value;
-//
-//		if (value == 'Y' || value == 'y')
-//			return true;
-//		else if (value == 'N' || value == 'n')
-//			return false;
-//	}	
-//}

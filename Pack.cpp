@@ -78,10 +78,11 @@ vector<string> Pack::splitPlaces(string places)
 	vector<string> sepPlaces;
 	size_t i = 0;
 	string temp = "";
+	size_t length = places.length();
 
-	while (i < places.length())
+	while (i < length)
 	{
-		while (places[i] != '-' || places[i] != ',')
+		while (places[i] != '-' && places[i] != ',' && i != length-1)
 		{
 			temp += places[i];
 			i++;

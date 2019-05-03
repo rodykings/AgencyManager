@@ -20,9 +20,10 @@ class Agency
 public:
 	Agency();
 	Agency(string fileName); //alternate constructor
-	void loadClients();
-	void loadPacks();
+	
 	void showAgencyInfo();
+	void storeClients();
+	void storePacks();
 private:
 	string name;
 	string url;
@@ -37,11 +38,12 @@ private:
 	vector<Client> clients;
 	vector<Pack> packs;
 
-	void storeClients();
-	void storePacks();
 	void addClient();
 	void addPack();
 	void deleteClient();
+
+	void loadClients();
+	void loadPacks();
 
 	num clientSearch();
 	void showClient(num v_pos); // show specific
