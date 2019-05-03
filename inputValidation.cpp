@@ -49,8 +49,6 @@ void inputPlaces(vector<string> &places) {
 }
 
 
-
-
 bool yesOrNo(string message) {
 	char value = ' ';
 	string question = "|\"YES\"- Y OR \"NO\" - N|:";
