@@ -48,12 +48,12 @@ void Agency::loadClients() {
 
 	string line;
 
-	string name;
-	string address;
-	num nif;
-	num numPeople;
-	string boughtPacks;
-	num spentMoney;
+	string name = "";
+	string address = "";
+	num nif = 0;
+	num numPeople = 0;
+	string boughtPacks = "";
+	num spentMoney = 0;
 
 	size_t counter = 0;
 
@@ -104,10 +104,10 @@ void Agency::loadPacks()
 	getline(in, line);		//lastPack
 	lastPack = stoul(line);
 
-	int id;
-	num price, spots, soldSpots;
+	int id = 0;
+	num price = 0, spots = 0, soldSpots = 0;
 	Date start, end;
-	string places;
+	string places = "";
 
 	size_t i = 0;
 	while (getline(in, line))
@@ -161,7 +161,7 @@ void Agency::storeClients() {
 		out << to_string(clients[i].getNumPeople()) << endl;
 		out << clients[i].getAddress().toString() << endl;
 		out << clients[i].boughtToString() << endl;
-		out << to_string(clients[i].getMoneySpent()) << endl;
+		out << to_string(clients[i].getSpentMoney()) << endl;
 		
 		if (i != size - 1)
 			out << "::::::::::\n";
@@ -193,15 +193,14 @@ void Agency::storePacks() {
 	out.close();
 }
 
-
 //ADD CLIENTS
 void Agency::addClient() {
 
-	string name;
-	num nif;
-	num numPeople;
-	num door;
-	string street, floor, zipCode, location;
+	string name = "";
+	num nif = 0;
+	num numPeople = 0;
+	num door = 0;
+	string street = "", floor = "", zipCode = "", location = "";
 	
 	inputString("Name:", name);
 	inputInt("NIF:", nif, 9);
@@ -215,26 +214,24 @@ void Agency::addClient() {
 	Address newAddress(street, door, floor, zipCode, location);
 	Client newClient(name, nif, numPeople, newAddress);
 	clients.push_back(newClient);
-	
-
 }
 
 //ADD PACKS
 void Agency::addPack() {
-
-	int id = lastPack + 1;
-	string places;
+	
+	lastPack++;
+	int id = lastPack;
+	string places ="";
 	string start, end;
-	num price, spots;
+	num price = 0, spots = 0, soldSpots = 0;
 	inputString("Tour Sites: ", places);
 	inputDate("Start Date: ", start);
 	inputDate("End Date: ", end);
 	inputInt("Price: ", price);
-	inputInt("Available Spots: ", spots)
+	inputInt("Available Spots: ", spots);
 
-
-
-
+	Pack newPack(id, places, start, end, price, spots, soldSpots);
+	packs.push_back(newPack);
 }
 
 //SHOW AGENCY INFO
@@ -244,4 +241,73 @@ void Agency::showAgencyInfo() {
 	cout << url << endl;
 	cout << address.toString() << endl;
 };
+
+//SEARCH FOR A SPECIFIC CLIENT
+num Agency::clientSearch()
+{
+	num nif;
+	inputInt("NIF: ", nif, 9);
+
+	size_t size = clients.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		if (clients[i].getNIF() == nif)
+			return i;	
+	}
+	return -1;
+}
+void Agency::showClient(num v_pos)
+{
+	if (v_pos == -1)
+		cerr << "ERROR Client not found! \n";
+	else
+	{
+		cout << "::::::::::\n";
+		cout << setw(11) << "Name: " << clients[v_pos].getName() << endl;
+		cout << setw(11) << "NIF: " <<  clients[v_pos].getNIF() << endl;
+		cout << setw(11) << "Household: " << clients[v_pos].getNumPeople << endl;
+		cout << setw(11) << "Address: " <<  clients[v_pos].getAddress().toString() << endl;
+		cout << setw(11) << "Packages: " <<  clients[v_pos].boughtToString() << endl;
+		cout << setw(11) << "Spent: " <<  clients[v_pos].getSpentMoney() << endl;
+		cout << setw(11) << "::::::::::\n";
+	}
+	cout << endl;
+}
+void Agency::showClients()
+{
+	const unsigned int NAME_MAX_SIZE = 35;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
+
+	cout << "ALL CLIENTS \n";
+	cout << "----------- \n";
+	cout << endl;
+	cout << setw(NAME_MAX_SIZE) << left << "Name";
+	cout << setw(15) << left << "NIF";
+	cout << setw(4) << left << "N";
+	cout << setw(15) << left << "Packages";
+	cout << setw(10) << left << "Spent";
+	cout << "Adress" << endl;
+	cout << endl;
+
+	size_t size = clients.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		cout << setw(NAME_MAX_SIZE) << left << clients[i].getName();
+		cout << setw(15) << left << clients[i].getNIF();
+		cout << setw(4) << left << clients[i].getNumPeople();
+		cout << setw(15) << left << clients[i].boughtToString();
+		cout << setw(10) << left << clients[i].getSpentMoney();
+		cout << clients[i].getAddress().toString() << endl;
+	}
+	cout << endl;
+}
+//DELETE CLIENT
+void Agency::deleteClient()
+{
+	if (clientSearch() != -1)
+	{
+
+	}
+}
+
+
 

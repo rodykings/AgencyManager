@@ -6,6 +6,7 @@
 #include <fstream>
 #include <ostream>
 #include <fstream>
+#include <iomanip>
 
 #include "Client.h"
 #include "Pack.h"
@@ -40,4 +41,9 @@ private:
 	void storePacks();
 	void addClient();
 	void addPack();
+	void deleteClient();
+
+	num clientSearch();
+	void showClient(num v_pos); // show specific
+	void showClients(); // showAll clients
 };

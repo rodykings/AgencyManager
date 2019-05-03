@@ -73,7 +73,7 @@ Address Client::getAddress() const {
 vector<num> Client::getBoughtPacks() const {
 	return this->boughtPacks;
 }
-num Client::getMoneySpent() const{
+num Client::getSpentMoney() const{
 	return this->moneySpent;
 }
 
