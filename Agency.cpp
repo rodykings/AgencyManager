@@ -82,6 +82,7 @@ void Agency::loadClients() {
 		case 6:
 			Address newAddress(address);
 			Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
+			clients.push_back(newClient);
 			counter = -1;
 			break;
 		}
@@ -89,6 +90,7 @@ void Agency::loadClients() {
 	}
 	Address newAddress(address);
 	Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
+	clients.push_back(newClient);
 
 	in.close();
 }

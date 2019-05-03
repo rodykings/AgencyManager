@@ -82,15 +82,20 @@ num Client::getSpentMoney() const{
 
 vector<num> Client::boughtPacksVector(string bought) {
 
-	vector<unsigned int> b;
+	vector<num> b;
+	string temp;
+	size_t length = bought.size();
 
-	for (size_t i = 0; i < bought.size(); i++)
+	for (size_t i = 0; i < length; i++)
 	{
-		char temp = bought[i];
-		if (temp == ';')
-			continue;
+		if (bought[i] == ';' || i == length - 1) {
+			if (i == length - 1)
+				temp += bought[i];
+			b.push_back(stoul(temp));
+			temp = "";
+		}
 		else
-			b.push_back(temp);
+			temp += bought[i];
 	}
 
 	return b;
@@ -103,9 +108,9 @@ string Client::boughtToString()
 	for (size_t i = 0; i < size; i++)
 	{
 		if (size == 1 || i == size - 1)
-			b += boughtPacks[i];
+			b += to_string(boughtPacks[i]);
 		else
-			b += boughtPacks[i] + ",";
+			b += to_string(boughtPacks[i]) + ";";
 	}
 
 	return b;
