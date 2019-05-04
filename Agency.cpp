@@ -108,7 +108,7 @@ void Agency::loadPacks()
 
 	int id = 0;
 	num price = 0, spots = 0, soldSpots = 0;
-	Date start, end;
+	string start, end;
 	string places = "";
 
 	size_t i = 0;
@@ -142,13 +142,15 @@ void Agency::loadPacks()
 			Date startDate(start);
 			Date endDate(end);
 			Pack newPack(id, places, startDate, endDate, price, spots, soldSpots);
-			this->packs.push_back(newPack);
+			packs.push_back(newPack);
 			break;
 		}
 		i++;
 	}
 	Pack newPack2(id, places, start, end, price, spots, soldSpots);
 	packs.push_back(newPack2);
+
+	in.close();
 }
 
 //WRITE CLIENTS IN FILE

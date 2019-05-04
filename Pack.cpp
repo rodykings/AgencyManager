@@ -76,21 +76,20 @@ num Pack::getSoldSpots() const  {
 vector<string> Pack::splitPlaces(string places)
 {
 	vector<string> sepPlaces;
-	size_t i = 0;
 	string temp = "";
-	size_t length = places.length();
 
-	while (i < length)
+	size_t length = places.length();
+	for (size_t i = 0; i < length; i++)
 	{
-		while (places[i] != '-' && places[i] != ',' && i != length-1)
+		if (places[i] == ',' || places[i] == '-')
 		{
-			temp += places[i];
-			i++;
+			sepPlaces.push_back(trimString(temp));
+			temp = "";
 		}
-		sepPlaces.push_back(temp);
-		temp = "";
-		i++;
+		else if (places[i] != ' ')
+			temp += places[i];
 	}
+	sepPlaces.push_back(trimString(temp));
 
 	return sepPlaces;
 }

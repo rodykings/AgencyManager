@@ -7,6 +7,7 @@
 
 #include "Date.h"
 #include "inputValidation.h"
+#include "Operations.h"
 
 using namespace std;
 
