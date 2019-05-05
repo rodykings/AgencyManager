@@ -209,10 +209,10 @@ void Agency::addClient() {
 	string street = "", floor = "", zipCode = "", location = "";
 	
 	inputString("Name:", name);
-	inputInt("NIF:", nif, 9);
-	inputInt("Group Size:", numPeople);
+	inputNum("NIF:", nif, 9);
+	inputNum("Group Size:", numPeople);
 	inputString("Address:/n/tStreet:", street);
-	inputInt("/tDoor:", door);
+	inputNum("/tDoor:", door);
 	inputString("/tFloor:", floor);
 	inputString("/tZip Code:", zipCode);
 	inputString("/tLocation:", location);
@@ -233,8 +233,8 @@ void Agency::addPack() {
 	inputString("Tour Sites: ", places);
 	Date startDate("Start Date: ", start);
 	Date endDate("End Date: ", end);
-	inputInt("Price: ", price);
-	inputInt("Available Spots: ", spots);
+	inputNum("Price: ", price);
+	inputNum("Available Spots: ", spots);
 
 	Pack newPack(id, places, start, end, price, spots, soldSpots);
 	packs.push_back(newPack);
@@ -272,7 +272,7 @@ void Agency::showAgencyInfo() {
 num Agency::searchClient()
 {
 	num nif;
-	inputInt("NIF: ", nif, 9);
+	inputNum("NIF: ", nif, 9);
 
 	size_t size = clients.size();
 	for (size_t i = 0; i < size; i++)
@@ -351,11 +351,11 @@ void Agency::deleteClient()
 //SEARCH FOR A PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
-	vector<int> finalIdx = {};
+	vector<num> finalIdx = {};
 
 	size_t size = packs.size();
 	for (size_t i = 0; i < size; i++) {
-		if (packs[i].getID() == id)
+		if (abs(packs[i].getID()) == id)
 			finalIdx.push_back(i);
 	}
 	return finalIdx;
@@ -363,7 +363,7 @@ vector<num> Agency::searchPack(int id) {
 //SEARCH PACKS BY DESTINATION
 vector<num> Agency::searchPack(string dest){
 
-	vector<int> vpos;
+	vector<num> vpos;
 	
 	dest = stringToUpper(dest);
 	size_t size = packs.size();
@@ -378,4 +378,5 @@ vector<num> Agency::searchPack(string dest){
 	}
 	return vpos;
 }
+
 

@@ -21,9 +21,17 @@ void inputInt(string message, int &value) {
 		cout << message;
 		cin >> value;
 	}
-	
 }
-void inputInt(string message, num& value, num size){
+void inputNum(string message, num& value){
+	cout << endl << message;
+	cin >> value;
+	while (cin.fail()) {
+		cout << errorMessage();
+		cout << message;
+		cin >> value;
+	}
+}
+void inputNum(string message, num& value, num size){
 
 	cout << endl << message;
 	cin >> value;
