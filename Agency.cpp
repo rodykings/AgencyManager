@@ -338,11 +338,12 @@ vector<num> Agency::searchPack(int id) {
 		if (this->packs[i].getID() == id)
 			finalIdx.push_back(i);
 	}
-
 	return finalIdx;
 }
+//SEARCH PACKS BY DESTINATION
+vector<num> Agency::searchPacks(){
 
-
+	vector<num> vpos;
 	string dest;
 	cout << "Location: "; getline(cin,dest);
 	
