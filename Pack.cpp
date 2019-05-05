@@ -86,7 +86,7 @@ vector<string> Pack::splitPlaces(string places)
 			sepPlaces.push_back(trimString(temp));
 			temp = "";
 		}
-		else if (places[i] != ' ')
+		else
 			temp += places[i];
 	}
 	sepPlaces.push_back(trimString(temp));
@@ -97,11 +97,16 @@ string Pack::placesToString()
 {
 	string p = "";
 
-	p += places[0];
-	for (size_t i = 1; i < places.size(); i++)
+	size_t size = places.size();
+	if (size == 1)
+		return places[0];
+
+	for (size_t i = 0; i < size; i++)
 	{
-		if (i == 1)
-			p += "-" + places[1];
+		if (i == 0)
+			p += places[0] + " - ";
+		else if (i == 1)
+			p += places[i];
 		else
 			p += ", " + places[i];
 	}
