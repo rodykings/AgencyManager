@@ -9,5 +9,10 @@ string trimString(string str)
 	}
 	size_t last = str.find_last_not_of(' ');
 	return str.substr(first, (last - first + 1));
+}
 
+string stringToUpper(string str)
+{
+	for (auto& c : str) c = toupper(c);
+	return str;
 }

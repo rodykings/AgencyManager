@@ -328,5 +328,24 @@ void Agency::deleteClient()
 	cout << endl;
 }
 
+vector<num> Agency::searchPacksByDest()
+{
+	vector<num> vpos;
 
+	string dest;
+	cout << "Location: "; getline(cin,dest);
+	
+	dest = stringToUpper(dest);
+	size_t size = packs.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		vector<string> temp = packs[i].getPlaces();
+		for (size_t j = 0; j < temp.size(); j++)
+		{
+			if (stringToUpper(temp[j]) == dest)
+				vpos.push_back(i);
+		}
+	}
+	return vpos;
+}
 
