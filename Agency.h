@@ -24,7 +24,7 @@ public:
 	void showAgencyInfo();
 	void storeClients();
 	void storePacks();
-	vector<num> searchPacks();
+	vector<num> searchPacks(string dest);
 private:
 	string name;
 	string url;

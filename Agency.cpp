@@ -341,7 +341,7 @@ vector<num> Agency::searchPack(int id) {
 	return finalIdx;
 }
 //SEARCH PACKS BY DESTINATION
-vector<num> Agency::searchPacks(){
+vector<num> Agency::searchPacks(string dest){
 
 	vector<num> vpos;
 	string dest;
