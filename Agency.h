@@ -24,7 +24,8 @@ public:
 	void showAgencyInfo();
 	void storeClients();
 	void storePacks();
-	vector<num> searchPacks(string dest);
+	
+	void deletePack();
 private:
 	string name;
 	string url;
@@ -47,6 +48,7 @@ private:
 	void loadPacks();
 
 	vector<num> searchPack(int id);
+	vector<num> searchPack(string dest);
 	num searchClient();
 	void showClient(num v_pos); // show specific
 	void showClients(); // showAll clients

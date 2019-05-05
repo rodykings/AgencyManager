@@ -12,7 +12,7 @@ void inputString(string message,string &value) {
 
 }
 
-void inputInt(string message, num &value) {
+void inputInt(string message, int &value) {
 
 	cout << endl << message;
 	cin >> value;

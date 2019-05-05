@@ -239,6 +239,26 @@ void Agency::addPack() {
 	Pack newPack(id, places, start, end, price, spots, soldSpots);
 	packs.push_back(newPack);
 }
+//DELETE PACKS							???criar função que mostra o pacote que se pretende remover???
+void Agency::deletePack()
+{
+	int id;
+	inputInt("Package ID: ", id);
+
+	vector<num> vpos = searchPack(id);
+	if (vpos.size() == 0)
+		cerr << "ERROR Package not found! \n";
+	else
+	{
+		bool opt = yesOrNo("Are you sure you want to remove this package ? [y/n] ");
+		if (opt)
+		{
+			packs.erase(packs.begin() + vpos[0]);
+			cout << "Package Deleted! \n";
+		}
+	}
+	cout << endl;
+}
 
 //SHOW AGENCY INFO
 void Agency::showAgencyInfo() {
@@ -331,21 +351,19 @@ void Agency::deleteClient()
 //SEARCH FOR A PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
-	vector<num> finalIdx = {};
+	vector<int> finalIdx = {};
 
-	size_t size = this->packs.size();
-	for (int i = 0; i < size; i++) {
-		if (this->packs[i].getID() == id)
+	size_t size = packs.size();
+	for (size_t i = 0; i < size; i++) {
+		if (packs[i].getID() == id)
 			finalIdx.push_back(i);
 	}
 	return finalIdx;
 }
 //SEARCH PACKS BY DESTINATION
-vector<num> Agency::searchPacks(string dest){
+vector<num> Agency::searchPack(string dest){
 
-	vector<num> vpos;
-	string dest;
-	cout << "Location: "; getline(cin,dest);
+	vector<int> vpos;
 	
 	dest = stringToUpper(dest);
 	size_t size = packs.size();
