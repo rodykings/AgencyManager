@@ -249,7 +249,7 @@ void Agency::showAgencyInfo() {
 };
 
 //SEARCH FOR A SPECIFIC CLIENT
-num Agency::clientSearch()
+num Agency::searchClient()
 {
 	num nif;
 	inputInt("NIF: ", nif, 9);
@@ -313,7 +313,7 @@ void Agency::deleteClient()
 	cout << "------------- \n";
 	cout << endl;
 
-	num v_pos = clientSearch();
+	num v_pos = searchClient();
 	showClient(v_pos);
 
 	if (v_pos != -1)
@@ -328,9 +328,20 @@ void Agency::deleteClient()
 	cout << endl;
 }
 
-vector<num> Agency::searchPacksByDest()
-{
-	vector<num> vpos;
+//SEARCH FOR A PACK BY ID
+vector<num> Agency::searchPack(int id) {
+
+	vector<num> finalIdx = {};
+
+	size_t size = this->packs.size();
+	for (int i = 0; i < size; i++) {
+		if (this->packs[i].getID() == id)
+			finalIdx.push_back(i);
+	}
+
+	return finalIdx;
+}
+
 
 	string dest;
 	cout << "Location: "; getline(cin,dest);

@@ -46,7 +46,8 @@ private:
 	void loadClients();
 	void loadPacks();
 
-	num clientSearch();
+	vector<num> searchPack(int id);
+	num searchClient();
 	void showClient(num v_pos); // show specific
 	void showClients(); // showAll clients
 };
