@@ -49,6 +49,7 @@ private:
 
 	vector<num> searchPack(int id);
 	vector<num> searchPack(string dest);
+	vector<num> searchPack(Date start, Date end);
 	num searchClient();
 	void showClient(num v_pos); // show specific
 	void showClients(); // showAll clients
