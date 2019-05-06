@@ -28,6 +28,7 @@ Agency::Agency(string fileName)
 	getline(in, url);	
 	getline(in, line);	
 	Address address(line);
+	this->address = address;
 	getline(in, clientsFile);
 	getline(in, packsFile);	
 	in.close();
@@ -265,7 +266,7 @@ void Agency::showAgencyInfo() {
 	cout << name << endl;
 	cout << nif << endl;
 	cout << url << endl;
-	cout << address.toString() << endl;
+	cout << this->address.toString() << endl;
 };
 
 //SEARCH FOR A SPECIFIC CLIENT
@@ -348,7 +349,7 @@ void Agency::deleteClient()
 	cout << endl;
 }
 
-//SEARCH FOR A PACK BY ID
+//SEARCH PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
 	vector<num> finalIdx = {};
@@ -378,6 +379,7 @@ vector<num> Agency::searchPack(string dest){
 	}
 	return vpos;
 }
+//SEARCH PACKS BY DATE
 vector<num> Agency::searchPack(Date start, Date end)
 {
 	vector<num> vpos;
