@@ -53,4 +53,5 @@ private:
 	num searchClient();
 	void showClient(num v_pos); // show specific
 	void showClients(); // showAll clients
+	void updateClient();
 };

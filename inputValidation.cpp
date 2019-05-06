@@ -73,3 +73,31 @@ bool yesOrNo(string message)
 	return false;
 }
 
+void selectOption(int& option, num numOptions) {
+	bool fail = true;
+
+	do {
+		cout << "Option: "; cin >> option;
+
+		if (cin.fail() || option < 1 || option > numOptions)
+		{
+			if (cin.eof())
+			{
+				option = -1;
+				cin.ignore(1000, '\n');
+				cin.clear();
+				fail = false;
+			}
+			else
+			{
+				cerr << "ERROR Invalid Option!\n";
+				cin.ignore(1000, '\n');
+				cin.clear();
+			}
+		}
+		else
+			fail = false;
+	} while (fail);
+
+}
+

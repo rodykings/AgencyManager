@@ -349,6 +349,8 @@ void Agency::deleteClient()
 	cout << endl;
 }
 
+
+/*-----SEARCH FUNCTIONS-----*/
 //SEARCH PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
@@ -397,5 +399,26 @@ vector<num> Agency::searchPack(Date start, Date end)
 	}
 	return vpos;
 }
+
+
+/*-----UPDATE FUNCTIONS-----*/
+void Agency::updateClient()
+{
+	num vpos = searchClient();
+
+	if (vpos >= 0)
+	{
+		bool moreEdits = true;
+		do {
+			int option;
+			//updateClientMenu(option, clients[vpos]);
+
+
+		} while (moreEdits);
+	}
+
+
+}
+
 
 
