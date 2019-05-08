@@ -283,26 +283,12 @@ num Agency::searchClient()
 	}
 	return -1;
 }
-void Agency::showClient(num v_pos)
+
+void Agency::showClients() 
 {
-	if (v_pos == -1)
-		cerr << "ERROR Client not found! \n";
-	else
-	{
-		cout << "::::::::::\n";
-		cout << setw(11) << "Name: " << clients[v_pos].getName() << endl;
-		cout << setw(11) << "NIF: " <<  clients[v_pos].getNIF() << endl;
-		cout << setw(11) << "Household: " << clients[v_pos].getNumPeople() << endl;
-		cout << setw(11) << "Address: " <<  clients[v_pos].getAddress().toString() << endl;
-		cout << setw(11) << "Packages: " <<  clients[v_pos].boughtToString() << endl;
-		cout << setw(11) << "Spent: " <<  clients[v_pos].getSpentMoney() << endl;
-		cout << setw(11) << "::::::::::\n";
-	}
-	cout << endl;
-}
-void Agency::showClients()
-{
-	const unsigned int NAME_MAX_SIZE = 35;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
+	system("cls");
+
+	const unsigned int NAME_MAX_SIZE = 20;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
 
 	cout << "ALL CLIENTS \n";
 	cout << "----------- \n";
@@ -334,15 +320,16 @@ void Agency::deleteClient()
 	cout << "------------- \n";
 	cout << endl;
 
-	num v_pos = searchClient();
-	showClient(v_pos);
+	num vpos = searchClient();
 
-	if (v_pos != -1)
+	if (vpos != -1)
 	{
+		clients[vpos].show();
+
 		bool opt = yesOrNo("Are you sure you want to remove this client ? [y/n]");
 		if (opt)
 		{
-			clients.erase(clients.begin() + v_pos);
+			clients.erase(clients.begin() + vpos);
 			cout << "Client Deleted! \n";
 		}
 	}
@@ -411,13 +398,29 @@ void Agency::updateClient()
 		bool moreEdits = true;
 		do {
 			int option;
-			//updateClientMenu(option, clients[vpos]);
+			updateClientMenu(option, clients[vpos]);
 
+			switch (option) {
+			case -1:
+				moreEdits = false;	//exit function
+			case 1:
+				clients[vpos].setName();
+				break;
+			case 2:
+				clients[vpos].setNIF();
+				break;
+			case 3:
+				clients[vpos].setNumPeople();
+				break;
+			case 4:
+				clients[vpos].setAddress();
+				break;
+			}
 
 		} while (moreEdits);
 	}
-
-
+	else
+		cerr << "ERROR Client not found!\n";
 }
 
 

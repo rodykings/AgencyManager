@@ -32,11 +32,10 @@ void mainMenu(Agency agency) {
 		//COMPRAR PACOTE
 	case 1:
 
-
 		break;
 		//VER clients
 	case 2:
-
+		agency.showClients();
 		break;
 		//VER PACOTES
 	case 3:
@@ -48,7 +47,7 @@ void mainMenu(Agency agency) {
 		break;
 		//ALTERAR CLIENTE
 	case 5:
-		
+		agency.updateClient();
 		break;
 		//REMOVER CLIENTE
 	case 6:
@@ -75,10 +74,3 @@ void mainMenu(Agency agency) {
 	}
 }
 
-void updateClientMenu(int& option, Client client) {
-	system("cls");
-
-	cout << "EDIT CLIENT\n";
-	cout << "-----------\n" << endl;
-	cout << "| 1-Edit Name | 2-Edit NIF | 3-Edit | 4-Edit Household | 5-Edit Address |\n";
-}

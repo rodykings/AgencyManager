@@ -15,10 +15,10 @@ class Client {
 		Client(string name, num nif, num numPeople, Address address, string boughtPacks, num moneySpent);
 
 		//---SET methods---//
-		void setName(string name);
-		void setNif(num nif);
-		void setNumPeople(num numPeople);
-		void setAddress(Address address);
+		void setName();
+		void setNIF();
+		void setNumPeople();
+		void setAddress();
 		void setBoughtPacks(vector<num> boughtPacks);
 		void setMoneySpent(num moneySpent);
 
@@ -31,6 +31,7 @@ class Client {
 		num getSpentMoney() const;
 
 		string boughtToString();
+		void show();
 
 	private:
 		string name;
@@ -38,7 +39,7 @@ class Client {
 		num numPeople;
 		Address address;
 		vector<num> boughtPacks;
-		num moneySpent;
+		num spentMoney;
 
 		vector<num> boughtPacksVector(string bought);
 };

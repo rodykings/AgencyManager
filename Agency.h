@@ -12,6 +12,7 @@
 #include "Pack.h"
 #include "Address.h"
 #include "inputValidation.h"
+#include "SubMenu.h"
 
 using namespace std;
 
@@ -21,10 +22,14 @@ public:
 	Agency();
 	Agency(string fileName); //alternate constructor
 	
+	
 	void showAgencyInfo();
 	void storeClients();
 	void storePacks();
-	
+
+	void showClients(); // showAll clients
+	void updateClient();
+
 	void deletePack();
 private:
 	string name;
@@ -51,7 +56,5 @@ private:
 	vector<num> searchPack(string dest);
 	vector<num> searchPack(Date start, Date end);
 	num searchClient();
-	void showClient(num v_pos); // show specific
-	void showClients(); // showAll clients
-	void updateClient();
+	//void showClient(Client client); // show specific
 };
