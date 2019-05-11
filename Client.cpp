@@ -38,7 +38,8 @@ Client::Client(string name,  num nif, num numPeople, Address address, string bou
 
 void Client::setName() {
 	string value;
-	cout << "New Name: "; cin >> value;
+	cin.ignore(1000, '\n');
+	cout << "New Name: "; getline(cin, value);
 	this->name = value;
 }	
 void Client::setNIF() {

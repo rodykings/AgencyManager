@@ -403,6 +403,7 @@ void Agency::updateClient()
 			switch (option) {
 			case -1:
 				moreEdits = false;	//exit function
+				break;
 			case 1:
 				clients[vpos].setName();
 				break;
