@@ -29,6 +29,7 @@ public:
 
 	void showClients(); // showAll clients
 	void updateClient();
+	void updatePack();
 
 	void deletePack();
 private:

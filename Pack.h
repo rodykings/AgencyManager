@@ -19,12 +19,12 @@ public:
 
 	//---SET methods---//
 	void setID(int id);
-	void setPlaces(vector<string> places);
-	void setStart(Date start);
-	void setEnd(Date end);
-	void setPrice(num price);
-	void setSpots(num spots);
-	void setSoldSpots(num soldSpots);
+	void setPlaces();
+	void setStart();
+	void setEnd();
+	void setPrice();
+	void setSpots();
+	void setSoldSpots();
 
 	//---GET methods---//
 	int getID() const;
@@ -35,8 +35,11 @@ public:
 	num getSpots() const;
 	num getSoldSpots() const;
 	
+	//---OTHER METHODS---//
 	vector<string> splitPlaces(string places);
 	string placesToString();
+	void show();
+
 
 
 private:

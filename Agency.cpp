@@ -232,8 +232,8 @@ void Agency::addPack() {
 	string start, end;
 	num price = 0, spots = 0, soldSpots = 0;
 	inputString("Tour Sites: ", places);
-	Date startDate("Start Date: ", start);
-	Date endDate("End Date: ", end);
+	Date startDate("Start Date (YYYY/MM/DD): ", start);
+	Date endDate("End Date (YYYY/MM/DD): ", end);
 	inputNum("Price: ", price);
 	inputNum("Available Spots: ", spots);
 
@@ -337,7 +337,7 @@ void Agency::deleteClient()
 }
 
 
-/*-----SEARCH FUNCTIONS-----*/
+/*-----SEARCH PACK FUNCTIONS-----*/
 //SEARCH PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
@@ -422,6 +422,46 @@ void Agency::updateClient()
 	}
 	else
 		cerr << "ERROR Client not found!\n";
+}
+void Agency::updatePack() {
+
+	int id;
+	inputInt("Pack ID: ", id);
+
+	vector<num> vpos = searchPack(id);
+
+
+	if (vpos.size() != 0)
+	{
+		bool moreEdits = true;
+		do {
+			int option;
+			updatePackMenu(option, packs[vpos[0]]);
+
+			switch (option) {
+			case -1:
+				moreEdits = false;	//exit function
+				break;
+			case 1:
+				packs[vpos[0]].setPlaces();
+				break;
+			case 2:
+				packs[vpos[0]].setStart();
+				break;
+			case 3:
+				packs[vpos[0]].setEnd();
+				break;
+			case 4:
+				packs[vpos[0]].setPrice();
+				break;
+			case 5:
+				packs[vpos[0]].setSpots();
+				break;
+			}
+
+		} while (moreEdits);
+
+	}
 }
 
 
