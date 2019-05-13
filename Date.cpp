@@ -23,6 +23,7 @@ Date::Date(num year, num month, num day) {
 		cin >> value;
 	}
 
+
 	this->day = date.getDay();
 	this->month = date.getMonth();
 	this->year = date.getYear();
