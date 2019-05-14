@@ -468,7 +468,6 @@ void Agency::updateClient()
 		bool moreEdits = true;
 		do {
 			int option;
-			updateClientMenu(option, clients[vpos]);
 
 			switch (option) {
 			case -1:
