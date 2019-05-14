@@ -2,7 +2,7 @@
 
 
 
-void mainMenu(Agency agency) {
+void mainMenu(Agency& agency, bool& moreOperations) {
 	system("cls");
 
 	const string line = "----------------------------------------------------------";
@@ -30,13 +30,16 @@ void mainMenu(Agency agency) {
 
 	switch (option)
 	{
+	case -1:
+		moreOperations = false;
+		break;
 	//BUY PACK	
 	case 1:
 
 		break;
 	//SHOW CLIENTS	
 	case 2:
-		agency.showClients();
+		agency.showAllClients();
 		break;
 	//SHOW PACKS	
 	case 3:
@@ -60,7 +63,7 @@ void mainMenu(Agency agency) {
 		break;
 	//SEARCH CLIENT	
 	case 8:
-
+		agency.showClient();
 		break;
 	//ADD PACK	
 	case 9:
@@ -81,6 +84,5 @@ void mainMenu(Agency agency) {
 	default:
 		break;
 	}
-	mainMenu(agency);
 }
 
