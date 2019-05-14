@@ -560,8 +560,9 @@ void Agency::updatePack() {
 	}
 }
 
-void statistics(int& option)
+void Agency::statistics()
 {
+	system("cls");
 	cout << "STATISTICS\n";
 	cout << "----------\n" << endl;
 	cout << "| 1-Agency Information | 2-Most visited places | 3-Client Sugestion |\n\n";
@@ -569,14 +570,23 @@ void statistics(int& option)
 	int opt;
 	selectOption(opt, 3);
 
+
+
 	switch (opt) {
 	case 1:
-		cout << "AGENCY INFORMATION\n";
+		cout << "\n\nAGENCY INFORMATION\n";
 		cout << "------------------\n" << endl;
+		system("pause");
 		break;
 	case 2:
+		cout << "\n\nMOST VISITED PLACES\n";
+		cout << "------------------\n" << endl;
+		system("pause");
 		break;
 	case 3:
+		cout << "\n\nCLIENT SUGESTION\n";
+		cout << "------------------\n" << endl;
+		system("pause");
 		break;
 	}
 }

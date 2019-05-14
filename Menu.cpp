@@ -47,7 +47,7 @@ void mainMenu(Agency& agency, bool& moreOperations) {
 		break;
 	//STATISTICS	
 	case 4:
-		
+		agency.statistics();
 		break;
 	//ADD CLIENT	
 	case 5:
