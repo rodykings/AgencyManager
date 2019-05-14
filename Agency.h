@@ -26,7 +26,6 @@ public:
 	void showAgencyInfo();
 	void storeClients();
 	void storePacks();
-	void showClient(num v_pos); // show specific
 	void showClients(); // showAll clients
 	void showPacks(); //show all packs
 	void addClient();

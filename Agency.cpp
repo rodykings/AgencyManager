@@ -269,6 +269,8 @@ void Agency::addPack() {
 //DELETE PACKS							
 void Agency::deletePack()
 {
+	cout << "DELETE PACK \n";
+	cout << "-----------\n" << endl;
 	int id;
 	inputInt("Package ID: ", id);
 	cout << endl;
@@ -284,8 +286,10 @@ void Agency::deletePack()
 		bool opt = yesOrNo("Are you sure you want to remove this package ? [y/n] ");
 		if (opt)
 		{
-			packs.erase(packs.begin() + vpos[0]);
-			cout << "Package Deleted! \n";
+			int packID = -packs[vpos[0]].getID();
+			packs[vpos[0]].setID(packID);
+			cout << "Package is now unavailable! \n";
+			system("pause");
 		}
 	}
 	cout << endl;
@@ -467,7 +471,18 @@ void Agency::updateClient()
 	{
 		bool moreEdits = true;
 		do {
+			
+			system("cls");
+
+			cout << "EDIT CLIENT\n";
+			cout << "-----------\n" << endl;
+			cout << "| 1-Edit Name | 2-Edit NIF | 3-Edit Household | 4-Edit Address |\n" << endl;
+
+			clients[vpos].show();
+			cout << endl;
+
 			int option;
+			selectOption(option, 4);
 
 			switch (option) {
 			case -1:
@@ -508,8 +523,18 @@ void Agency::updatePack() {
 	{
 		bool moreEdits = true;
 		do {
+			
+			system("cls");
+
+			cout << "EDIT PACK\n";
+			cout << "---------\n" << endl;
+			cout << "| 1-Edit Tour Sites | 2-Edit Start Date | 3-Edit End Date | 4-Edit Price | 5-Edit Number of Spots |\n" << endl;
+
+			packs[vpos[0]].show();
+			cout << endl;
+
 			int option;
-			//updatePackMenu(option, packs[vpos[0]]);
+			selectOption(option, 5);
 
 			switch (option) {
 			case -1:
@@ -558,4 +583,4 @@ void statistics(int& option)
 	}
 
 
-}
+
