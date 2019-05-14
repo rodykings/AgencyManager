@@ -13,7 +13,7 @@ Date::Date(num year, num month, num day) {
 
  Date::Date(string message, string& value) {
 
-	cout << endl << message;
+	cout << message;
 	cin >> value;
 
 	Date date(value);
