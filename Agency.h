@@ -35,6 +35,7 @@ public:
 	void updateClient();
 	void updatePack();
 	void deletePack();
+	void statistics();
 private:
 	string name;
 	string url;

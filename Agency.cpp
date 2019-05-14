@@ -510,7 +510,7 @@ void Agency::updatePack() {
 		bool moreEdits = true;
 		do {
 			int option;
-			updatePackMenu(option, packs[vpos[0]]);
+			//updatePackMenu(option, packs[vpos[0]]);
 
 			switch (option) {
 			case -1:
@@ -538,5 +538,25 @@ void Agency::updatePack() {
 	}
 }
 
+void statistics(int& option)
+{
+	cout << "STATISTICS\n";
+	cout << "----------\n" << endl;
+	cout << "| 1-Agency Information | 2-Most visited places | 3-Client Sugestion |\n\n";
+
+	int opt;
+	selectOption(opt, 3);
+
+	switch (opt) {
+	case 1:
+		cout << "AGENCY INFORMATION\n";
+		cout << "------------------\n" << endl;
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	}
 
 
+}
