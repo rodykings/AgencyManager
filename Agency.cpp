@@ -269,6 +269,8 @@ void Agency::addPack() {
 //DELETE PACKS							
 void Agency::deletePack()
 {
+	cout << "DELETE PACK \n";
+	cout << "-----------\n" << endl;
 	int id;
 	inputInt("Package ID: ", id);
 	cout << endl;
