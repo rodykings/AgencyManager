@@ -14,69 +14,70 @@ void mainMenu(Agency agency) {
 	cout << line << endl;
 	cout << '|' << "OPERATIONS      " << " | " << "CLIENTS          " << " | " << "PACKS           " << " | " << endl;
 	cout << line << endl;
-	cout << '|' << "1.BUY PACK      " << " | " << "4.NEW CLIENT     " << " | " << "7.NEW PACK      " << " | " << endl;
-	cout << '|' << "2.SHOW CLIENTS  " << " | " << "5.UPDATE CLIENT  " << " | " << "8.UPDATE PACK   " << " | " << endl;
-	cout << '|' << "3.SHOW PACKS    " << " | " << "6.DELETE CLIENT  " << " | " << "9.DELETE PACK   " << " | " << endl;
+	cout << '|' << "1.BUY PACK      " << " | " << "5.ADD CLIENT     " << " | " << "9.ADD PACK      " << " | " << endl;
+	cout << '|' << "2.SHOW CLIENTS  " << " | " << "6.UPDATE CLIENT  " << " | " << "10.UPDATE PACK   " << " | " << endl;
+	cout << '|' << "3.SHOW PACKS    " << " | " << "7.DELETE CLIENT  " << " | " << "11.DELETE PACK   " << " | " << endl;
+	cout << '|' << "4.STATISTICS    " << " | " << "8.SEARCH CLIENT  " << " | " << "12.SEARCH PACK   " << " | " << endl;
 	cout << line << endl;
-	cout << '|' << "                " << "   " << "  10. STATISTICS " << "   " << "                " << " | " << endl;
+	cout << '|' << "                " << "   " << "  CTR+Z - EXIT   " << "   " << "                " << " | " << endl;
 	cout << line << endl << endl;
 
 	int option;
-	selectOption(option, 10);
+	selectOption(option, 12);
 
 	num nif;
 	vector<Client> newVect;
 
 	switch (option)
 	{
-		//COMPRAR PACOTE
+	//BUY PACK	
 	case 1:
 
 		break;
-		//VER clients
+	//SHOW CLIENTS	
 	case 2:
-		agency.showClients();
-		mainMenu(agency);
+		
 		break;
-		//VER PACOTES
+	//SHOW PACKS	
 	case 3:
-		agency.showPacks();
-		mainMenu(agency);
+		
 		break;
-		//NOVO CLIENTE
+	//STATISTICS	
 	case 4:
-		agency.addClient();
-		mainMenu(agency);
+		
 		break;
-		//ALTERAR CLIENTE
+	//ADD CLIENT	
 	case 5:
-		agency.updateClient();
-		mainMenu(agency);
+		
 		break;
-		//REMOVER CLIENTE
+	//UPDATE CLIENT	
 	case 6:
-		agency.deleteClient();
-		mainMenu(agency);
+		
 		break;
-		//NOVO PACOTE
+	//DELETE CLIENT	
 	case 7:
-		agency.addPack();
-		mainMenu(agency);
+		
 		break;
-		//ALTERAR PACOTE
+	//SEARCH CLIENT	
 	case 8:
 
 		break;
-		//REMOVER PACOTE
+	//ADD PACK	
 	case 9:
-		agency.deletePack();
-		mainMenu(agency);
+		
 		break;
-		//exit
+	//UPDATE PACK
 	case 10:
-		exit(1);
+		
 		break;
-
+	//DELETE PACK
+	case 11:
+		
+		break;
+	//SEARCH PACK
+	case 12:
+		
+		break;
 	default:
 		break;
 	}
