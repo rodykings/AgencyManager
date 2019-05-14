@@ -23,6 +23,7 @@ Date::Date(num year, num month, num day) {
 		cin >> value;
 	}
 
+
 	this->day = date.getDay();
 	this->month = date.getMonth();
 	this->year = date.getYear();
@@ -230,4 +231,6 @@ bool Date::isBefore(const Date &date) {
 	else
 		return false;
 }
+
+
 

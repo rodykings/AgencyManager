@@ -42,6 +42,7 @@ void inputNum(string message, num& value, num size){
 	}
 }
 
+//FUNCIONA SE QUISERES ADICIONAR, MAS NÃO FUNCIONA SE QUISERS REMOVER .....
 void inputPlaces(vector<string> &places) {
 
 	string newPlace;
@@ -52,9 +53,7 @@ void inputPlaces(vector<string> &places) {
 		inputString("New Place:", newPlace);
 		places.push_back(newPlace);
 	}
-
-
-}
+}	
 
 bool yesOrNo(string message)
 {

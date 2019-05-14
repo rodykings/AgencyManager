@@ -232,8 +232,8 @@ void Agency::addPack() {
 	string start, end;
 	num price = 0, spots = 0, soldSpots = 0;
 	inputString("Tour Sites: ", places);
-	Date startDate("Start Date: ", start);
-	Date endDate("End Date: ", end);
+	Date startDate("Start Date (YYYY/MM/DD): ", start);
+	Date endDate("End Date (YYYY/MM/DD): ", end);
 	inputNum("Price: ", price);
 	inputNum("Available Spots: ", spots);
 
@@ -283,26 +283,12 @@ num Agency::searchClient()
 	}
 	return -1;
 }
-void Agency::showClient(num v_pos)
+
+void Agency::showClients() 
 {
-	if (v_pos == -1)
-		cerr << "ERROR Client not found! \n";
-	else
-	{
-		cout << "::::::::::\n";
-		cout << setw(11) << "Name: " << clients[v_pos].getName() << endl;
-		cout << setw(11) << "NIF: " <<  clients[v_pos].getNIF() << endl;
-		cout << setw(11) << "Household: " << clients[v_pos].getNumPeople() << endl;
-		cout << setw(11) << "Address: " <<  clients[v_pos].getAddress().toString() << endl;
-		cout << setw(11) << "Packages: " <<  clients[v_pos].boughtToString() << endl;
-		cout << setw(11) << "Spent: " <<  clients[v_pos].getSpentMoney() << endl;
-		cout << setw(11) << "::::::::::\n";
-	}
-	cout << endl;
-}
-void Agency::showClients()
-{
-	const unsigned int NAME_MAX_SIZE = 35;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
+	system("cls");
+
+	const unsigned int NAME_MAX_SIZE = 20;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
 
 	cout << "ALL CLIENTS \n";
 	cout << "----------- \n";
@@ -326,6 +312,39 @@ void Agency::showClients()
 		cout << clients[i].getAddress().toString() << endl;
 	}
 	cout << endl;
+	system("pause");
+}
+
+
+void Agency::showPacks()
+{
+	system("cls");
+
+	const unsigned int NAME_MAX_SIZE = 20;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
+
+	cout << "ALL PACKS \n";
+	cout << "----------- \n";
+	cout << endl;
+	cout << setw(NAME_MAX_SIZE) << left << "ID";
+	cout << setw(4) << left << "Places";
+	cout << setw(20) << left << "Begin Date";
+	cout << setw(12) << left << "End Date";
+	cout << setw(12) << left << "Spent";
+	cout << "Adress" << endl;
+	cout << endl;
+
+	size_t size = packs.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		cout << setw(NAME_MAX_SIZE) << left << clients[i].getName();
+		cout << setw(15) << left << clients[i].getNIF();
+		cout << setw(4) << left << clients[i].getNumPeople();
+		cout << setw(15) << left << clients[i].boughtToString();
+		cout << setw(10) << left << clients[i].getSpentMoney();
+		cout << clients[i].getAddress().toString() << endl;
+	}
+	cout << endl;
+	system("pause");
 }
 //DELETE CLIENT
 void Agency::deleteClient()
@@ -334,15 +353,16 @@ void Agency::deleteClient()
 	cout << "------------- \n";
 	cout << endl;
 
-	num v_pos = searchClient();
-	showClient(v_pos);
+	num vpos = searchClient();
 
-	if (v_pos != -1)
+	if (vpos != -1)
 	{
+		clients[vpos].show();
+
 		bool opt = yesOrNo("Are you sure you want to remove this client ? [y/n]");
 		if (opt)
 		{
-			clients.erase(clients.begin() + v_pos);
+			clients.erase(clients.begin() + vpos);
 			cout << "Client Deleted! \n";
 		}
 	}
@@ -350,7 +370,7 @@ void Agency::deleteClient()
 }
 
 
-/*-----SEARCH FUNCTIONS-----*/
+/*-----SEARCH PACK FUNCTIONS-----*/
 //SEARCH PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
@@ -411,13 +431,70 @@ void Agency::updateClient()
 		bool moreEdits = true;
 		do {
 			int option;
-			//updateClientMenu(option, clients[vpos]);
+			updateClientMenu(option, clients[vpos]);
 
+			switch (option) {
+			case -1:
+				moreEdits = false;	//exit function
+				break;
+			case 1:
+				clients[vpos].setName();
+				break;
+			case 2:
+				clients[vpos].setNIF();
+				break;
+			case 3:
+				clients[vpos].setNumPeople();
+				break;
+			case 4:
+				clients[vpos].setAddress();
+				break;
+			}
 
 		} while (moreEdits);
 	}
+	else
+		cerr << "ERROR Client not found!\n";
+}
+void Agency::updatePack() {
+
+	int id;
+	inputInt("Pack ID: ", id);
+
+	vector<num> vpos = searchPack(id);
 
 
+	if (vpos.size() != 0)
+	{
+		bool moreEdits = true;
+		do {
+			int option;
+			updatePackMenu(option, packs[vpos[0]]);
+
+			switch (option) {
+			case -1:
+				moreEdits = false;	//exit function
+				break;
+			case 1:
+				packs[vpos[0]].setPlaces();
+				break;
+			case 2:
+				packs[vpos[0]].setStart();
+				break;
+			case 3:
+				packs[vpos[0]].setEnd();
+				break;
+			case 4:
+				packs[vpos[0]].setPrice();
+				break;
+			case 5:
+				packs[vpos[0]].setSpots();
+				break;
+			}
+
+		} while (moreEdits);
+
+	}
 }
 
 

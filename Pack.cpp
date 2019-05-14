@@ -26,27 +26,38 @@ void Pack::setID(int id)
 {
 	this->id = id;
 }
-void Pack::setPlaces(vector<string> places) 
+void Pack::setPlaces() 
 {
-	this->places = places;
+	string mainSite;
+	cin.ignore(1000, '\n');
+	cout << "Main Tour Site: "; getline(cin, mainSite);
+	
+	string places;
+	cin.ignore(1000, '\n');
+	cout << "Insert remaining tour sites seperated by a comma ( '0' if none ): "; getline(cin, places);
+	if (places != "0")
+	{
+		mainSite += "-" + places;
+	}
+	this->places = splitPlaces(mainSite);
 }
-void Pack::setStart(Date start)
+void Pack::setStart()
 {
 	this->start = start;
 }
-void Pack::setEnd(Date end)
+void Pack::setEnd()
 {
 	this->end = end;
 }
-void Pack::setPrice(num price)
+void Pack::setPrice()
 {
 	this->price = price;
 }
-void Pack::setSpots(num spots)
+void Pack::setSpots()
 {
 	this->spots = spots;
 }
-void Pack::setSoldSpots(num soldSpots)
+void Pack::setSoldSpots()
 {
 	this->soldSpots = soldSpots;
 }
@@ -112,5 +123,18 @@ string Pack::placesToString()
 	}
 
 	return p;
+}
+void Pack::show() {
+
+	cout << "::::::::::\n";
+	cout << setw(13) << "ID: " << id << endl;
+	cout << setw(13) << "Tour Site: " << placesToString() << endl;
+	cout << setw(13) << "Start: " << start.getDate() << endl;
+	cout << setw(13) << "End: " << end.getDate() << endl;
+	cout << setw(13) << "Price: " << price << endl;
+	cout << setw(13) << "Total Spots: " << spots << endl;
+	cout << setw(13) << "Sold Spots : " << soldSpots << endl;
+	cout << "::::::::::\n";
+	cout << endl;
 }
 
