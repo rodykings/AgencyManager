@@ -25,3 +25,12 @@ void updatePackMenu(int& option, Pack pack) {
 
 	selectOption(option, 5);
 }
+
+void statisticsMenu(int& option)
+{
+	cout << "STATISTICS\n";
+	cout << "----------\n" << endl;
+	cout << "| 1-Agency Information | 2-Most";
+
+
+}

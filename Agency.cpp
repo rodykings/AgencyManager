@@ -424,7 +424,7 @@ vector<num> Agency::searchPack(Date start, Date end)
 /*-----UPDATE FUNCTIONS-----*/
 void Agency::updateClient()
 {
-	num vpos = searchClient();
+	int vpos = searchClient();
 
 	if (vpos >= 0)
 	{
