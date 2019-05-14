@@ -36,11 +36,11 @@ void mainMenu(Agency agency) {
 		break;
 	//SHOW CLIENTS	
 	case 2:
-		
+		agency.showClients();
 		break;
 	//SHOW PACKS	
 	case 3:
-		
+		agency.showPacks();
 		break;
 	//STATISTICS	
 	case 4:
@@ -48,15 +48,15 @@ void mainMenu(Agency agency) {
 		break;
 	//ADD CLIENT	
 	case 5:
-		
+		agency.addClient();
 		break;
 	//UPDATE CLIENT	
 	case 6:
-		
+		agency.updateClient();
 		break;
 	//DELETE CLIENT	
 	case 7:
-		
+		agency.deleteClient();
 		break;
 	//SEARCH CLIENT	
 	case 8:
@@ -64,15 +64,15 @@ void mainMenu(Agency agency) {
 		break;
 	//ADD PACK	
 	case 9:
-		
+		agency.addPack();
 		break;
 	//UPDATE PACK
 	case 10:
-		
+		agency.updatePack();
 		break;
 	//DELETE PACK
 	case 11:
-		
+		agency.deletePack();
 		break;
 	//SEARCH PACK
 	case 12:
@@ -81,6 +81,7 @@ void mainMenu(Agency agency) {
 	default:
 		break;
 	}
+	mainMenu(agency);
 }
 
 void updateClientMenu(int& option, Client client, Agency& agency) {
