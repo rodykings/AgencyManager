@@ -203,20 +203,34 @@ void Agency::storePacks() {
 //ADD CLIENTS
 void Agency::addClient() {
 
+	system("cls");
+
+	cout << "ADD CLIENT" << endl;
+	cout << "----------\n" << endl;
+
 	string name = "";
 	num nif = 0;
 	num numPeople = 0;
 	num door = 0;
 	string street = "", floor = "", zipCode = "", location = "";
 	
-	inputString("Name:", name);
+	cout << "Name:";
+	cin.ignore(1000, '\n');
+	getline(cin, name);
 	inputNum("NIF:", nif, 9);
 	inputNum("Group Size:", numPeople);
-	inputString("Address:/n/tStreet:", street);
-	inputNum("/tDoor:", door);
-	inputString("/tFloor:", floor);
-	inputString("/tZip Code:", zipCode);
-	inputString("/tLocation:", location);
+	cout << "Address:\n\tStreet:";
+	cin.ignore();
+	getline(cin, street);
+	inputNum("\tDoor:", door);
+	cout << "\tFloor:";
+	cin.ignore();
+	getline(cin, floor);
+	cout << "\tZip Code:";
+	cin.ignore();
+	cin >> zipCode;
+	cout << "\tLocation:";
+	getline(cin, location);
 
 	Address newAddress(street, door, floor, zipCode, location);
 	Client newClient(name, nif, numPeople, newAddress);
@@ -226,12 +240,19 @@ void Agency::addClient() {
 //ADD PACKS
 void Agency::addPack() {
 	
+	system("cls");
+
+	cout << "ADD PACK\n";
+	cout << "--------\n\n";
+
 	lastPack++;
 	int id = lastPack;
 	string places ="";
 	string start, end;
 	num price = 0, spots = 0, soldSpots = 0;
-	inputString("Tour Sites: ", places);
+	cout << "Tour Sites: ";
+	cin.ignore(1000, '\n');
+	getline(cin, places);
 	Date startDate("Start Date (YYYY/MM/DD): ", start);
 	Date endDate("End Date (YYYY/MM/DD): ", end);
 	inputNum("Price: ", price);
@@ -239,18 +260,27 @@ void Agency::addPack() {
 
 	Pack newPack(id, places, start, end, price, spots, soldSpots);
 	packs.push_back(newPack);
+
+	cout << "\n\nPack successfully added!\n\n";
+	system("pause");
+
+
 }
-//DELETE PACKS							???criar função que mostra o pacote que se pretende remover???
+//DELETE PACKS							
 void Agency::deletePack()
 {
 	int id;
 	inputInt("Package ID: ", id);
+	cout << endl;
 
 	vector<num> vpos = searchPack(id);
-	if (vpos.size() == 0)
-		cerr << "ERROR Package not found! \n";
-	else
-	{
+	if (vpos.size() == 0) {
+		cerr << "ERROR Package not found! \n\n";
+		system("pause");
+	}
+	else{
+		packs[vpos[0]].show();
+
 		bool opt = yesOrNo("Are you sure you want to remove this package ? [y/n] ");
 		if (opt)
 		{
@@ -273,7 +303,7 @@ void Agency::showAgencyInfo() {
 num Agency::searchClient()
 {
 	num nif;
-	inputNum("NIF: ", nif, 9);
+	inputNum("\nNIF: ", nif, 9);
 
 	size_t size = clients.size();
 	for (size_t i = 0; i < size; i++)
@@ -325,23 +355,24 @@ void Agency::showPacks()
 	cout << "ALL PACKS \n";
 	cout << "----------- \n";
 	cout << endl;
-	cout << setw(NAME_MAX_SIZE) << left << "ID";
-	cout << setw(4) << left << "Places";
-	cout << setw(20) << left << "Begin Date";
+	cout << setw(4) << left << "ID";
+	cout << setw(40) << left << "Places";
+	cout << setw(12) << left << "Begin Date";
 	cout << setw(12) << left << "End Date";
-	cout << setw(12) << left << "Spent";
-	cout << "Adress" << endl;
+	cout << setw(14) << left << "Total Spots";
+	cout << setw(4) << left << "Sold Spots" << endl;
 	cout << endl;
 
 	size_t size = packs.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		cout << setw(NAME_MAX_SIZE) << left << clients[i].getName();
-		cout << setw(15) << left << clients[i].getNIF();
-		cout << setw(4) << left << clients[i].getNumPeople();
-		cout << setw(15) << left << clients[i].boughtToString();
-		cout << setw(10) << left << clients[i].getSpentMoney();
-		cout << clients[i].getAddress().toString() << endl;
+		cout << setw(4) << left << packs[i].getID();
+		cout << setw(40) << left << packs[i].placesToString();
+		cout << setw(12) << left << packs[i].getStart().getDate();
+		cout << setw(12) << left << packs[i].getEnd().getDate();
+		cout << setw(14) << left << packs[i].getSpots();
+		cout << setw(4) << left << packs[i].getSoldSpots();
+		cout << endl;
 	}
 	cout << endl;
 	system("pause");
@@ -349,22 +380,28 @@ void Agency::showPacks()
 //DELETE CLIENT
 void Agency::deleteClient()
 {
+	system("cls");
 	cout << "REMOVE CLIENT \n";
 	cout << "------------- \n";
-	cout << endl;
 
 	num vpos = searchClient();
 
 	if (vpos != -1)
 	{
+		cout << endl;
 		clients[vpos].show();
 
 		bool opt = yesOrNo("Are you sure you want to remove this client ? [y/n]");
 		if (opt)
 		{
 			clients.erase(clients.begin() + vpos);
-			cout << "Client Deleted! \n";
+			cout << "\nClient Deleted!\n";
+			system("pause");
 		}
+	}
+	else {
+		cout << "\nClient not found!\n\n";
+		system("pause");
 	}
 	cout << endl;
 }
@@ -453,8 +490,12 @@ void Agency::updateClient()
 
 		} while (moreEdits);
 	}
-	else
-		cerr << "ERROR Client not found!\n";
+	else {
+		cerr << "ERROR Client not found!\n" << endl;
+		system("pause");
+	}
+		
+
 }
 void Agency::updatePack() {
 

@@ -40,30 +40,37 @@ void mainMenu(Agency agency) {
 		break;
 		//VER PACOTES
 	case 3:
-
+		agency.showPacks();
+		mainMenu(agency);
 		break;
 		//NOVO CLIENTE
 	case 4:
-		
+		agency.addClient();
+		mainMenu(agency);
 		break;
 		//ALTERAR CLIENTE
 	case 5:
 		agency.updateClient();
+		mainMenu(agency);
 		break;
 		//REMOVER CLIENTE
 	case 6:
-		
+		agency.deleteClient();
+		mainMenu(agency);
 		break;
 		//NOVO PACOTE
 	case 7:
-		
+		agency.addPack();
+		mainMenu(agency);
 		break;
 		//ALTERAR PACOTE
 	case 8:
+
 		break;
 		//REMOVER PACOTE
 	case 9:
-		
+		agency.deletePack();
+		mainMenu(agency);
 		break;
 		//exit
 	case 10:

@@ -23,7 +23,7 @@ void inputInt(string message, int &value) {
 	}
 }
 void inputNum(string message, num& value){
-	cout << endl << message;
+	cout << message;
 	cin >> value;
 	while (cin.fail()) {
 		cout << errorMessage();
@@ -33,7 +33,7 @@ void inputNum(string message, num& value){
 }
 void inputNum(string message, num& value, num size){
 
-	cout << endl << message;
+	cout << message;
 	cin >> value;
 	while (cin.fail() || to_string(value).length() != size) {
 		cout << errorMessage();

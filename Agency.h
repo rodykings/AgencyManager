@@ -29,6 +29,9 @@ public:
 	void showClient(num v_pos); // show specific
 	void showClients(); // showAll clients
 	void showPacks(); //show all packs
+	void addClient();
+	void addPack();
+	void deleteClient();
 	void updateClient();
 	void updatePack();
 	void deletePack();
@@ -46,10 +49,7 @@ private:
 	vector<Client> clients;
 	vector<Pack> packs;
 
-	void addClient();
-	void addPack();
-	void deleteClient();
-
+	
 	void loadClients();
 	void loadPacks();
 
