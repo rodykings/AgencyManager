@@ -7,6 +7,7 @@
 #include <ostream>
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
 
 #include "Client.h"
 #include "Pack.h"

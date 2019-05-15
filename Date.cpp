@@ -11,25 +11,6 @@ Date::Date(num year, num month, num day) {
 	this->day = day;
 }
 
-// Date::Date(string message, string& value) {
-//
-//	cout << message;
-//	cin >> value;
-//
-//	Date date(value);	//ERRADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//	while (!dateValidation(value) || !date.isValid()) {
-//		cout << errorMessage();
-//		cout << message;
-//		cin >> value;
-//	}
-//
-//
-//	this->day = date.getDay();
-//	this->month = date.getMonth();
-//	this->year = date.getYear();
-//	 
-//}
-
 
 Date::Date(string yearMonthDay) {
 

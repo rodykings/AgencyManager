@@ -428,19 +428,20 @@ void Agency::searchPack() {
 	int option;
 	selectOption(option, 3);
 
-	vector<num> vpos;
+	vector<num> vpos, vpos2, vposIntersection;
 	string dest = "";
 	Date start;
 	Date end;
+	bool valid = false;
 	switch (option) {
 	case -1:
 		break;
-	case 1:
+	case 1: //search by destination
 		cin.ignore(1000, '\n');
 		cout << endl << "Destination: "; getline(cin, dest);
 		vpos = searchPack(dest);
-	case 2:
-		bool valid = false;
+		break;
+	case 2:	//search by date
 		do {
 			start = inputDate("Start: ");
 			end = inputDate("End: ");
@@ -448,12 +449,32 @@ void Agency::searchPack() {
 			if (!valid)
 				cerr << "ERROR Inconsistent Start and End Date !\n";
 		} while (!valid);
+		vpos = searchPack(start, end);
 		break;
+	case 3: //search by date and destination
+		cin.ignore(1000, '\n');
+		cout << endl << "Destination: "; getline(cin, dest);
+		vpos = searchPack(dest);
+		do {
+			Date start(inputDate("Start Date: "));
+			Date end(inputDate("End Date: "));
+			valid = validStartEnd(start, end);
+			if (!valid)
+				cerr << "ERROR Inconsistent Start and End Date !\n";
+		} while (!valid);
+		
+		vpos2 = searchPack(start, end);
+		
+		vposIntersection = vectorIntersect(vpos, vpos2);
+		vpos = vposIntersection;
 	}
 
 	if (vpos.size() != 0) {
 		cout << endl;
 		showPacks(vpos, true);
+	}
+	else {
+		cerr << endl << "ERROR No matches found! \n" << endl;
 	}
 	system("pause");
 }
@@ -494,13 +515,16 @@ vector<num> Agency::searchPack(Date start, Date end)
 	size_t size = packs.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		// if start is the same or after the pack start date and before the pack end date
-		if (!start.isBefore(packs[i].getStart()) && start.isBefore(packs[i].getEnd())) 
-		{
-			//if the end date is before or equal to the pack end date
-			if (end.isBefore(packs[i].getEnd()) || end.isEqualTo(packs[i].getEnd()))
-				vpos.push_back(i);
-		}
+		//// if start is the same or after the pack start date and before the pack end date
+		//if (!start.isBefore(packs[i].getStart()) && start.isBefore(packs[i].getEnd())) 
+		//{
+		//	//if the end date is before or equal to the pack end date
+		//	if (end.isBefore(packs[i].getEnd()) || end.isEqualTo(packs[i].getEnd()))
+		//		vpos.push_back(i);
+		//}
+
+		if (packs[i].getStart().isBefore(start) || packs[i].getEnd().isBefore(end))
+			vpos.push_back(i);
 	}
 	return vpos;
 }
