@@ -35,7 +35,7 @@ void mainMenu(Agency& agency, bool& moreOperations) {
 		break;
 	//BUY PACK	
 	case 1:
-
+		agency.buyPack();
 		break;
 	//SHOW CLIENTS	
 	case 2:

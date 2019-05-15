@@ -22,8 +22,7 @@ class Agency
 public:
 	Agency();
 	Agency(string fileName); //alternate constructor
-	
-	
+
 	void showAgencyInfo();
 	void storeClients();
 	void storePacks();
@@ -39,7 +38,6 @@ public:
 	void statistics();
 	void showClient();
 	void searchPack();
-
 	void buyPack();
 private:
 	string name;

@@ -41,7 +41,15 @@ Agency::Agency(string fileName)
 	loadPacks();
 }
 
-//READ CLIENTS FROM FILE
+//SHOW AGENCY INFO
+void Agency::showAgencyInfo() {
+	cout << name << endl;
+	cout << nif << endl;
+	cout << url << endl;
+	cout << this->address.toString() << endl;
+};
+
+//READ DATA FROM FILES
 void Agency::loadClients() {
 
 	ifstream in;
@@ -95,8 +103,6 @@ void Agency::loadClients() {
 
 	in.close();
 }
-
-//READ PACKS FROM FILE
 void Agency::loadPacks()
 {
 	ifstream in;
@@ -154,7 +160,7 @@ void Agency::loadPacks()
 	in.close();
 }
 
-//WRITE CLIENTS IN FILE
+//WRITE DATA IN FILES
 void Agency::storeClients() {
 	
 	ofstream out;
@@ -175,8 +181,6 @@ void Agency::storeClients() {
 	}
 	out.close();
 }
-
-//WRITE PACKS IN FILE
 void Agency::storePacks() {
 	ofstream out;
 	out.open(packsFile, ofstream::out, ofstream::trunc);
@@ -200,7 +204,7 @@ void Agency::storePacks() {
 	out.close();
 }
 
-//ADD CLIENTS
+//CLIENTS MANAGEMENT
 void Agency::addClient() {
 
 	system("cls");
@@ -235,9 +239,157 @@ void Agency::addClient() {
 	Address newAddress(street, door, floor, zipCode, location);
 	Client newClient(name, nif, numPeople, newAddress);
 	clients.push_back(newClient);
+}//ADD CLIENT
+void Agency::deleteClient()
+{
+	system("cls");
+	cout << "REMOVE CLIENT \n";
+	cout << "------------- \n";
+
+	num vpos = searchClient();
+
+	if (vpos != -1)
+	{
+		cout << endl;
+		clients[vpos].show();
+
+		bool opt = yesOrNo("Are you sure you want to remove this client ? [y/n]");
+		if (opt)
+		{
+			clients.erase(clients.begin() + vpos);
+			cout << "\nClient Deleted!\n";
+			system("pause");
+		}
+	}
+	else {
+		cout << "\nClient not found!\n\n";
+		system("pause");
+	}
+	cout << endl;
+}
+void Agency::updateClient()
+{
+	int vpos = searchClient();
+
+	if (vpos >= 0)
+	{
+		bool moreEdits = true;
+		do {
+
+			system("cls");
+
+			cout << "EDIT CLIENT\n";
+			cout << "-----------\n" << endl;
+			cout << "| 1-Edit Name | 2-Edit NIF | 3-Edit Household | 4-Edit Address |\n" << endl;
+
+			clients[vpos].show();
+			cout << endl;
+
+			int option;
+			selectOption(option, 4);
+
+			switch (option) {
+			case -1:
+				moreEdits = false;	//exit function
+				break;
+			case 1:
+				clients[vpos].setName();
+				break;
+			case 2:
+				clients[vpos].setNIF();
+				break;
+			case 3:
+				clients[vpos].setNumPeople();
+				break;
+			case 4:
+				clients[vpos].setAddress();
+				break;
+			}
+
+		} while (moreEdits);
+	}
+	else {
+		cerr << "ERROR Client not found!\n" << endl;
+		system("pause");
+	}
+
+
+}
+num Agency::searchClient()
+{
+	num nif;
+	inputNum("\nNIF: ", nif, 9);
+
+	size_t size = clients.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		if (clients[i].getNIF() == nif)
+			return i;
+	}
+	return -1;
+}
+void Agency::showClient() {
+	system("cls");
+
+	cout << "SEARCH CLIENT\n";
+	cout << "-------------\n" << endl;
+	cout << "| 1-Display sold packs | 2-Display most famous unvisited destinations |\n";
+
+	int vpos = searchClient();
+
+	if (vpos >= 0) {
+
+		clients[vpos].show();
+		cout << endl;
+
+		int option;
+		selectOption(option, 2);
+
+		switch (option) {
+		case -1:
+			break;
+		case 1:
+			cout << endl;
+			showPacks(clients[vpos].getBoughtPacks(), true);
+		}
+	}
+	else {
+		cerr << endl << "ERROR Client not found!\n" << endl;
+	}
+	system("pause");
+}
+void Agency::showAllClients()
+{
+	system("cls");
+
+	const unsigned int NAME_MAX_SIZE = 20;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
+
+	cout << "ALL CLIENTS \n";
+	cout << "----------- \n";
+	cout << endl;
+	cout << setw(NAME_MAX_SIZE) << left << "Name";
+	cout << setw(15) << left << "NIF";
+	cout << setw(4) << left << "N";
+	cout << setw(15) << left << "Packages";
+	cout << setw(10) << left << "Spent";
+	cout << "Adress" << endl;
+	cout << endl;
+
+	size_t size = clients.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		cout << setw(NAME_MAX_SIZE) << left << clients[i].getName();
+		cout << setw(15) << left << clients[i].getNIF();
+		cout << setw(4) << left << clients[i].getNumPeople();
+		cout << setw(15) << left << clients[i].boughtToString();
+		cout << setw(10) << left << clients[i].getSpentMoney();
+		cout << clients[i].getAddress().toString() << endl;
+	}
+	cout << endl;
+	system("pause");
 }
 
-//ADD PACKS
+//PACKS MANAGEMENT
 void Agency::addPack() {
 	
 	system("cls");
@@ -272,8 +424,7 @@ void Agency::addPack() {
 	system("pause");
 
 
-}
-//DELETE PACKS							
+}				
 void Agency::deletePack()
 {
 	cout << "DELETE PACK \n";
@@ -301,61 +452,56 @@ void Agency::deletePack()
 	}
 	cout << endl;
 }
+void Agency::updatePack() {
 
-//SHOW AGENCY INFO
-void Agency::showAgencyInfo() {
-	cout << name << endl;
-	cout << nif << endl;
-	cout << url << endl;
-	cout << this->address.toString() << endl;
-};
+	int id;
+	inputInt("Pack ID: ", id);
 
-//SEARCH FOR A SPECIFIC CLIENT
-num Agency::searchClient()
-{
-	num nif;
-	inputNum("\nNIF: ", nif, 9);
+	vector<num> vpos = searchPack(id);
 
-	size_t size = clients.size();
-	for (size_t i = 0; i < size; i++)
+
+	if (vpos.size() != 0)
 	{
-		if (clients[i].getNIF() == nif)
-			return i;	
+		bool moreEdits = true;
+		do {
+
+			system("cls");
+
+			cout << "EDIT PACK\n";
+			cout << "---------\n" << endl;
+			cout << "| 1-Edit Tour Sites | 2-Edit Start Date | 3-Edit End Date | 4-Edit Price | 5-Edit Number of Spots |\n" << endl;
+
+			packs[vpos[0]].show();
+			cout << endl;
+
+			int option;
+			selectOption(option, 5);
+
+			switch (option) {
+			case -1:
+				moreEdits = false;	//exit function
+				break;
+			case 1:
+				packs[vpos[0]].setPlaces();
+				break;
+			case 2:
+				packs[vpos[0]].setStart();
+				break;
+			case 3:
+				packs[vpos[0]].setEnd();
+				break;
+			case 4:
+				packs[vpos[0]].setPrice();
+				break;
+			case 5:
+				packs[vpos[0]].setSpots();
+				break;
+			}
+
+		} while (moreEdits);
+
 	}
-	return -1;
 }
-
-void Agency::showAllClients() 
-{
-	system("cls");
-
-	const unsigned int NAME_MAX_SIZE = 20;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
-
-	cout << "ALL CLIENTS \n";
-	cout << "----------- \n";
-	cout << endl;
-	cout << setw(NAME_MAX_SIZE) << left << "Name";
-	cout << setw(15) << left << "NIF";
-	cout << setw(4) << left << "N";
-	cout << setw(15) << left << "Packages";
-	cout << setw(10) << left << "Spent";
-	cout << "Adress" << endl;
-	cout << endl;
-
-	size_t size = clients.size();
-	for (size_t i = 0; i < size; i++)
-	{
-		cout << setw(NAME_MAX_SIZE) << left << clients[i].getName();
-		cout << setw(15) << left << clients[i].getNIF();
-		cout << setw(4) << left << clients[i].getNumPeople();
-		cout << setw(15) << left << clients[i].boughtToString();
-		cout << setw(10) << left << clients[i].getSpentMoney();
-		cout << clients[i].getAddress().toString() << endl;
-	}
-	cout << endl;
-	system("pause");
-}
-
 void Agency::showPacks()
 {
 	system("cls");
@@ -385,40 +531,35 @@ void Agency::showPacks()
 	cout << endl;
 	system("pause");
 }
+void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 
-//DELETE CLIENT
-void Agency::deleteClient()
-{
-	system("cls");
-	cout << "REMOVE CLIENT \n";
-	cout << "------------- \n";
+	cout << setw(4) << left << "ID";
+	cout << setw(40) << left << "Places";
+	cout << setw(12) << left << "Begin Date";
+	cout << setw(12) << left << "End Date";
+	cout << setw(14) << left << "Total Spots";
+	cout << setw(4) << left << "Sold Spots" << endl;
+	cout << endl;
 
-	num vpos = searchClient();
-
-	if (vpos != -1)
+	size_t size = vec.size();
+	for (size_t i = 0; i < size; i++)
 	{
-		cout << endl;
-		clients[vpos].show();
+		num pos = 0;
+		if (!positionVector) //if the vector contains id it translates them into positions
+			pos = vec[i] - 1;
+		else
+			pos = vec[i];
 
-		bool opt = yesOrNo("Are you sure you want to remove this client ? [y/n]");
-		if (opt)
-		{
-			clients.erase(clients.begin() + vpos);
-			cout << "\nClient Deleted!\n";
-			system("pause");
-		}
-	}
-	else {
-		cout << "\nClient not found!\n\n";
-		system("pause");
+		cout << setw(4) << left << packs[pos].getID();
+		cout << setw(40) << left << packs[pos].placesToString();
+		cout << setw(12) << left << packs[pos].getStart().getDate();
+		cout << setw(12) << left << packs[pos].getEnd().getDate();
+		cout << setw(14) << left << packs[pos].getSpots();
+		cout << setw(4) << left << packs[pos].getSoldSpots();
+		cout << endl;
 	}
 	cout << endl;
 }
-
-
-/*-----SEARCH PACK FUNCTIONS-----*/
-
-//SEARCH PACK BY ID
 void Agency::searchPack() {
 	system("cls");
 	cout << "SEARCH PACKS\n";
@@ -457,6 +598,8 @@ void Agency::searchPack() {
 	}
 	system("pause");
 }
+
+//SEARCH PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
 	vector<num> finalIdx = {};
@@ -506,105 +649,34 @@ vector<num> Agency::searchPack(Date start, Date end)
 }
 
 
-/*-----UPDATE FUNCTIONS-----*/
-void Agency::updateClient()
-{
+void Agency::buyPack() {
+	system("cls");
+
+	cout << "BUY PACK\n";
+	cout << "--------\n" << endl;
+
 	int vpos = searchClient();
 
-	if (vpos >= 0)
-	{
-		bool moreEdits = true;
-		do {
-			
-			system("cls");
-
-			cout << "EDIT CLIENT\n";
-			cout << "-----------\n" << endl;
-			cout << "| 1-Edit Name | 2-Edit NIF | 3-Edit Household | 4-Edit Address |\n" << endl;
-
-			clients[vpos].show();
-			cout << endl;
-
-			int option;
-			selectOption(option, 4);
-
-			switch (option) {
-			case -1:
-				moreEdits = false;	//exit function
-				break;
-			case 1:
-				clients[vpos].setName();
-				break;
-			case 2:
-				clients[vpos].setNIF();
-				break;
-			case 3:
-				clients[vpos].setNumPeople();
-				break;
-			case 4:
-				clients[vpos].setAddress();
-				break;
-			}
-
-		} while (moreEdits);
-	}
-	else {
-		cerr << "ERROR Client not found!\n" << endl;
+	if (vpos < 0) {
+		cout << "\n\nClient not found!\n\n";
 		system("pause");
 	}
-		
-
-}
-void Agency::updatePack() {
 
 	int id;
 	inputInt("Pack ID: ", id);
-
-	vector<num> vpos = searchPack(id);
-
-
-	if (vpos.size() != 0)
-	{
-		bool moreEdits = true;
-		do {
-			
-			system("cls");
-
-			cout << "EDIT PACK\n";
-			cout << "---------\n" << endl;
-			cout << "| 1-Edit Tour Sites | 2-Edit Start Date | 3-Edit End Date | 4-Edit Price | 5-Edit Number of Spots |\n" << endl;
-
-			packs[vpos[0]].show();
-			cout << endl;
-
-			int option;
-			selectOption(option, 5);
-
-			switch (option) {
-			case -1:
-				moreEdits = false;	//exit function
-				break;
-			case 1:
-				packs[vpos[0]].setPlaces();
-				break;
-			case 2:
-				packs[vpos[0]].setStart();
-				break;
-			case 3:
-				packs[vpos[0]].setEnd();
-				break;
-			case 4:
-				packs[vpos[0]].setPrice();
-				break;
-			case 5:
-				packs[vpos[0]].setSpots();
-				break;
-			}
-
-		} while (moreEdits);
-
+	vector<num> pos = searchPack(id);
+	if (pos.size() != 0) {
+		packs[pos[0]].show();
 	}
+	system("pause");
+	
+
+
+
+
+
 }
+
 
 void Agency::statistics()
 {
@@ -624,12 +696,13 @@ void Agency::statistics()
 	num currentnId = 0;
 	num boughtNum = 0;
 	num packSize = 0;
+	num placesSize = 0;
 	size_t pack = 0;
 	size_t client = 0;
-	size_t id_max = 0;
+	size_t place = 0;
+	string placeStr = "";
 	num max = 0;
 
-	vector<vector<num>> visitedPlaces;
 
 	switch (opt) {
 
@@ -659,42 +732,43 @@ void Agency::statistics()
 		cout << "\n\nMOST VISITED PLACES\n";
 		cout << "------------------\n" << endl;
 
-		vector<string> mostVisitedPlaces;
 
-		map<num, num> placesMap;
-
-		for (client = 0; client < clientSize; client++) {
-			packSize = clients[client].getBoughtPacks().size();
-			pack = 0;
-			for (pack = 0; pack < packSize; pack++) {
-				if (placesMap.count(clients[client].getBoughtPacks()[pack]) > 0)
+		map<string, num> placesMap;
+		packSize = packs.size();
+		for (pack = 0; pack < packSize; pack++) {
+			placesSize = packs[pack].getPlaces().size();
+			for (place = 0; place < placesSize; place++) {
+				if (placesMap.count(packs[pack].getPlaces()[place]) > 0)
 				{
-					map<num, num>::iterator it = placesMap.find(clients[client].getBoughtPacks()[pack]);
-					if (it != placesMap.end())
-						it->second += 1; 
+					map<string, num>::iterator it = placesMap.find(packs[pack].getPlaces()[place]);
+					if (it != placesMap.end()) {
+						//auto idx = find(packs[pack].getPlaces().begin(), packs[pack].getPlaces().end(), packs[pack].getPlaces()[place]);
+						it->second += packs[pack].getSoldSpots();
+					}
+						
 				}
 				else
 				{
-					placesMap.insert(pair<num, num>(clients[client].getBoughtPacks()[pack], 1));
+					placesMap.insert(pair<string, num>(packs[pack].getPlaces()[place], packs[pack].getSoldSpots()));
 				}
 			}
 		}
 
-		num counter = 0;
+		num counter = 1;
 		while (placesMap.size() != 0) {
 
-			map<num, num>::iterator it;
+			map<string, num>::iterator it;
 
 			for (it = placesMap.begin(); it != placesMap.end(); ++it)
 			{
-				if (it->second > max) {
-					id_max = it->first;
+				if (it->second >= max) {
+					placeStr = it->first;
 					max = it->second;
 				}
 			}
-			cout << counter << ". " << id_max << endl;
+			cout << counter << ". " << placeStr << endl << endl;
 			counter++;
-			placesMap.erase(id_max);
+			placesMap.erase(placeStr);
 			max = 0;
 		}
 		
@@ -703,75 +777,7 @@ void Agency::statistics()
 	}
 }
 
-void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 
-	cout << setw(4) << left << "ID";
-	cout << setw(40) << left << "Places";
-	cout << setw(12) << left << "Begin Date";
-	cout << setw(12) << left << "End Date";
-	cout << setw(14) << left << "Total Spots";
-	cout << setw(4) << left << "Sold Spots" << endl;
-	cout << endl;
 
-	size_t size = vec.size();
-	for (size_t i = 0; i < size; i++)
-	{
-		num pos = 0;
-		if (!positionVector) //if the vector contains id it translates them into positions
-			pos = vec[i] - 1;
-		else
-			pos = vec[i];
-
-		cout << setw(4) << left << packs[pos].getID();
-		cout << setw(40) << left << packs[pos].placesToString();
-		cout << setw(12) << left << packs[pos].getStart().getDate();
-		cout << setw(12) << left << packs[pos].getEnd().getDate();
-		cout << setw(14) << left << packs[pos].getSpots();
-		cout << setw(4) << left << packs[pos].getSoldSpots();
-		cout << endl;
-	}
-	cout << endl;
-}
-void Agency::showClient() {
-	system("cls");
-
-	cout << "SEARCH CLIENT\n";
-	cout << "-------------\n" << endl;
-	cout << "| 1-Display sold packs | 2-Display most famous unvisited destinations |\n";
-
-	int vpos = searchClient();
-
-	if (vpos >= 0) {
-
-		clients[vpos].show();
-		cout << endl;
-
-		int option;
-		selectOption(option, 2);
-
-		switch (option) {
-		case -1:
-			break;
-		case 1:
-			cout << endl;
-			showPacks(clients[vpos].getBoughtPacks());
-		}
-	}
-	else {
-		cerr << endl << "ERROR Client not found!\n" << endl;
-	}
-	system("pause");
-}
-void Agency::buyPack() {
-	system("cls");
-
-	cout << "BUY PACK\n";
-	cout << "--------\n" << endl;
-
-	int vpos = searchClient();
-
-	if (vpos >= 0) {
-	}
-}
 
 
