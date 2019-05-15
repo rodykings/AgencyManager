@@ -7,6 +7,7 @@
 #include <ostream>
 #include <fstream>
 #include <iomanip>
+#include <map>
 
 #include "Client.h"
 #include "Pack.h"
@@ -15,6 +16,7 @@
 //#include "SubMenu.h"
 
 using namespace std;
+
 
 class Agency
 {

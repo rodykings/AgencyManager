@@ -611,22 +611,25 @@ void Agency::statistics()
 		cout << "\n\nMOST VISITED PLACES\n";
 		cout << "------------------\n" << endl;
 
+		vector<string> mostVisitedPlaces;
+
+		map<num, num> placesMap;
+
 		for (client = 0; client < clientSize; client++) {
 			packSize = clients[client].getBoughtPacks().size();
 			pack = 0;
 			for (pack = 0; pack < packSize; pack++) {
-				if (pack == clients[client].getBoughtPacks()[pack]) {
-					boughtNum++;
+				if (mostVisitedPlaces.find(abs(clients[client].getBoughtPacks()[pack])) == mostVisitedPlaces.end()) {
+					// not found
 				}
+				else {
+					// found
+				})
 			}
 			visitedPlaces.push_back({pack, boughtNum});
-
-
-			system("pause");
-			break;
-
-
 		}
+		system("pause");
+		break;
 	}
 }
 
