@@ -26,8 +26,9 @@ public:
 	void showAgencyInfo();
 	void storeClients();
 	void storePacks();
-	void showClients(); // showAll clients
+	void showAllClients(); // showAll clients
 	void showPacks(); //show all packs
+	void showPacks(vector<num> boughtPacks);
 	void addClient();
 	void addPack();
 	void deleteClient();
@@ -35,6 +36,7 @@ public:
 	void updatePack();
 	void deletePack();
 	void statistics();
+	void showClient();
 private:
 	string name;
 	string url;

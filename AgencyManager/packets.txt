@@ -1,4 +1,4 @@
-2
+4
 1
 Madeira - Funchal, Porto Santo
 2019/08/01
@@ -14,3 +14,19 @@ Veneza
 300
 10
 10
+::::::::::
+3
+Gondomar - Multiusos
+2019/05/03
+2019/05/04
+500
+25
+0
+::::::::::
+4
+Viana do Castelo
+2019/07/06
+2019/07/13
+56
+90
+0

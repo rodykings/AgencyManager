@@ -227,9 +227,9 @@ void Agency::addClient() {
 	cin.ignore();
 	getline(cin, floor);
 	cout << "\tZip Code:";
-	cin.ignore();
 	cin >> zipCode;
 	cout << "\tLocation:";
+	cin.ignore(1000, '\n');
 	getline(cin, location);
 
 	Address newAddress(street, door, floor, zipCode, location);
@@ -318,7 +318,7 @@ num Agency::searchClient()
 	return -1;
 }
 
-void Agency::showClients() 
+void Agency::showAllClients() 
 {
 	system("cls");
 
@@ -349,12 +349,9 @@ void Agency::showClients()
 	system("pause");
 }
 
-
 void Agency::showPacks()
 {
 	system("cls");
-
-	const unsigned int NAME_MAX_SIZE = 20;	//FUNCTION THAT CALCULATES THE MAX NAME SIZE !!!
 
 	cout << "ALL PACKS \n";
 	cout << "----------- \n";
@@ -381,6 +378,7 @@ void Agency::showPacks()
 	cout << endl;
 	system("pause");
 }
+
 //DELETE CLIENT
 void Agency::deleteClient()
 {
@@ -631,3 +629,57 @@ void Agency::statistics()
 		}
 	}
 }
+
+void Agency::showPacks(vector<num> boughtPacks) {
+
+	cout << setw(4) << left << "ID";
+	cout << setw(40) << left << "Places";
+	cout << setw(12) << left << "Begin Date";
+	cout << setw(12) << left << "End Date";
+	cout << setw(14) << left << "Total Spots";
+	cout << setw(4) << left << "Sold Spots" << endl;
+	cout << endl;
+
+	size_t size = boughtPacks.size();
+	for (size_t i = 0; i < size; i++)
+	{
+		cout << setw(4) << left << packs[boughtPacks[i]].getID();
+		cout << setw(40) << left << packs[boughtPacks[i]].placesToString();
+		cout << setw(12) << left << packs[boughtPacks[i]].getStart().getDate();
+		cout << setw(12) << left << packs[boughtPacks[i]].getEnd().getDate();
+		cout << setw(14) << left << packs[boughtPacks[i]].getSpots();
+		cout << setw(4) << left << packs[boughtPacks[i]].getSoldSpots();
+		cout << endl;
+	}
+	cout << endl;
+}
+void Agency::showClient() {
+	system("cls");
+
+	cout << "SEARCH CLIENT\n";
+	cout << "-------------\n" << endl;
+	cout << "| 1-Display sold packs | 2-Display most famous unvisited destinations |\n";
+
+	num vpos = searchClient();
+
+	if (vpos >= 0) {
+
+		clients[vpos].show();
+		cout << endl;
+
+		int option;
+		selectOption(option, 2);
+
+		switch (option) {
+		case -1:
+			break;
+		case 1:
+			cout << endl;
+			showPacks(clients[vpos].getBoughtPacks());
+		}
+	}
+
+	system("pause");
+}
+
+

@@ -4,7 +4,12 @@
 
 int main() {
 	Agency agency("agency.txt");
-	mainMenu(agency);
+	
+	bool moreOperations = true;
+	do {
+		mainMenu(agency, moreOperations);
+	} while (moreOperations);
+
 	agency.storeClients();
 	agency.storePacks();
 	return 0;
