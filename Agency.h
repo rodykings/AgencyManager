@@ -37,7 +37,6 @@ public:
 	void deletePack();
 	void statistics();
 	void showClient();
-	void clientBoughtPacks(vector<num> boughtPacks);
 private:
 	string name;
 	string url;
