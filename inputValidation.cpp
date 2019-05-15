@@ -43,6 +43,8 @@ void inputInt(string message, int &value) {
 	cout << endl << message;
 	cin >> value;
 	while (cin.fail()) {
+		cin.ignore(1000, '\n');
+		cin.clear();
 		cout << errorMessage();
 		cout << message;
 		cin >> value;
@@ -52,6 +54,8 @@ void inputNum(string message, num& value){
 	cout << message;
 	cin >> value;
 	while (cin.fail()) {
+		cin.ignore(1000, '\n');
+		cin.clear();
 		cout << errorMessage();
 		cout << message;
 		cin >> value;
@@ -62,6 +66,8 @@ void inputNum(string message, num& value, num size){
 	cout << message;
 	cin >> value;
 	while (cin.fail() || to_string(value).length() != size) {
+		cin.ignore(1000, '\n');
+		cin.clear();
 		cout << errorMessage();
 		cout << message;
 		cin >> value;
