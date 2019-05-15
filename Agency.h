@@ -14,7 +14,6 @@
 #include "inputValidation.h"
 //#include "SubMenu.h"
 
-using namespace std;
 
 class Agency
 {

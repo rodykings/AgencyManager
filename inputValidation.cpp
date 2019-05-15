@@ -144,4 +144,15 @@ Date inputDate(string message) {
 
 	return d;
 }
+bool validStartEnd(Date start, Date end)
+{
+	if (start.isAfter(end))
+			return false;
+		if (end.isBefore(start))
+			return false;
+
+		return true;
+}
+	
+	
 

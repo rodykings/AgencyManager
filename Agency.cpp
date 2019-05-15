@@ -253,8 +253,15 @@ void Agency::addPack() {
 	cout << "Tour Sites: ";
 	cin.ignore(1000, '\n');
 	getline(cin, places);
-	Date startDate("Start Date (YYYY/MM/DD): ", start);
-	Date endDate("End Date (YYYY/MM/DD): ", end);
+	bool valid = false;
+	do{
+		Date startDate(inputDate("Start Date (YYYY/MM/DD): "));
+		Date endDate(inputDate("End Date (YYYY/MM/DD): "));
+		valid = validStartEnd(startDate, endDate);
+		if (!valid)
+			cerr << "ERROR Inconsistent Start and End Date !\n";
+	} while (!valid);
+	
 	inputNum("Price: ", price);
 	inputNum("Available Spots: ", spots);
 
@@ -423,6 +430,8 @@ void Agency::searchPack() {
 
 	vector<num> vpos;
 	string dest = "";
+	Date start;
+	Date end;
 	switch (option) {
 	case -1:
 		break;
@@ -431,8 +440,14 @@ void Agency::searchPack() {
 		cout << endl << "Destination: "; getline(cin, dest);
 		vpos = searchPack(dest);
 	case 2:
-		start = inputDate("Start: ");
-		end = inputDate("End: ");
+		bool valid = false;
+		do {
+			start = inputDate("Start: ");
+			end = inputDate("End: ");
+			valid = validStartEnd(start, end);
+			if (!valid)
+				cerr << "ERROR Inconsistent Start and End Date !\n";
+		} while (!valid);
 		break;
 	}
 
