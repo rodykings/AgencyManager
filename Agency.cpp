@@ -567,29 +567,67 @@ void Agency::statistics()
 	system("cls");
 	cout << "STATISTICS\n";
 	cout << "----------\n" << endl;
-	cout << "| 1-Agency Information | 2-Most visited places | 3-Client Sugestion |\n\n";
+	cout << "| 1-Agency Information | 2-Most visited places |\n\n";
 
 	int opt;
-	selectOption(opt, 3);
+	selectOption(opt, 2);
 
+	num clientSize = clients.size();
+	num soldPacks = 0;
+	num profit = 0;
 
+	num counterId = 0;
+	num currentnId = 0;
+	num boughtNum = 0;
+	num packSize = 0;
+	size_t pack = 0;
+	size_t client = 0;
+
+	vector<vector<num>> visitedPlaces;
 
 	switch (opt) {
+
 	case 1:
+
 		cout << "\n\nAGENCY INFORMATION\n";
 		cout << "------------------\n" << endl;
+
+		for (client = 0; client < clientSize; client++) {
+			packSize = clients[client].getBoughtPacks().size();
+			for (pack = 0; pack < packSize; pack++) {
+				soldPacks++;
+			}
+		}
+
+		cout << "Sold Packs: " << soldPacks << endl;
+
+		for (size_t client = 0; client < clientSize; client++) {
+			profit += clients[client].getSpentMoney();
+		}
+
+		cout << "Profit: " << profit << endl << endl;
+
 		system("pause");
 		break;
 	case 2:
 		cout << "\n\nMOST VISITED PLACES\n";
 		cout << "------------------\n" << endl;
-		system("pause");
-		break;
-	case 3:
-		cout << "\n\nCLIENT SUGESTION\n";
-		cout << "------------------\n" << endl;
-		system("pause");
-		break;
-	}
 
+		for (client = 0; client < clientSize; client++) {
+			packSize = clients[client].getBoughtPacks().size();
+			pack = 0;
+			for (pack = 0; pack < packSize; pack++) {
+				if (pack == clients[client].getBoughtPacks()[pack]) {
+					boughtNum++;
+				}
+			}
+			visitedPlaces.push_back({ pack, boughtNum });
+
+
+			system("pause");
+			break;
+
+
+		}
+	}
 }
