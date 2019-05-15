@@ -16,3 +16,26 @@ string stringToUpper(string str)
 	for (auto& c : str) c = toupper(c);
 	return str;
 }
+
+vector<num> vectorIntersect(vector<num> first, vector<num> second)
+{
+	size_t vSize = first.size();
+	vSize += second.size();
+	vector<num> res(vSize);
+	if (first.size() == 0 || second.size() == 0)
+	{
+		cerr << endl<< "ERROR Didn't find any packs within those parameters!\n" << endl;
+		return res;
+	}
+	
+	vector<num>::iterator it;
+
+	sort(first.begin(), first.end());
+	sort(second.begin(), second.end());
+
+	it = set_intersection(first.begin(), first.end(), second.begin(), second.end(), res.begin());
+
+	res.resize(it - res.begin());
+
+	return res;
+}
