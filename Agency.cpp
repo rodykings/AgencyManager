@@ -626,6 +626,8 @@ void Agency::statistics()
 	num packSize = 0;
 	size_t pack = 0;
 	size_t client = 0;
+	size_t id_max = 0;
+	num max = 0;
 
 	vector<vector<num>> visitedPlaces;
 
@@ -665,15 +667,37 @@ void Agency::statistics()
 			packSize = clients[client].getBoughtPacks().size();
 			pack = 0;
 			for (pack = 0; pack < packSize; pack++) {
-				if (mostVisitedPlaces.find(abs(clients[client].getBoughtPacks()[pack])) == mostVisitedPlaces.end()) {
-					// not found
+				if (placesMap.count(clients[client].getBoughtPacks()[pack]) > 0)
+				{
+					map<num, num>::iterator it = placesMap.find(clients[client].getBoughtPacks()[pack]);
+					if (it != placesMap.end())
+						it->second += 1; 
 				}
-				else {
-					// found
-				})
+				else
+				{
+					placesMap.insert(pair<num, num>(clients[client].getBoughtPacks()[pack], 1));
+				}
 			}
-			visitedPlaces.push_back({pack, boughtNum});
 		}
+
+		num counter = 0;
+		while (placesMap.size() != 0) {
+
+			map<num, num>::iterator it;
+
+			for (it = placesMap.begin(); it != placesMap.end(); ++it)
+			{
+				if (it->second > max) {
+					id_max = it->first;
+					max = it->second;
+				}
+			}
+			cout << counter << ". " << id_max << endl;
+			counter++;
+			placesMap.erase(id_max);
+			max = 0;
+		}
+		
 		system("pause");
 		break;
 	}
