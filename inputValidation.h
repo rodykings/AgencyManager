@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "Date.h"
 
 
 using namespace std;
@@ -9,6 +10,8 @@ typedef unsigned int num;
 
 
 string errorMessage();
+bool dateValidation(string date);
+Date inputDate(string message);
 void inputString(string message, string &value);
 void inputInt(string message, int& value);
 void inputNum(string message, num& value);

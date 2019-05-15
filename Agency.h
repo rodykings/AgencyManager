@@ -28,7 +28,7 @@ public:
 	void storePacks();
 	void showAllClients(); // showAll clients
 	void showPacks(); //show all packs
-	void showPacks(vector<num> boughtPacks);
+	void showPacks(vector<num> boughtPacks, bool positionVector);
 	void addClient();
 	void addPack();
 	void deleteClient();
@@ -37,6 +37,9 @@ public:
 	void deletePack();
 	void statistics();
 	void showClient();
+	void searchPack();
+
+	void buyPack();
 private:
 	string name;
 	string url;

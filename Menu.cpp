@@ -79,7 +79,7 @@ void mainMenu(Agency& agency, bool& moreOperations) {
 		break;
 	//SEARCH PACK
 	case 12:
-		
+		agency.searchPack();
 		break;
 	default:
 		break;

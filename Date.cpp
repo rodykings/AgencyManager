@@ -11,50 +11,26 @@ Date::Date(num year, num month, num day) {
 	this->day = day;
 }
 
- Date::Date(string message, string& value) {
+// Date::Date(string message, string& value) {
+//
+//	cout << message;
+//	cin >> value;
+//
+//	Date date(value);	//ERRADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//	while (!dateValidation(value) || !date.isValid()) {
+//		cout << errorMessage();
+//		cout << message;
+//		cin >> value;
+//	}
+//
+//
+//	this->day = date.getDay();
+//	this->month = date.getMonth();
+//	this->year = date.getYear();
+//	 
+//}
 
-	cout << message;
-	cin >> value;
 
-	Date date(value);
-	while (!dateValidation(value) || !date.isValid()) {
-		cout << errorMessage();
-		cout << message;
-		cin >> value;
-	}
-
-
-	this->day = date.getDay();
-	this->month = date.getMonth();
-	this->year = date.getYear();
-	 
-}
-
-bool Date::dateValidation(string date)
-{
-	if (isdigit(date.find_first_not_of("0123456789/")))
-		return false;
-
-	if (date.length() != 10)
-		return false;
-
-	for (int i = 0; i < 4; i++)
-	{
-		if (!isdigit(date[i]))
-			return false;
-	}
-	for (int j = 5; j < 7; j++)
-	{
-		if (!isdigit(date[j]))
-			return false;
-	}
-	for (int x = 8; x <= 9; x++)
-	{
-		if (!isdigit(date[x]))
-			return false;
-	}
-	return true;
-}
 Date::Date(string yearMonthDay) {
 
 	string strYear;
