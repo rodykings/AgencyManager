@@ -57,7 +57,7 @@ void Pack::setSpots()
 {
 	this->spots = spots;
 }
-void Pack::setSoldSpots()
+void Pack::setSoldSpots(num soldSpots)
 {
 	this->soldSpots = soldSpots;
 }

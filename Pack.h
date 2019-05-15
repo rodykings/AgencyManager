@@ -24,7 +24,7 @@ public:
 	void setEnd();
 	void setPrice();
 	void setSpots();
-	void setSoldSpots();
+	void setSoldSpots(num soldSpots);
 
 	//---GET methods---//
 	int getID() const;
