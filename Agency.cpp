@@ -253,8 +253,15 @@ void Agency::addPack() {
 	cout << "Tour Sites: ";
 	cin.ignore(1000, '\n');
 	getline(cin, places);
-	Date startDate("Start Date (YYYY/MM/DD): ", start);
-	Date endDate("End Date (YYYY/MM/DD): ", end);
+	bool valid = false;
+	do{
+		Date startDate(inputDate("Start Date (YYYY/MM/DD): "));
+		Date endDate(inputDate("End Date (YYYY/MM/DD): "));
+		valid = validStartEnd(startDate, endDate);
+		if (!valid)
+			cerr << "ERROR Inconsistent Start and End Date !\n";
+	} while (!valid);
+	
 	inputNum("Price: ", price);
 	inputNum("Available Spots: ", spots);
 
@@ -410,7 +417,46 @@ void Agency::deleteClient()
 
 
 /*-----SEARCH PACK FUNCTIONS-----*/
+
 //SEARCH PACK BY ID
+void Agency::searchPack() {
+	system("cls");
+	cout << "SEARCH PACKS\n";
+	cout << "------------\n" << endl;
+	cout << "| 1-Search by Destination | 2-Search by Date | 3-Search by Date and Destination |\n" << endl;
+
+	int option;
+	selectOption(option, 3);
+
+	vector<num> vpos;
+	string dest = "";
+	Date start;
+	Date end;
+	switch (option) {
+	case -1:
+		break;
+	case 1:
+		cin.ignore(1000, '\n');
+		cout << endl << "Destination: "; getline(cin, dest);
+		vpos = searchPack(dest);
+	case 2:
+		bool valid = false;
+		do {
+			start = inputDate("Start: ");
+			end = inputDate("End: ");
+			valid = validStartEnd(start, end);
+			if (!valid)
+				cerr << "ERROR Inconsistent Start and End Date !\n";
+		} while (!valid);
+		break;
+	}
+
+	if (vpos.size() != 0) {
+		cout << endl;
+		showPacks(vpos, true);
+	}
+	system("pause");
+}
 vector<num> Agency::searchPack(int id) {
 
 	vector<num> finalIdx = {};
@@ -633,7 +679,7 @@ void Agency::statistics()
 	}
 }
 
-void Agency::showPacks(vector<num> boughtPacks) {
+void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 
 	cout << setw(4) << left << "ID";
 	cout << setw(40) << left << "Places";
@@ -643,15 +689,21 @@ void Agency::showPacks(vector<num> boughtPacks) {
 	cout << setw(4) << left << "Sold Spots" << endl;
 	cout << endl;
 
-	size_t size = boughtPacks.size();
+	size_t size = vec.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		cout << setw(4) << left << packs[boughtPacks[i]].getID();
-		cout << setw(40) << left << packs[boughtPacks[i]].placesToString();
-		cout << setw(12) << left << packs[boughtPacks[i]].getStart().getDate();
-		cout << setw(12) << left << packs[boughtPacks[i]].getEnd().getDate();
-		cout << setw(14) << left << packs[boughtPacks[i]].getSpots();
-		cout << setw(4) << left << packs[boughtPacks[i]].getSoldSpots();
+		num pos = 0;
+		if (!positionVector) //if the vector contains id it translates them into positions
+			pos = vec[i] - 1;
+		else
+			pos = vec[i];
+
+		cout << setw(4) << left << packs[pos].getID();
+		cout << setw(40) << left << packs[pos].placesToString();
+		cout << setw(12) << left << packs[pos].getStart().getDate();
+		cout << setw(12) << left << packs[pos].getEnd().getDate();
+		cout << setw(14) << left << packs[pos].getSpots();
+		cout << setw(4) << left << packs[pos].getSoldSpots();
 		cout << endl;
 	}
 	cout << endl;
@@ -663,7 +715,7 @@ void Agency::showClient() {
 	cout << "-------------\n" << endl;
 	cout << "| 1-Display sold packs | 2-Display most famous unvisited destinations |\n";
 
-	num vpos = searchClient();
+	int vpos = searchClient();
 
 	if (vpos >= 0) {
 
@@ -681,8 +733,21 @@ void Agency::showClient() {
 			showPacks(clients[vpos].getBoughtPacks());
 		}
 	}
-
+	else {
+		cerr << endl << "ERROR Client not found!\n" << endl;
+	}
 	system("pause");
+}
+void Agency::buyPack() {
+	system("cls");
+
+	cout << "BUY PACK\n";
+	cout << "--------\n" << endl;
+
+	int vpos = searchClient();
+
+	if (vpos >= 0) {
+	}
 }
 
 
