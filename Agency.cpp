@@ -621,7 +621,7 @@ void Agency::statistics()
 					boughtNum++;
 				}
 			}
-			visitedPlaces.push_back({ pack, boughtNum });
+			visitedPlaces.push_back({pack, boughtNum});
 
 
 			system("pause");
