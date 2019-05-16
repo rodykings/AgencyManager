@@ -1,11 +1,10 @@
 #include "Agency.h"
 #include "Operations.h"
-#include "inputValidation.h"
 #include "Menu.h"
 
 int main() {
 	bool readFileFail = false;
-	Agency agency("agencY.txt", readFileFail);
+	Agency agency("agency.txt", readFileFail);
 	
 	if (readFileFail)
 		return 1;
