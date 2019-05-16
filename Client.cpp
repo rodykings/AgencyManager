@@ -56,7 +56,10 @@ void Client::setAddress() {
 
 	string street, floor, zipCode, location;
 	num door;
-	cout << "Street: "; cin >> street;
+	cout << "Street: "; 
+	cin.ignore(1000, '\n');
+	cin.clear();
+	getline(cin, street);
 	inputNum("Door: ", door);
 	cout << "Floor: "; cin >> floor;
 	cout << "Zip Code: "; cin >> zipCode;
