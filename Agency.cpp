@@ -400,16 +400,16 @@ void Agency::addPack() {
 	lastPack++;
 	int id = lastPack;
 	string places ="";
-	string start, end;
+	Date start, end;
 	num price = 0, spots = 0, soldSpots = 0;
 	cout << "Tour Sites: ";
 	cin.ignore(1000, '\n');
 	getline(cin, places);
 	bool valid = false;
 	do{
-		Date startDate(inputDate("Start Date (YYYY/MM/DD): "));
-		Date endDate(inputDate("End Date (YYYY/MM/DD): "));
-		valid = validStartEnd(startDate, endDate);
+		 start = (inputDate("Start Date (YYYY/MM/DD): "));
+		 end = (inputDate("End Date (YYYY/MM/DD): "));
+		valid = validStartEnd(start, end);
 		if (!valid)
 			cerr << "ERROR Inconsistent Start and End Date !\n";
 	} while (!valid);
@@ -662,13 +662,6 @@ vector<num> Agency::searchPack(Date start, Date end)
 	size_t size = packs.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		//// if start is the same or after the pack start date and before the pack end date
-		//if (!start.isBefore(packs[i].getStart()) && start.isBefore(packs[i].getEnd())) 
-		//{
-		//	//if the end date is before or equal to the pack end date
-		//	if (end.isBefore(packs[i].getEnd()) || end.isEqualTo(packs[i].getEnd()))
-		//		vpos.push_back(i);
-		//}
 
 		if (packs[i].getStart().isBefore(start) || packs[i].getEnd().isBefore(end))
 			vpos.push_back(i);
