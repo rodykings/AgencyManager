@@ -146,6 +146,7 @@ Date inputDate(string message) {
 	{
 		cerr << endl << "ERROR Invalid date! \n";
 		cout << message; cin >> date;
+		d = date;
 	}
 
 	return d;

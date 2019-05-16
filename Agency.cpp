@@ -20,6 +20,11 @@ Agency::Agency(string fileName, bool& readFileFail)
 	ifstream in;
 	in.open(fileName);
 
+	nif = 0;
+	numPacks = 0;
+	profit = 0;
+	lastPack = 0;
+
 	if (in.fail()) {
 		cerr << "ERROR Unable to open " << fileName << " !\n" << endl;
 		readFileFail = true;
@@ -37,10 +42,6 @@ Agency::Agency(string fileName, bool& readFileFail)
 		getline(in, clientsFile);
 		getline(in, packsFile);	
 		in.close();
-
-		numPacks = 0; 
-		profit = 0;	
-		lastPack = 0;
 
 		loadClients(readFileFail);
 		loadPacks(readFileFail);
@@ -618,8 +619,8 @@ void Agency::searchPack() {
 		cout << endl << "Destination: "; getline(cin, dest);
 		vpos = searchPack(dest);
 		do {
-			Date start(inputDate("Start Date: "));
-			Date end(inputDate("End Date: "));
+			start = inputDate("Start Date: ");
+			end = inputDate("End Date: ");
 			valid = validStartEnd(start, end);
 			if (!valid)
 				cerr << "ERROR Inconsistent Start and End Date !\n";
@@ -679,8 +680,7 @@ vector<num> Agency::searchPack(Date start, Date end)
 	size_t size = packs.size();
 	for (size_t i = 0; i < size; i++)
 	{
-
-		if (packs[i].getStart().isBefore(start) || packs[i].getEnd().isBefore(end))
+		if ((packs[i].getStart().isAfter(start)|| packs[i].getStart().isEqualTo(start)) && (packs[i].getEnd().isBefore(end) || packs[i].getEnd().isEqualTo(end)))
 			vpos.push_back(i);
 	}
 	return vpos;
