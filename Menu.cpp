@@ -15,9 +15,9 @@ void mainMenu(Agency& agency, bool& moreOperations) {
 	cout << '|' << "OPERATIONS      " << " | " << "CLIENTS          " << " | " << "PACKS           " << " | " << endl;
 	cout << line << endl;
 	cout << '|' << "1.BUY PACK      " << " | " << "5.ADD CLIENT     " << " | " << "9.ADD PACK      " << " | " << endl;
-	cout << '|' << "2.SHOW CLIENTS  " << " | " << "6.UPDATE CLIENT  " << " | " << "10.UPDATE PACK   " << " | " << endl;
-	cout << '|' << "3.SHOW PACKS    " << " | " << "7.DELETE CLIENT  " << " | " << "11.DELETE PACK   " << " | " << endl;
-	cout << '|' << "4.STATISTICS    " << " | " << "8.SEARCH CLIENT  " << " | " << "12.SEARCH PACK   " << " | " << endl;
+	cout << '|' << "2.SHOW CLIENTS  " << " | " << "6.UPDATE CLIENT  " << " | " << "10.UPDATE PACK  " << " | " << endl;
+	cout << '|' << "3.SHOW PACKS    " << " | " << "7.DELETE CLIENT  " << " | " << "11.DELETE PACK  " << " | " << endl;
+	cout << '|' << "4.STATISTICS    " << " | " << "8.SEARCH CLIENT  " << " | " << "12.SEARCH PACK  " << " | " << endl;
 	cout << line << endl;
 	cout << '|' << "                " << "   " << "  CTR+Z - EXIT   " << "   " << "                " << " | " << endl;
 	cout << line << endl << endl;

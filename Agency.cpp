@@ -514,7 +514,8 @@ void Agency::showPacks()
 	cout << setw(12) << left << "Begin Date";
 	cout << setw(12) << left << "End Date";
 	cout << setw(14) << left << "Total Spots";
-	cout << setw(4) << left << "Sold Spots" << endl;
+	cout << setw(12) << left << "Sold Spots";
+	cout << setw(12) << left << "Price/Pax" << endl;
 	cout << endl;
 
 	size_t size = packs.size();
@@ -525,7 +526,8 @@ void Agency::showPacks()
 		cout << setw(12) << left << packs[i].getStart().getDate();
 		cout << setw(12) << left << packs[i].getEnd().getDate();
 		cout << setw(14) << left << packs[i].getSpots();
-		cout << setw(4) << left << packs[i].getSoldSpots();
+		cout << setw(12) << left << packs[i].getSoldSpots();
+		cout << setw(12) << left << packs[i].getPrice();
 		cout << endl;
 	}
 	cout << endl;
@@ -539,6 +541,7 @@ void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 	cout << setw(12) << left << "End Date";
 	cout << setw(14) << left << "Total Spots";
 	cout << setw(4) << left << "Sold Spots" << endl;
+	cout << setw(10) << left << "Price/Pax" << endl;
 	cout << endl;
 
 	size_t size = vec.size();
@@ -556,6 +559,7 @@ void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 		cout << setw(12) << left << packs[pos].getEnd().getDate();
 		cout << setw(14) << left << packs[pos].getSpots();
 		cout << setw(4) << left << packs[pos].getSoldSpots();
+		cout << setw(10) << left << packs[pos].getPrice();
 		cout << endl;
 	}
 	cout << endl;
@@ -678,14 +682,45 @@ void Agency::buyPack() {
 		cout << "\n\nClient not found!\n\n";
 		system("pause");
 	}
+	else {
+		cout << endl;
+		clients[vpos].show();
+		if (yesOrNo("Do you want to buy a pack for this client? [Y|N]")) {
+			system("cls");
 
-	int id;
-	inputInt("Pack ID: ", id);
-	vector<num> pos = searchPack(id);
-	if (pos.size() != 0) {
-		packs[pos[0]].show();
+			cout << "BUY PACK\n";
+			cout << "--------\n" << endl;
+
+			int id;
+			inputInt("Pack ID: ", id);
+			vector<num> pos = searchPack(id);
+			num total_price = packs[id - 1].getPrice() * clients[vpos].getNumPeople();
+			if (pos.size() != 0) {
+				if ((packs[id - 1].getSoldSpots() + clients[vpos].getNumPeople()) > packs[id - 1].getSpots())
+					cout << endl << "Package is full! ";
+				else {
+					cout << endl;
+					cout << "--------------------------------------------\n";
+					cout << packs[id - 1].placesToString() << endl << endl;
+					cout << packs[id - 1].getStart().getDate() << " ---- " << packs[id - 1].getEnd().getDate() << endl << endl;
+					cout << "Total Price: " << total_price << endl;
+					cout << "--------------------------------------------";
+					cout << endl << endl;
+
+					if (yesOrNo("Do you want to buy this pack to " + clients[vpos].getName() + "? [Y|N]")) {
+						clients[vpos].setMoneySpent(clients[vpos].getSpentMoney() + total_price);
+						packs[id - 1].setSoldSpots((packs[id - 1].getSoldSpots() + clients[vpos].getNumPeople()));
+						if (packs[id - 1].getSoldSpots() == packs[id - 1].getSpots())
+							packs[id - 1].setID((packs[id-1].getID() * (-1)));
+					}
+				}
+				
+			}
+			system("pause");
+		}
 	}
-	system("pause");
+
+	
 	
 
 
