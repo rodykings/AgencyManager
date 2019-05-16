@@ -400,16 +400,16 @@ void Agency::addPack() {
 	lastPack++;
 	int id = lastPack;
 	string places ="";
-	string start, end;
+	Date start, end;
 	num price = 0, spots = 0, soldSpots = 0;
 	cout << "Tour Sites: ";
 	cin.ignore(1000, '\n');
 	getline(cin, places);
 	bool valid = false;
 	do{
-		Date startDate(inputDate("Start Date (YYYY/MM/DD): "));
-		Date endDate(inputDate("End Date (YYYY/MM/DD): "));
-		valid = validStartEnd(startDate, endDate);
+		 start = (inputDate("Start Date (YYYY/MM/DD): "));
+		 end = (inputDate("End Date (YYYY/MM/DD): "));
+		valid = validStartEnd(start, end);
 		if (!valid)
 			cerr << "ERROR Inconsistent Start and End Date !\n";
 	} while (!valid);
