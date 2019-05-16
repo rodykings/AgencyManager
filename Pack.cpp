@@ -43,16 +43,29 @@ void Pack::setPlaces()
 }
 void Pack::setStart()
 {
-	string date;
-	cin.ignore(1000, '\n');
-	cout << "New start date: "; 
-	getline(cin, date);
+	bool valid;
 
-	this->start = start;
+	Date start = inputDate("New Start Date (YYYY/MM/DD):");
+	valid = validStartEnd(start, this->getEnd());
+	if (!valid) {
+		cerr << "ERROR Inconsistent New Start Date!\n";
+		system("pause");
+	}
+	else
+		this->start = start;
 }
 void Pack::setEnd()
 {
-	this->end = end;
+	bool valid;
+
+	Date end = inputDate("New End Date (YYYY/MM/DD):");
+	valid = validStartEnd(this->getStart(), end);
+	if (!valid) {
+		cerr << "ERROR Inconsistent New End Date!\n1n";
+		system("pause");
+	}
+	else
+		this->end = end;
 }
 void Pack::setPrice()
 {
