@@ -21,12 +21,9 @@ vector<num> vectorIntersect(vector<num> first, vector<num> second)
 {
 	size_t vSize = first.size();
 	vSize += second.size();
-	vector<num> res(vSize);
+	vector<num> res(vSize, 1000);
 	if (first.size() == 0 || second.size() == 0)
-	{
-		cerr << endl<< "ERROR Didn't find any packs within those parameters!\n" << endl;
-		return res;
-	}
+		return {};
 	
 	vector<num>::iterator it;
 

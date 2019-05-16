@@ -153,12 +153,10 @@ Date inputDate(string message) {
 }
 bool validStartEnd(Date start, Date end)
 {
-	if (start.isAfter(end))
-			return false;
-		if (end.isBefore(start))
-			return false;
-
+	if (start.isBefore(end) || start.isEqualTo(end))
 		return true;
+
+	return false;
 }
 	
 	
