@@ -257,6 +257,7 @@ void Agency::addClient() {
 	Address newAddress(street, door, floor, zipCode, location);
 	Client newClient(name, nif, numPeople, newAddress);
 	clients.push_back(newClient);
+	clientChanges = true;
 }//ADD CLIENT
 void Agency::deleteClient()
 {
@@ -276,6 +277,7 @@ void Agency::deleteClient()
 		{
 			clients.erase(clients.begin() + vpos);
 			cout << "\nClient Deleted!\n";
+			clientChanges = true;
 			system("pause");
 		}
 	}
@@ -323,6 +325,7 @@ void Agency::updateClient()
 				clients[vpos].setAddress();
 				break;
 			}
+			clientChanges = true;
 
 		} while (moreEdits);
 	}
@@ -439,12 +442,14 @@ void Agency::addPack() {
 	packs.push_back(newPack);
 
 	cout << "\n\nPack successfully added!\n\n";
+	packChanges = true;
 	system("pause");
 
 
 }				
 void Agency::deletePack()
 {
+	system("cls");
 	cout << "DELETE PACK \n";
 	cout << "-----------\n" << endl;
 	int id;
@@ -454,7 +459,6 @@ void Agency::deletePack()
 	vector<num> vpos = searchPack(id);
 	if (vpos.size() == 0) {
 		cerr << "ERROR Package not found! \n\n";
-		system("pause");
 	}
 	else{
 		packs[vpos[0]].show();
@@ -464,10 +468,11 @@ void Agency::deletePack()
 		{
 			int packID = -packs[vpos[0]].getID();
 			packs[vpos[0]].setID(packID);
-			cout << "Package is now unavailable! \n";
-			system("pause");
+			cout << endl << "Package is now unavailable! \n" << endl;
+			packChanges = true;
 		}
 	}
+	system("pause");
 	cout << endl;
 }
 void Agency::updatePack() {
@@ -515,6 +520,7 @@ void Agency::updatePack() {
 				packs[vpos[0]].setSpots();
 				break;
 			}
+			packChanges = true;
 
 		} while (moreEdits);
 
@@ -701,7 +707,7 @@ void Agency::buyPack() {
 	else {
 		cout << endl;
 		clients[vpos].show();
-		if (yesOrNo("Do you want to buy a pack for this client? [Y|N]")) {
+		if (yesOrNo("Do you want to buy a pack for this client? [y/n]")) {
 			system("cls");
 
 			cout << "BUY PACK\n";
@@ -729,6 +735,8 @@ void Agency::buyPack() {
 						if (packs[id - 1].getSoldSpots() == packs[id - 1].getSpots())
 							packs[id - 1].setID((packs[id-1].getID() * (-1)));
 						cout << "\n\nYou have bought the pack sucessfully!\n\n";
+						clientChanges = true;
+						packChanges = true;
 					}
 				}
 				

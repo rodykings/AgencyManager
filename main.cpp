@@ -14,7 +14,15 @@ int main() {
 		mainMenu(agency, moreOperations);
 	} while (moreOperations);
 
-	agency.storeClients();
-	agency.storePacks();
+	system("cls");
+	if (agency.clientChanges)
+	{
+		agency.storeClients();
+		cout << "[!] Changes to clients saved successfully\n" << endl;
+	}
+	if (agency.packChanges) {
+		agency.storePacks();
+		cout << "[!] Changes to packages saved successfully\n" << endl;
+	}
 	return 0;
 }

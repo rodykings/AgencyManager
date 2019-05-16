@@ -23,6 +23,9 @@ public:
 	Agency();
 	Agency(string fileName, bool& readFileFail); //alternate constructor
 
+	bool clientChanges = false;
+	bool packChanges = false;
+
 	void showAgencyInfo();
 	void storeClients();
 	void storePacks();
@@ -61,6 +64,8 @@ private:
 	vector<num> searchPack(string dest);
 	vector<num> searchPack(Date start, Date end);
 	num searchClient();
+
+	
 	
 	
 };
