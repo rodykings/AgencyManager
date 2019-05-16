@@ -15,30 +15,36 @@ Agency::Agency()
 }
 
 //CONSTRUCTOR FROM FILES
-Agency::Agency(string fileName)
+Agency::Agency(string fileName, bool& readFileFail)
 {
 	ifstream in;
 	in.open(fileName);
 
-	string line;
+	if (in.fail()) {
+		cerr << "ERROR Unable to open " << fileName << " !\n" << endl;
+		readFileFail = true;
+	}
+	else {
+		string line;
 
-	getline(in, name);	
-	getline(in, line);	
-	nif = stoul(line);
-	getline(in, url);	
-	getline(in, line);	
-	Address address(line);
-	this->address = address;
-	getline(in, clientsFile);
-	getline(in, packsFile);	
-	in.close();
+		getline(in, name);	
+		getline(in, line);	
+		nif = stoul(line);
+		getline(in, url);	
+		getline(in, line);	
+		Address address(line);
+		this->address = address;
+		getline(in, clientsFile);
+		getline(in, packsFile);	
+		in.close();
 
-	numPacks = 0; 
-	profit = 0;	
-	lastPack = 0;
+		numPacks = 0; 
+		profit = 0;	
+		lastPack = 0;
 
-	loadClients();
-	loadPacks();
+		loadClients(readFileFail);
+		loadPacks(readFileFail);
+	}
 }
 
 //SHOW AGENCY INFO
@@ -50,114 +56,125 @@ void Agency::showAgencyInfo() {
 };
 
 //READ DATA FROM FILES
-void Agency::loadClients() {
+void Agency::loadClients(bool& readFileFail) {
 
 	ifstream in;
 	in.open(clientsFile);
 
-	string line;
-
-	string name = "";
-	string address = "";
-	num nif = 0;
-	num numPeople = 0;
-	string boughtPacks = "";
-	num spentMoney = 0;
-
-	size_t counter = 0;
-
-	while (getline(in, line)) {
-
-		switch (counter)
-		{
-		case 0:
-			name = line;
-			break;
-		case 1:
-			nif = stoul(line);
-			break;
-		case 2:
-			numPeople = stoul(line);
-			break;
-		case 3:
-			address = line;
-			break;
-		case 4:
-			boughtPacks = line;
-			break;
-		case 5:
-			spentMoney = stoul(line);
-			break;
-		case 6:
-			Address newAddress(address);
-			Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
-			clients.push_back(newClient);
-			counter = -1;
-			break;
-		}
-		counter++;
+	if (in.fail()) {
+		cerr << "ERROR Unable to open " << clientsFile << " !\n" << endl;
 	}
-	Address newAddress(address);
-	Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
-	clients.push_back(newClient);
+	else {
+		string line;
 
-	in.close();
+		string name = "";
+		string address = "";
+		num nif = 0;
+		num numPeople = 0;
+		string boughtPacks = "";
+		num spentMoney = 0;
+
+		size_t counter = 0;
+
+		while (getline(in, line)) {
+
+			switch (counter)
+			{
+			case 0:
+				name = line;
+				break;
+			case 1:
+				nif = stoul(line);
+				break;
+			case 2:
+				numPeople = stoul(line);
+				break;
+			case 3:
+				address = line;
+				break;
+			case 4:
+				boughtPacks = line;
+				break;
+			case 5:
+				spentMoney = stoul(line);
+				break;
+			case 6:
+				Address newAddress(address);
+				Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
+				clients.push_back(newClient);
+				counter = -1;
+				break;
+			}
+			counter++;
+		}
+		Address newAddress(address);
+		Client newClient(name, nif, numPeople, newAddress, boughtPacks, spentMoney);
+		clients.push_back(newClient);
+
+		in.close();
+	}	
 }
-void Agency::loadPacks()
+void Agency::loadPacks(bool& readFileFail)
 {
 	ifstream in;
 	in.open(packsFile);
-	
-	string line;
 
-	getline(in, line);		//lastPack
-	lastPack = stoul(line);
-
-	int id = 0;
-	num price = 0, spots = 0, soldSpots = 0;
-	string start, end;
-	string places = "";
-
-	size_t i = 0;
-	while (getline(in, line))
-	{
-		switch (i)
-		{
-		case 0:
-			id = stoi(line);
-			break;
-		case 1:
-			places = line;
-			break;
-		case 2:
-			start = line;
-			break;
-		case 3:
-			end = line;
-			break;
-		case 4:
-			price = stoul(line);
-			break;
-		case 5:
-			spots = stoul(line);
-			break;
-		case 6:
-			soldSpots = stoul(line);
-			break;
-		case 7:	// "::::::::::" add pack to vector
-			i = -1; 
-			Date startDate(start);
-			Date endDate(end);
-			Pack newPack(id, places, startDate, endDate, price, spots, soldSpots);
-			packs.push_back(newPack);
-			break;
-		}
-		i++;
+	if (in.fail()) {
+		cerr << "ERROR Unable to open " << packsFile << " !\n" << endl;
 	}
-	Pack newPack2(id, places, start, end, price, spots, soldSpots);
-	packs.push_back(newPack2);
+	else {
+		string line;
 
-	in.close();
+		getline(in, line);		//lastPack
+		lastPack = stoul(line);
+
+		int id = 0;
+		num price = 0, spots = 0, soldSpots = 0;
+		string start, end;
+		string places = "";
+
+		size_t i = 0;
+		while (getline(in, line))
+		{
+			switch (i)
+			{
+			case 0:
+				id = stoi(line);
+				break;
+			case 1:
+				places = line;
+				break;
+			case 2:
+				start = line;
+				break;
+			case 3:
+				end = line;
+				break;
+			case 4:
+				price = stoul(line);
+				break;
+			case 5:
+				spots = stoul(line);
+				break;
+			case 6:
+				soldSpots = stoul(line);
+				break;
+			case 7:	// "::::::::::" add pack to vector
+				i = -1; 
+				Date startDate(start);
+				Date endDate(end);
+				Pack newPack(id, places, startDate, endDate, price, spots, soldSpots);
+				packs.push_back(newPack);
+				break;
+			}
+			i++;
+		}
+		Pack newPack2(id, places, start, end, price, spots, soldSpots);
+		packs.push_back(newPack2);
+
+		in.close();
+	}
+	
 }
 
 //WRITE DATA IN FILES
@@ -407,8 +424,8 @@ void Agency::addPack() {
 	getline(cin, places);
 	bool valid = false;
 	do{
-		 start = (inputDate("Start Date (YYYY/MM/DD): "));
-		 end = (inputDate("End Date (YYYY/MM/DD): "));
+		 start = inputDate("Start Date (YYYY/MM/DD): ");
+		 end = inputDate("End Date (YYYY/MM/DD): ");
 		valid = validStartEnd(start, end);
 		if (!valid)
 			cerr << "ERROR Inconsistent Start and End Date !\n";
@@ -669,7 +686,6 @@ vector<num> Agency::searchPack(Date start, Date end)
 	return vpos;
 }
 
-
 void Agency::buyPack() {
 	system("cls");
 
@@ -719,16 +735,7 @@ void Agency::buyPack() {
 			system("pause");
 		}
 	}
-
-	
-	
-
-
-
-
-
 }
-
 
 void Agency::statistics()
 {
