@@ -43,6 +43,11 @@ void Pack::setPlaces()
 }
 void Pack::setStart()
 {
+	string date;
+	cin.ignore(1000, '\n');
+	cout << "New start date: "; 
+	getline(cin, date);
+
 	this->start = start;
 }
 void Pack::setEnd()
@@ -51,11 +56,35 @@ void Pack::setEnd()
 }
 void Pack::setPrice()
 {
+	num price = this->price;
+
+	cin.ignore(1000, '\n');
+	cin.clear();
+	inputNum("\nNew price:", price);
+
 	this->price = price;
 }
 void Pack::setSpots()
 {
-	this->spots = spots;
+	num spots = this->spots;
+
+	cin.ignore(1000, '\n');
+	cin.clear();
+	inputNum("\nNew spots:", spots);
+	if (spots < this->getSoldSpots()) {
+		cout << "Invalid spots range!\n";
+		
+	}
+	else if(spots == this->getSoldSpots()) {
+		this->setID((this->getID() * (-1)));
+		this->spots = spots;
+	}
+	else {
+		if (this->getSpots() == this->getSoldSpots()) {
+			this->setID((this->getID() * (-1)));
+		}
+		this->spots = spots;
+	}
 }
 void Pack::setSoldSpots(num soldSpots)
 {

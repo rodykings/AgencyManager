@@ -557,8 +557,8 @@ void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 	cout << setw(12) << left << "Begin Date";
 	cout << setw(12) << left << "End Date";
 	cout << setw(14) << left << "Total Spots";
-	cout << setw(4) << left << "Sold Spots" << endl;
-	cout << setw(10) << left << "Price/Pax" << endl;
+	cout << setw(12) << left << "Sold Spots";
+	cout << setw(12) << left << "Price/Pax" << endl;
 	cout << endl;
 
 	size_t size = vec.size();
@@ -575,8 +575,8 @@ void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 		cout << setw(12) << left << packs[pos].getStart().getDate();
 		cout << setw(12) << left << packs[pos].getEnd().getDate();
 		cout << setw(14) << left << packs[pos].getSpots();
-		cout << setw(4) << left << packs[pos].getSoldSpots();
-		cout << setw(10) << left << packs[pos].getPrice();
+		cout << setw(12) << left << packs[pos].getSoldSpots();
+		cout << setw(12) << left << packs[pos].getPrice();
 		cout << endl;
 	}
 	cout << endl;
@@ -713,7 +713,7 @@ void Agency::buyPack() {
 			num total_price = packs[id - 1].getPrice() * clients[vpos].getNumPeople();
 			if (pos.size() != 0) {
 				if ((packs[id - 1].getSoldSpots() + clients[vpos].getNumPeople()) > packs[id - 1].getSpots())
-					cout << endl << "Package is full! ";
+					cout << endl << "Package is full! \n\n";
 				else {
 					cout << endl;
 					cout << "--------------------------------------------\n";
@@ -728,6 +728,7 @@ void Agency::buyPack() {
 						packs[id - 1].setSoldSpots((packs[id - 1].getSoldSpots() + clients[vpos].getNumPeople()));
 						if (packs[id - 1].getSoldSpots() == packs[id - 1].getSpots())
 							packs[id - 1].setID((packs[id-1].getID() * (-1)));
+						cout << "\n\nYou have bought the pack sucessfully!\n\n";
 					}
 				}
 				
