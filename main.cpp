@@ -3,8 +3,12 @@
 #include "Menu.h"
 
 int main() {
-	Agency agency("agency.txt");
+	bool readFileFail = false;
+	Agency agency("agency.txt", readFileFail);
 	
+	if (readFileFail)
+		return 1;
+
 	bool moreOperations = true;
 	do {
 		mainMenu(agency, moreOperations);

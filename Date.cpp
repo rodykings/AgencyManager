@@ -152,8 +152,7 @@ bool Date::isEqualTo(const Date &date) {
 
 	if ((year == date.getYear()) && (month == date.getMonth()) && (day = date.getDay()))
 		return true;
-	else
-		return false;
+	return false;
 }
 
 bool Date::isNotEqualTo(const Date &date) {
@@ -162,31 +161,20 @@ bool Date::isNotEqualTo(const Date &date) {
 
 bool Date::isAfter(const Date &date) {
 
-	if (date.getYear() < year)
-		return true;
-	else if (date.getYear() > year)
+	if (year < date.getYear())
 		return false;
-	else {
-		if (date.getMonth() < month)
-			return true;
-		else if (date.getMonth() > month)
-			return false;
-		else {
-			if (date.getDay() < day)
-				return true;
-			else if (date.getDay() > day)
-				return false;
-			else
-				return false;
-		}
-	}
+	if (month < date.getMonth())
+		return false;
+	if (day > date.getDay())
+		return true;
+
 }
 
 bool Date::isBefore(const Date &date) {
-	if (isNotEqualTo(date) && !isAfter(date))
+	if (this->isNotEqualTo(date) && !this->isAfter(date))
 		return true;
-	else
-		return false;
+
+	return false;
 }
 
 

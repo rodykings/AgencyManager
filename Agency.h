@@ -21,7 +21,7 @@ class Agency
 {
 public:
 	Agency();
-	Agency(string fileName); //alternate constructor
+	Agency(string fileName, bool& readFileFail); //alternate constructor
 
 	void showAgencyInfo();
 	void storeClients();
@@ -54,8 +54,8 @@ private:
 	vector<Pack> packs;
 
 	
-	void loadClients();
-	void loadPacks();
+	void loadClients(bool& readFileFail);
+	void loadPacks(bool& readFileFail);
 
 	vector<num> searchPack(int id);
 	vector<num> searchPack(string dest);
