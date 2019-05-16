@@ -658,13 +658,6 @@ vector<num> Agency::searchPack(Date start, Date end)
 	size_t size = packs.size();
 	for (size_t i = 0; i < size; i++)
 	{
-		//// if start is the same or after the pack start date and before the pack end date
-		//if (!start.isBefore(packs[i].getStart()) && start.isBefore(packs[i].getEnd())) 
-		//{
-		//	//if the end date is before or equal to the pack end date
-		//	if (end.isBefore(packs[i].getEnd()) || end.isEqualTo(packs[i].getEnd()))
-		//		vpos.push_back(i);
-		//}
 
 		if (packs[i].getStart().isBefore(start) || packs[i].getEnd().isBefore(end))
 			vpos.push_back(i);
