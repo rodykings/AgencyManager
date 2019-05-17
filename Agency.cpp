@@ -369,6 +369,40 @@ void Agency::showClient() {
 		case 1:
 			cout << endl;
 			showPacks(clients[vpos].getBoughtPacks(), true);
+		case 2:
+			cout << endl;
+			vector<string> unvisitedPlaces = {};
+			vector<string> mVisitedPlaces = mostVisitedPlaces();
+			vector<string> vPlaces = clients[vpos].visitedPlaces(packs);
+			size_t mvpSize = mVisitedPlaces.size();
+			size_t vpSize = vPlaces.size();
+
+			bool notVisited = true;
+			for (int i = 0; i < mvpSize; i++) {
+				for (int u = 0; u < vpSize; u++) {
+					if (vPlaces[u] == mVisitedPlaces[i]) {
+						notVisited = false;
+					}
+				}
+				if (notVisited) {
+					unvisitedPlaces.push_back(mVisitedPlaces[i]);
+				}
+				notVisited = true;
+			}
+			
+			size_t unvisitedSize = unvisitedPlaces.size();
+
+			if (unvisitedSize == 0) {
+				cout << "\nThere´s no unvisited place to visit\n";
+			}
+			else {
+				cout << "\nUnvisited most visited places:\n\n";
+				for (int t = 0; t < unvisitedSize; t++) {
+					cout << t + 1 << ". " << unvisitedPlaces[t] << endl;
+				}
+			}
+			
+
 		}
 	}
 	else {
@@ -804,7 +838,6 @@ void Agency::statistics()
 		system("pause");
 	}
 }
-
 
 vector<string> Agency::mostVisitedPlaces() {
 	vector<string> mostVisitedPlaces = {};
