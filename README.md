@@ -19,10 +19,11 @@ C++ PROG Project - 2S MIEIC
 <h2>Funcionalidades</h2>
 
 <ul>
-  <li><b>Gerir Clientes</b> - Criar | Alterar | Remover</li>
-  <li><b>Gerir Clientes</b> - Criar | Alterar | Remover</li>
-  <li><b>Gerir Pacotes</b> - Criar | Alterar | Remover</li>
-  <li>Ver Clientes e Pacotes</li>
+  <li><b>Comprar Pacotes</b> 
+  <li><b>Gerir Clientes</b> - Criar | Alterar | Remover | Procurar</li>
+  <li><b>Gerir Pacotes</b> - Criar | Alterar | Remover | Procurar</li>
+  <li>Mostrar Clientes e Pacotes</li>
+  <li>Estatísticas</li>
 </ul>
 
 
