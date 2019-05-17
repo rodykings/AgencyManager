@@ -792,51 +792,70 @@ void Agency::statistics()
 		cout << "\n\nMOST VISITED PLACES\n";
 		cout << "------------------\n" << endl;
 
-
-		map<string, num> placesMap;
-		packSize = packs.size();
-		for (pack = 0; pack < packSize; pack++) {
-			placesSize = packs[pack].getPlaces().size();
-			for (place = 0; place < placesSize; place++) {
-				if (placesMap.count(packs[pack].getPlaces()[place]) > 0)
-				{
-					map<string, num>::iterator it = placesMap.find(packs[pack].getPlaces()[place]);
-					if (it != placesMap.end()) {
-						//auto idx = find(packs[pack].getPlaces().begin(), packs[pack].getPlaces().end(), packs[pack].getPlaces()[place]);
-						it->second += packs[pack].getSoldSpots();
-					}
-						
-				}
-				else
-				{
-					placesMap.insert(pair<string, num>(packs[pack].getPlaces()[place], packs[pack].getSoldSpots()));
-				}
-			}
-		}
-
-		num counter = 1;
-		while (placesMap.size() != 0) {
-
-			map<string, num>::iterator it;
-
-			for (it = placesMap.begin(); it != placesMap.end(); ++it)
-			{
-				if (it->second >= max) {
-					placeStr = it->first;
-					max = it->second;
-				}
-			}
-			cout << counter << ". " << placeStr << endl << endl;
-			counter++;
-			placesMap.erase(placeStr);
-			max = 0;
-		}
 		
+		vector<string> visitedPlaces = mostVisitedPlaces();
+		size_t size = visitedPlaces.size();
+
+		for (int i = 0; i < size; i++) {
+			cout << i + 1 << ". " << visitedPlaces[i] << endl;
+		}
+
+		cout << endl;
 		system("pause");
-		break;
 	}
 }
 
+
+vector<string> Agency::mostVisitedPlaces() {
+	vector<string> mostVisitedPlaces = {};
+	map<string, num> placesMap;
+	size_t packSize = packs.size();
+	size_t pack = 0;
+	size_t place = 0;
+	size_t placesSize = 0;
+	num max = 0;
+	string placeStr = "";
+
+	for (pack = 0; pack < packSize; pack++) {
+		placesSize = packs[pack].getPlaces().size();
+		for (place = 0; place < placesSize; place++) {
+			if (placesMap.count(packs[pack].getPlaces()[place]) > 0)
+			{
+				map<string, num>::iterator it = placesMap.find(packs[pack].getPlaces()[place]);
+				if (it != placesMap.end()) {
+					//auto idx = find(packs[pack].getPlaces().begin(), packs[pack].getPlaces().end(), packs[pack].getPlaces()[place]);
+					it->second += packs[pack].getSoldSpots();
+				}
+
+			}
+			else
+			{
+				placesMap.insert(pair<string, num>(packs[pack].getPlaces()[place], packs[pack].getSoldSpots()));
+			}
+		}
+	}
+
+	while (placesMap.size() != 0) {
+
+		map<string, num>::iterator it;
+
+		for (it = placesMap.begin(); it != placesMap.end(); ++it)
+		{
+			if (it->second >= max) {
+				placeStr = it->first;
+				max = it->second;
+			}
+		}
+
+		mostVisitedPlaces.push_back(placeStr);
+		//cout << counter << ". " << placeStr << endl << endl;
+		placesMap.erase(placeStr);
+		max = 0;
+	}
+
+	return mostVisitedPlaces;
+
+}
 
 
 

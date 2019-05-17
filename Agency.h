@@ -61,6 +61,7 @@ private:
 	vector<num> searchPack(string dest);
 	vector<num> searchPack(Date start, Date end);
 	num searchClient();
+	vector<string> mostVisitedPlaces();
 	
 	
 };
