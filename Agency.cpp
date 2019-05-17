@@ -381,8 +381,8 @@ void Agency::showClient() {
 			size_t vpSize = vPlaces.size();
 
 			bool notVisited = true;
-			for (int i = 0; i < mvpSize; i++) {
-				for (int u = 0; u < vpSize; u++) {
+			for (size_t i = 0; i < mvpSize; i++) {
+				for (size_t u = 0; u < vpSize; u++) {
 					if (vPlaces[u] == mVisitedPlaces[i]) {
 						notVisited = false;
 					}
@@ -400,7 +400,7 @@ void Agency::showClient() {
 			}
 			else {
 				cout << "\nUnvisited most visited places:\n\n";
-				for (int t = 0; t < unvisitedSize; t++) {
+				for (size_t t = 0; t < unvisitedSize; t++) {
 					cout << t + 1 << ". " << unvisitedPlaces[t] << endl;
 				}
 			}
@@ -684,7 +684,7 @@ vector<num> Agency::searchPack(int id) {
 	vector<num> finalIdx;
 
 	size_t size = packs.size();
-	if (abs(id) > size)
+	if ((unsigned int)abs(id) > size)
 		return finalIdx;
 
 	for (size_t i = 0; i < size; i++) {
@@ -847,7 +847,7 @@ void Agency::statistics()
 		vector<string> visitedPlaces = mostVisitedPlaces();
 		size_t size = visitedPlaces.size();
 
-		for (int i = 0; i < size; i++) {
+		for (size_t i = 0; i < size; i++) {
 			cout << i + 1 << ". " << visitedPlaces[i] << endl;
 		}
 
@@ -906,7 +906,3 @@ vector<string> Agency::mostVisitedPlaces() {
 	return mostVisitedPlaces;
 
 }
-
-
-
-
