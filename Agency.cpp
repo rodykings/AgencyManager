@@ -404,9 +404,8 @@ void Agency::showClient() {
 					cout << t + 1 << ". " << unvisitedPlaces[t] << endl;
 				}
 			}
-			
-
 		}
+		system("pause");
 	}
 	else {
 		cerr << endl << "ERROR Client not found!\n" << endl;
