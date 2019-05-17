@@ -14,7 +14,7 @@ Agency::Agency()
 	lastPack = 0;
 }
 
-//CONSTRUCTOR FROM FILES
+//CONSTRUCTOR FROM FILE
 Agency::Agency(string fileName, bool& readFileFail)
 {
 	ifstream in;
@@ -56,7 +56,7 @@ void Agency::showAgencyInfo() {
 	cout << this->address.toString() << endl;
 };
 
-//READ DATA FROM FILES
+/*---READ DATA FROM FILES---*/
 void Agency::loadClients(bool& readFileFail) {
 
 	ifstream in;
@@ -178,7 +178,7 @@ void Agency::loadPacks(bool& readFileFail)
 	
 }
 
-//WRITE DATA IN FILES
+/*---WRITE DATA IN FILES---*/
 void Agency::storeClients() {
 	
 	ofstream out;
@@ -222,9 +222,8 @@ void Agency::storePacks() {
 	out.close();
 }
 
-//CLIENTS MANAGEMENT
+/*---CLIENTS MANAGEMENT---*/
 void Agency::addClient() {
-
 	system("cls");
 
 	cout << "ADD CLIENT" << endl;
@@ -333,8 +332,6 @@ void Agency::updateClient()
 		cerr << "ERROR Client not found!\n" << endl;
 		system("pause");
 	}
-
-
 }
 num Agency::searchClient()
 {
@@ -410,7 +407,7 @@ void Agency::showAllClients()
 	system("pause");
 }
 
-//PACKS MANAGEMENT
+/*---PACKS MANAGEMENT---*/
 void Agency::addPack() {
 	
 	system("cls");
@@ -444,8 +441,6 @@ void Agency::addPack() {
 	cout << "\n\nPack successfully added!\n\n";
 	packChanges = true;
 	system("pause");
-
-
 }				
 void Agency::deletePack()
 {
@@ -482,12 +477,10 @@ void Agency::updatePack() {
 
 	vector<num> vpos = searchPack(id);
 
-
 	if (vpos.size() != 0)
 	{
 		bool moreEdits = true;
 		do {
-
 			system("cls");
 
 			cout << "EDIT PACK\n";
@@ -588,6 +581,8 @@ void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 	}
 	cout << endl;
 }
+
+/*---SEARCH PACK FUNCTIONS---*/
 void Agency::searchPack() {
 	system("cls");
 	cout << "SEARCH PACKS\n";
@@ -647,7 +642,6 @@ void Agency::searchPack() {
 	}
 	system("pause");
 }
-
 //SEARCH PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
@@ -739,7 +733,6 @@ void Agency::buyPack() {
 						packChanges = true;
 					}
 				}
-				
 			}
 			system("pause");
 		}
@@ -771,7 +764,6 @@ void Agency::statistics()
 	string placeStr = "";
 	num max = 0;
 
-
 	switch (opt) {
 
 	case 1:
@@ -799,7 +791,6 @@ void Agency::statistics()
 	case 2:
 		cout << "\n\nMOST VISITED PLACES\n";
 		cout << "------------------\n" << endl;
-
 
 		map<string, num> placesMap;
 		packSize = packs.size();
@@ -844,8 +835,3 @@ void Agency::statistics()
 		break;
 	}
 }
-
-
-
-
-

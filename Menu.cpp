@@ -1,7 +1,5 @@
 #include "Menu.h"
 
-
-
 void mainMenu(Agency& agency, bool& moreOperations) {
 	system("cls");
 
