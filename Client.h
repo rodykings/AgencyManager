@@ -30,6 +30,7 @@ class Client {
 		vector<num> getBoughtPacks() const;
 		num getSpentMoney() const;
 
+		vector<string> visitedPlaces(vector<Pack>& packs);
 		string boughtToString();
 		void show();
 

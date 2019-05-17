@@ -62,4 +62,7 @@ private:
 	vector<num> searchPack(string dest, bool available = false);
 	vector<num> searchPack(Date start, Date end, bool available = false);
 	num searchClient();
+	vector<string> mostVisitedPlaces();
+	
+	
 };
