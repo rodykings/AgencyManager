@@ -35,7 +35,6 @@ void inputString(string message,string &value) {
 
 	cout << endl << message;
 	getline(cin, value);
-
 }
 
 void inputInt(string message, int &value) {
@@ -74,19 +73,6 @@ void inputNum(string message, num& value, num size){
 	}
 }
 
-//FUNCIONA SE QUISERES ADICIONAR, MAS NÃO FUNCIONA SE QUISERS REMOVER .....
-void inputPlaces(vector<string> &places) {
-
-	string newPlace;
-	inputString("Main Place:", newPlace);
-	places.push_back(newPlace);
-
-	while (yesOrNo("Do you want o insert a new Place to visit?")) {
-		inputString("New Place:", newPlace);
-		places.push_back(newPlace);
-	}
-}	
-
 bool yesOrNo(string message)
 {
 	char input;
@@ -108,7 +94,7 @@ void selectOption(int& option, num numOptions) {
 	bool fail = true;
 
 	do {
-		cout << "Option: "; cin >> option;
+		cout << "Option(CTRL-Z to exit): "; cin >> option;
 
 		if (cin.fail() || option < 1 || option > numOptions)
 		{

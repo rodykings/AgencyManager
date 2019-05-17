@@ -13,9 +13,6 @@
 #include "Pack.h"
 #include "Address.h"
 #include "inputValidation.h"
-//#include "SubMenu.h"
-
-
 
 class Agency
 {
@@ -23,10 +20,13 @@ public:
 	Agency();
 	Agency(string fileName, bool& readFileFail); //alternate constructor
 
+	bool clientChanges = false;
+	bool packChanges = false;
+
 	void showAgencyInfo();
 	void storeClients();
 	void storePacks();
-	void showAllClients(); // showAll clients
+	void showAllClients(); 
 	void showPacks(); //show all packs
 	void showPacks(vector<num> boughtPacks, bool positionVector);
 	void addClient();
@@ -53,7 +53,6 @@ private:
 	vector<Client> clients;
 	vector<Pack> packs;
 
-	
 	void loadClients(bool& readFileFail);
 	void loadPacks(bool& readFileFail);
 

@@ -11,7 +11,6 @@ Date::Date(num year, num month, num day) {
 	this->day = day;
 }
 
-
 Date::Date(string yearMonthDay) {
 
 	string strYear;
