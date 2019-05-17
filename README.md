@@ -15,6 +15,11 @@ C++ PROG Project - 2S MIEIC
   </tr>
 </table>
 
+<h2>Descrição</h2>
+
+<p>Software de gestão de pacotes e clientes de uma agência de viagens.</p>
+
+
 
 <h2>Funcionalidades</h2>
 
@@ -22,8 +27,8 @@ C++ PROG Project - 2S MIEIC
   <li><b>Comprar Pacotes</b> 
   <li><b>Gerir Clientes</b> - Criar | Alterar | Remover | Procurar</li>
   <li><b>Gerir Pacotes</b> - Criar | Alterar | Remover | Procurar</li>
-  <li>Mostrar Clientes e Pacotes</li>
-  <li>Estatísticas</li>
+  <li><b>Mostrar Clientes e Pacotes</b></li>
+  <li><b>Estatísticas</b></li>
 </ul>
 
 
