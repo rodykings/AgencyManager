@@ -69,8 +69,8 @@ void Client::setAddress() {
 
 	this->address = newAddress;
 }
-void Client::setBoughtPacks(vector<num> boughtPacks) {
-	this->boughtPacks = boughtPacks;
+void Client::setBoughtPacks(int packID) {
+	this->boughtPacks.push_back(packID);
 }
 void Client::setMoneySpent(num moneySpent) {
 	this->spentMoney = moneySpent;

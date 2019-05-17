@@ -350,12 +350,13 @@ void Agency::showClient() {
 	system("cls");
 
 	cout << "SEARCH CLIENT\n";
-	cout << "-------------\n" << endl;
-	cout << "| 1-Display sold packs | 2-Display most famous unvisited destinations |\n";
+	cout << "-------------\n";
 
 	int vpos = searchClient();
 
 	if (vpos >= 0) {
+
+		cout << endl << "| 1-Display sold packs | 2-Display most famous unvisited destinations |\n\n";
 
 		clients[vpos].show();
 		cout << endl;
@@ -368,13 +369,14 @@ void Agency::showClient() {
 			break;
 		case 1:
 			cout << endl;
-			showPacks(clients[vpos].getBoughtPacks(), true);
+			showPacks(clients[vpos].getBoughtPacks(), false);
+			system("pause");
 		}
 	}
 	else {
 		cerr << endl << "ERROR Client not found!\n" << endl;
+		system("pause");
 	}
-	system("pause");
 }
 void Agency::showAllClients()
 {
@@ -583,7 +585,7 @@ void Agency::showPacks(vector<num> vec, bool positionVector = false) {
 }
 
 /*---SEARCH PACK FUNCTIONS---*/
-void Agency::searchPack() {
+void Agency::searchPack(bool available) {
 	system("cls");
 	cout << "SEARCH PACKS\n";
 	cout << "------------\n" << endl;
@@ -603,7 +605,7 @@ void Agency::searchPack() {
 	case 1: //search by destination
 		cin.ignore(1000, '\n');
 		cout << endl << "Destination: "; getline(cin, dest);
-		vpos = searchPack(dest);
+		vpos = searchPack(dest, available);
 		break;
 	case 2:	//search by date
 		do {
@@ -613,12 +615,12 @@ void Agency::searchPack() {
 			if (!valid)
 				cerr << "ERROR Inconsistent Start and End Date !\n";
 		} while (!valid);
-		vpos = searchPack(start, end);
+		vpos = searchPack(start, end, available);
 		break;
 	case 3: //search by date and destination
 		cin.ignore(1000, '\n');
 		cout << endl << "Destination: "; getline(cin, dest);
-		vpos = searchPack(dest);
+		vpos = searchPack(dest, available);
 		do {
 			start = inputDate("Start Date: ");
 			end = inputDate("End Date: ");
@@ -627,7 +629,7 @@ void Agency::searchPack() {
 				cerr << "ERROR Inconsistent Start and End Date !\n";
 		} while (!valid);
 		
-		vpos2 = searchPack(start, end);
+		vpos2 = searchPack(start, end, available);
 		
 		vposIntersection = vectorIntersect(vpos, vpos2);
 		vpos = vposIntersection;
@@ -645,9 +647,12 @@ void Agency::searchPack() {
 //SEARCH PACK BY ID
 vector<num> Agency::searchPack(int id) {
 
-	vector<num> finalIdx = {};
+	vector<num> finalIdx;
 
 	size_t size = packs.size();
+	if (abs(id) > size)
+		return finalIdx;
+
 	for (size_t i = 0; i < size; i++) {
 		if (abs(packs[i].getID()) == id)
 			finalIdx.push_back(i);
@@ -655,7 +660,7 @@ vector<num> Agency::searchPack(int id) {
 	return finalIdx;
 }
 //SEARCH PACKS BY DESTINATION
-vector<num> Agency::searchPack(string dest){
+vector<num> Agency::searchPack(string dest, bool available){
 
 	vector<num> vpos;
 	
@@ -664,6 +669,8 @@ vector<num> Agency::searchPack(string dest){
 	for (size_t i = 0; i < size; i++)
 	{
 		vector<string> temp = packs[i].getPlaces();
+		if (available && packs[i].getID() < 0)
+			continue;
 		for (size_t j = 0; j < temp.size(); j++)
 		{
 			if (stringToUpper(temp[j]) == dest)
@@ -673,13 +680,15 @@ vector<num> Agency::searchPack(string dest){
 	return vpos;
 }
 //SEARCH PACKS BY DATE
-vector<num> Agency::searchPack(Date start, Date end)
+vector<num> Agency::searchPack(Date start, Date end, bool available)
 {
 	vector<num> vpos;
 	
 	size_t size = packs.size();
 	for (size_t i = 0; i < size; i++)
 	{
+		if (available && packs[i].getID() < 0)
+			continue;
 		if ((packs[i].getStart().isAfter(start)|| packs[i].getStart().isEqualTo(start)) && (packs[i].getEnd().isBefore(end) || packs[i].getEnd().isEqualTo(end)))
 			vpos.push_back(i);
 	}
@@ -695,13 +704,16 @@ void Agency::buyPack() {
 	int vpos = searchClient();
 
 	if (vpos < 0) {
-		cout << "\n\nClient not found!\n\n";
-		system("pause");
+		cerr << "\n\nERROR Client not found!\n\n";
 	}
 	else {
 		cout << endl;
 		clients[vpos].show();
-		if (yesOrNo("Do you want to buy a pack for this client? [y/n]")) {
+
+		if (yesOrNo("Do you want to buy a pack for this client? [y/n] ")) {
+			if (yesOrNo("\nDo you want ot search for available packs? [y/n] ")) {
+				searchPack(true);
+			}
 			system("cls");
 
 			cout << "BUY PACK\n";
@@ -710,8 +722,9 @@ void Agency::buyPack() {
 			int id;
 			inputInt("Pack ID: ", id);
 			vector<num> pos = searchPack(id);
-			num total_price = packs[id - 1].getPrice() * clients[vpos].getNumPeople();
+			
 			if (pos.size() != 0) {
+				num total_price = packs[id - 1].getPrice() * clients[vpos].getNumPeople();
 				if ((packs[id - 1].getSoldSpots() + clients[vpos].getNumPeople()) > packs[id - 1].getSpots())
 					cout << endl << "Package is full! \n\n";
 				else {
@@ -723,20 +736,24 @@ void Agency::buyPack() {
 					cout << "--------------------------------------------";
 					cout << endl << endl;
 
-					if (yesOrNo("Do you want to buy this pack to " + clients[vpos].getName() + "? [Y|N]")) {
+					if (yesOrNo("Buy pack for " + clients[vpos].getName() + "? [y/n]")) {
 						clients[vpos].setMoneySpent(clients[vpos].getSpentMoney() + total_price);
+						clients[vpos].setBoughtPacks(id);
 						packs[id - 1].setSoldSpots((packs[id - 1].getSoldSpots() + clients[vpos].getNumPeople()));
 						if (packs[id - 1].getSoldSpots() == packs[id - 1].getSpots())
 							packs[id - 1].setID((packs[id-1].getID() * (-1)));
-						cout << "\n\nYou have bought the pack sucessfully!\n\n";
+						cout << "\n\nPackage bought successfully!\n\n";
 						clientChanges = true;
 						packChanges = true;
 					}
 				}
 			}
-			system("pause");
+			else {
+				cerr << "\nERROR Package not found!\n\n";
+			}
 		}
 	}
+	system("pause");
 }
 
 void Agency::statistics()

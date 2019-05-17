@@ -2,19 +2,26 @@ Rui Manuel
 234987156
 4
 Rua Sem Fim / 200 / 5Esq / 1200-001 / Lisboa
-4;1;2
-504
+1
+1200
 ::::::::::
 Belmiro Miguel
 111987666
-2
-Avenida dos Grilos / 100 / - / 2300-101 / Coimbra
-1;3;2
-1300
-::::::::::
-Ant¢nio Costa
-123456789
 5
-Rua da Geringon‡a / 56 / apart5 / 1234-054 / Lisboa
+Rua da Liberdade / 54 / - / 4450-025 / Porto
 
 0
+::::::::::
+Marco Ant¢nio
+159263487
+6
+Rua do Imp‚rio / 78 / - / 4480-326 / Lisboa
+
+0
+::::::::::
+Ant¢nio Costa
+951623847
+3
+Rua de SÆo Bento / 1 / 2esqrd / 1249-068 / Lisboa
+6
+300

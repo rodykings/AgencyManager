@@ -19,7 +19,7 @@ class Client {
 		void setNIF();
 		void setNumPeople();
 		void setAddress();
-		void setBoughtPacks(vector<num> boughtPacks);
+		void setBoughtPacks(int packID);
 		void setMoneySpent(num moneySpent);
 
 		//--GET methods--//

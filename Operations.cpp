@@ -36,3 +36,4 @@ vector<num> vectorIntersect(vector<num> first, vector<num> second)
 
 	return res;
 }
+

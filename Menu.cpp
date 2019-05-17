@@ -23,9 +23,6 @@ void mainMenu(Agency& agency, bool& moreOperations) {
 	int option;
 	selectOption(option, 12);
 
-	num nif;
-	vector<Client> newVect;
-
 	switch (option)
 	{
 	case -1:

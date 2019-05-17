@@ -14,6 +14,8 @@
 #include "Address.h"
 #include "inputValidation.h"
 
+using namespace std;
+
 class Agency
 {
 public:
@@ -37,7 +39,7 @@ public:
 	void deletePack();
 	void statistics();
 	void showClient();
-	void searchPack();
+	void searchPack(bool available = false);
 	void buyPack();
 private:
 	string name;
@@ -57,7 +59,7 @@ private:
 	void loadPacks(bool& readFileFail);
 
 	vector<num> searchPack(int id);
-	vector<num> searchPack(string dest);
-	vector<num> searchPack(Date start, Date end);
+	vector<num> searchPack(string dest, bool available = false);
+	vector<num> searchPack(Date start, Date end, bool available = false);
 	num searchClient();
 };

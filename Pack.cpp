@@ -28,18 +28,11 @@ void Pack::setID(int id)
 }
 void Pack::setPlaces() 
 {
-	string mainSite;
+	string site;
 	cin.ignore(1000, '\n');
-	cout << "Main Tour Site: "; getline(cin, mainSite);
+	cout << "Tour Sites (mainTourSite - local, local): "; getline(cin, site);
 	
-	string places;
-	cin.ignore(1000, '\n');
-	cout << "Insert remaining tour sites seperated by a comma ( '0' if none ): "; getline(cin, places);
-	if (places != "0")
-	{
-		mainSite += "-" + places;
-	}
-	this->places = splitPlaces(mainSite);
+	this->places = splitPlaces(site);
 }
 void Pack::setStart()
 {
