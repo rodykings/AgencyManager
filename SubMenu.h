@@ -9,5 +9,4 @@
 
 using namespace std;
 
-void updateClientMenu(int& option, Client client);
-void updatePackMenu(int& option, Pack pack);
+

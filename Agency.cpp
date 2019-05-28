@@ -244,7 +244,7 @@ void Agency::addClient() {
 	cin.ignore();
 	getline(cin, street);
 	inputNum("\tDoor:", door);
-	cout << "\tFloor:";
+	cout << "\tFloor ( - if none ):";
 	cin.ignore();
 	getline(cin, floor);
 	cout << "\tZip Code:";

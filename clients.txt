@@ -1,0 +1,41 @@
+Belmiro Miguel
+111987666
+5
+Rua da Liberdade / 54 / - / 4450-025 / Porto
+
+0
+::::::::::
+Marco Ant¢nio
+159263487
+6
+Rua do Imp‚rio / 78 / - / 4480-326 / Lisboa
+4
+510
+::::::::::
+Ant¢nio Costa
+951623847
+3
+Rua de SÆo Bento / 1 / 2esqrd / 1249-068 / Lisboa
+6;2
+1050
+::::::::::
+JoÆo Carlos
+987321654
+10
+Rua das Almofadas / 26 / - / 120-036 / Lisboa
+
+0
+::::::::::
+Marcelo Rebelo
+654321789
+15
+Rua do Rebelo / 20 / 6Esq / 2106-015 / Lisboa
+1;2;3
+8625
+::::::::::
+Marcelo Rebelo
+654321789
+15
+Rua do Rebelo / 20 / 6Esq / 2106-015 / Lisboa
+1;2;3
+8625

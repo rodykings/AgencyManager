@@ -132,6 +132,7 @@ num Date::numOfDays(num year, num month) {
 		return 31;
 		break;
 	}
+	return 0;
 
 }
 
@@ -166,6 +167,8 @@ bool Date::isAfter(const Date &date) {
 		return false;
 	if (day > date.getDay())
 		return true;
+
+	return false;
 
 }
 

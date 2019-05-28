@@ -2,6 +2,7 @@
 #include "Operations.h"
 #include "Menu.h"
 
+
 int main() {
 	bool readFileFail = false;
 	Agency agency("agency.txt", readFileFail);

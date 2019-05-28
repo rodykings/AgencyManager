@@ -154,11 +154,11 @@ vector<string> Client::visitedPlaces(vector<Pack>& packs) {
 	size_t sizeBp = boughtPacks.size();
 	size_t sizePacks = packs.size();
 
-	for (int bp = 0; bp < sizeBp; bp++) {
-		for (int pack = 0; pack < sizePacks; pack++) {
+	for (size_t bp = 0; bp < sizeBp; bp++) {
+		for (size_t pack = 0; pack < sizePacks; pack++) {
 			if (abs(packs[pack].getID()) == boughtPacks[bp]) {
 				size_t sizePlaces = packs[pack].getPlaces().size();
-				for (int places = 0; places < sizePlaces; places++) {
+				for (size_t places = 0; places < sizePlaces; places++) {
 					visitedPlaces.push_back(packs[pack].getPlaces()[places]);
 				}
 			}
